@@ -1,0 +1,23 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="org.hibernate_orm.cool" transaction-type="RESOURCE_LOCAL">
+        <description>Hibernate EntityManager for the datacenter module</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>org.backender.hibernate.PageEntity</class>
+        <class>org.backender.hibernate.components.HeaderComponentEntity</class>
+        <class>org.backender.hibernate.components.HeaderDSEntity</class>
+        <class>org.backender.hibernate.components.LinkEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:12345/backender"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="postgres"/>
+        </properties>
+    </persistence-unit>
+</persistence>

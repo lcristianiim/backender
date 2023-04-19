@@ -1,6 +1,7 @@
-package org.backender;
+package org.backender.mongo;
 
-import org.backender.mongo.MongoRepo;
+import org.componenter.Page;
+import org.componenter.Theme;
 import org.componenter.components.Component;
 import org.componenter.components.commons.Link;
 import org.componenter.components.header.HeaderComponent;
@@ -21,15 +22,17 @@ public class Main {
         );
 
         Component header = new HeaderComponent(data);
-        MongoRepo repo = new MongoRepo(Component.class, "components");
 
-        repo.insertOne(header);
+        MongoRepo componentsRepo = new MongoRepo(Component.class, "components");
+        MongoRepo pagesRepo = new MongoRepo(Page.class, "pages");
 
-//        Page page = new Page("Cool title", Theme.LIGHT, "test-a", "index.html", List.of(header));
-//
-//        MonogoRepo repo = new MonogoRepo(MongoPage.class, "pages");
-//
-//        Optional<Page> me = repo.findOne("view", "index.html");
+        Page page = new Page("Cool title", Theme.LIGHT, "test-a", "index.html", List.of(header));
+        componentsRepo.insertOne(header);
+        pagesRepo.insertOne(page);
+
+
+
+//        Optional<Page> me = componentsRepo.findOne("view", "index.html");
 //        var you = me.get();
 //
         System.out.println("hello");

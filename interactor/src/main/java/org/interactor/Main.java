@@ -1,4 +1,4 @@
-package org.backender;
+package org.interactor;
 
 public class Main {
     public static void main(String[] args) {

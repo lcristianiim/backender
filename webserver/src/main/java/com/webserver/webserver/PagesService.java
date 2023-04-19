@@ -8,7 +8,6 @@ import org.componenter.components.header.HeaderComponent;
 import org.componenter.components.header.HeaderDS;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,8 +28,11 @@ public class PagesService {
                             new Link("Forth link", "page-four"))
             );
 
+
             Component header = new HeaderComponent(data);
-            return new Page("Cool title", Theme.LIGHT, "test-a", "index.html", List.of(header));
+            Page homepage = new Page("Cool title", Theme.LIGHT, "test-a", "index.html", List.of(header));
+            return homepage;
+
         }
         return null;
     }
