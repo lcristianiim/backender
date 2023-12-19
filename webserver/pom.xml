@@ -2,21 +2,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+
 	<groupId>com.webserver</groupId>
 	<artifactId>webserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>webserver</name>
 	<description>Webserver for backender</description>
+
 	<properties>
-		<java.version>20</java.version>
+		<java.version>21</java.version>
 	</properties>
+
 	<dependencies>
+		<dependency>
+			<groupId>io.javalin</groupId>
+			<artifactId>javalin</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.javalin</groupId>
+			<artifactId>javalin-rendering</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.spullara.mustache.java</groupId>
+			<artifactId>compiler</artifactId>
+			<version>0.9.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>2.0.7</version>
+		</dependency>
 		<dependency>
 			<groupId>org.backender</groupId>
 			<artifactId>interactor</artifactId>
@@ -25,23 +44,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.backender</groupId>
-			<artifactId>datacenter</artifactId>
+			<artifactId>hibernatedatacenter</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -49,31 +53,85 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.14.2</version>
 		</dependency>
+		<dependency>
+			<groupId>io.javalin</groupId>
+			<artifactId>javalin-micrometer</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.javalin</groupId>
+			<artifactId>javalin-bundle</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.javalin.community.openapi</groupId>
+			<artifactId>javalin-openapi-plugin</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.javalin.community.openapi</groupId>
+			<artifactId>javalin-swagger-plugin</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.javalin.community.openapi</groupId>
+			<artifactId>javalin-redoc-plugin</artifactId>
+			<version>5.6.3</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-						<exclude>
-							<groupId>org.jwunited</groupId>
-							<artifactId>interactor</artifactId>
-						</exclude>
-						<exclude>
-							<groupId>org.jwunited</groupId>
-							<artifactId>datacenter</artifactId>
-						</exclude>
-					</excludes>
-					<outputDirectory>../deployable</outputDirectory>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>../dependencies</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<excludeArtifactIds>hibernatedatacenter,interactor</excludeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resource-one</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>../modules</outputDirectory>
+							<resources>
+								<resource>
+									<directory>target</directory>
+									<includes>
+										<include>webserver*.jar</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
