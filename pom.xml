@@ -10,7 +10,16 @@
     <packaging>pom</packaging>
 
     <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <release.version>17</release.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <modules.dir>${project.build.directory}/modules</modules.dir>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <modules>

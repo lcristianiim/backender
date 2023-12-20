@@ -3,6 +3,7 @@ module com.backender.webservermodule {
     requires io.javalin;
     requires javalin.rendering;
     requires org.interactormodule;
+
     opens templates;
     opens images;
 }

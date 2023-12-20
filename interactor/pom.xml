@@ -12,11 +12,6 @@
     <artifactId>interactor</artifactId>
     <packaging>jar</packaging>
 
-    <properties>
-        <java.version>21</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -46,9 +41,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${release.version}</release>
                 </configuration>
             </plugin>
         </plugins>

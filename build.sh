@@ -1,4 +1,3 @@
 #!/bin/bash
-rm modules/*
-./mvnw clean &&
-./mvnw -Dmaven.multiModuleProjectDirectory=. package
+sh mvnw package
+sh mvnw generate-sources

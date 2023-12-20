@@ -7,6 +7,7 @@ import java.util.ServiceLoader;
 public class HibernatePersonService implements PersonsService {
     private static PersonsService personsService;
 
+
     public HibernatePersonService() {
         if (personsService == null)
             setProvider();
