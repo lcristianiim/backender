@@ -3,7 +3,6 @@ import org.hibernatedatacenter.persons.PersonService;
 module org.hibernatedatacentermodule {
     requires org.interactormodule;
     requires jakarta.persistence;
-    requires org.hibernate.orm.core;
 
     opens org.hibernatedatacenter.persons;
 

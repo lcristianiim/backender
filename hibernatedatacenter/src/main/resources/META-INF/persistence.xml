@@ -5,7 +5,8 @@
              version="2.1">
     <persistence-unit name="org.hibernate.unit" transaction-type="RESOURCE_LOCAL">
         <description>Hibernate EntityManager Demo</description>
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>org.hibernatedatacenter.persons.PersonEntity</class>
         <class>org.hibernatedatacenter.persons.AddressEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
