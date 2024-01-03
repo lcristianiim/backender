@@ -5,11 +5,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.interactor.personsa.AddressDTO;
 import org.interactor.personsa.PersonDTO;
-import org.interactor.personsa.PersonsService;
+import org.interactor.personsa.PersonsRepository;
 
 import java.util.List;
 
-public class PersonService implements PersonsService {
+public class PersonRepositoryImplementation implements PersonsRepository {
     private static EntityManager em;
 
     private void savePerson(PersonEntity person) {
@@ -57,6 +57,7 @@ public class PersonService implements PersonsService {
 
     @Override
     public List<PersonDTO> getAllPersons() {
+//        createInitialPersons();
         List<PersonEntity> personEntities = getPersons();
         return personEntities.stream()
                 .map(e -> new PersonDTO(e.getId(), e.getFirstName(), e.getLastName(),
@@ -64,5 +65,12 @@ public class PersonService implements PersonsService {
                                 .map(adr -> new AddressDTO(adr.getId(), adr.getAddress(), adr.getPostalCode()))
                                 .toList()))
                 .toList();
+    }
+
+    private void createInitialPersons() {
+        PersonDTO personDTO = new PersonDTO(0, "Cristian", "Szabo", List.of(new AddressDTO(0, "First Street", 1234)));
+        savePerson(personDTO);
+        PersonDTO secondPersonDTO = new PersonDTO(1, "Adrian", "Marcel", List.of(new AddressDTO(0, "Second Street", 1234)));
+        savePerson(secondPersonDTO);
     }
 }
