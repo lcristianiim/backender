@@ -68,9 +68,9 @@ public class PersonRepositoryImplementation implements PersonsRepository {
     }
 
     private void createInitialPersons() {
-        PersonDTO personDTO = new PersonDTO(0, "Cristian", "Szabo", List.of(new AddressDTO(0, "First Street", 1234)));
+        PersonDTO personDTO = new PersonDTO(0, "John", "Perry", List.of(new AddressDTO(0, "First Street", 1234)));
         savePerson(personDTO);
-        PersonDTO secondPersonDTO = new PersonDTO(1, "Adrian", "Marcel", List.of(new AddressDTO(0, "Second Street", 1234)));
+        PersonDTO secondPersonDTO = new PersonDTO(1, "Mike", "Adams", List.of(new AddressDTO(0, "Second Street", 1234)));
         savePerson(secondPersonDTO);
     }
 }

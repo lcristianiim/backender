@@ -1,4 +1,4 @@
-import org.hibernatedatacenter.persons.PersonRepositoryImplementation;
+import org.hibernatedatacenter.persons.HardCodedPersonRepositoryImpl;
 import org.interactor.personsa.PersonsRepository;
 
 module org.hibernatedatacentermodule {
@@ -9,5 +9,5 @@ module org.hibernatedatacentermodule {
 
     exports org.hibernatedatacenter.persons;
 
-    provides PersonsRepository with PersonRepositoryImplementation;
+    provides PersonsRepository with HardCodedPersonRepositoryImpl;
 }
