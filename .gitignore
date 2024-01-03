@@ -1,3 +1,5 @@
+modules
+dependencies
 node_modules
 deployable
 deployable/**
