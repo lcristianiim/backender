@@ -14,8 +14,6 @@ import static io.javalin.rendering.template.TemplateUtil.model;
 public class WebserverApplication {
 	public static void main(String[] args) {
 
-//		HibernatePersistenceProvider provider = new HibernatePersistenceProvider();
-
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
 		// Mustache configuration
 		DefaultMustacheFactory factory = new DefaultMustacheFactory("templates");
