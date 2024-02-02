@@ -1,4 +1,5 @@
-#Backender
+# Backender
+![alt text](https://github.com/lcristianiim/backender/blob/jigsaw-implementation/description.png?raw=true)
 
 ## Requirements
 - java 17
