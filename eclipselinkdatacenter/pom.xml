@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
 
-    <artifactId>hibernatedatacenter</artifactId>
+    <artifactId>eclipselinkdatacenter</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.backender</groupId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.5.1</version>
+            <version>42.7.3</version>
         </dependency>
     </dependencies>
 
@@ -60,7 +60,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>hibernate*.jar</include>
+                                        <include>eclipselinkdatacenter*.jar</include>
                                     </includes>
                                 </resource>
                             </resources>

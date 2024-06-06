@@ -25,7 +25,7 @@
     <modules>
         <module>webserver</module>
         <module>interactor</module>
-        <module>hibernatedatacenter</module>
+        <module>eclipselinkdatacenter</module>
     </modules>
 
 </project>
