@@ -3,6 +3,7 @@ dependencies
 node_modules
 deployable
 deployable/**
+pid
 
 HELP.md
 target/
