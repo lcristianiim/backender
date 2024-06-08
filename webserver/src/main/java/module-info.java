@@ -1,9 +1,10 @@
 module com.backender.webservermodule {
-    requires com.github.mustachejava;
     requires io.javalin;
-    requires javalin.rendering;
     requires org.interactormodule;
+    requires io.javalin.rendering;
+    requires com.github.mustachejava;
 
     opens templates;
     opens images;
+    opens com.webserver;
 }

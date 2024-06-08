@@ -6,14 +6,15 @@
 
     <groupId>org.backender</groupId>
     <artifactId>backender</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <release.version>17</release.version>
+        <version>0.0.1-SNAPSHOT</version>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <release.version>${java.version}</release.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <modules.dir>${project.build.directory}/modules</modules.dir>
