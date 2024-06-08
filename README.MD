@@ -14,7 +14,7 @@
 - Add a new configuration of type "Application"
 - in the "-cp" input select "webserver"
 - in the "vm options" input write "-p dependencies:modules"
-- set the main class in the corresponding input "com.webserver.WebserverApplication"
+- set the main class in the corresponding input "com.webserver.Application"
 After the above are set the application can run in normal or debug mode
 
 

@@ -91,7 +91,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.webserver.WebserverApplication</mainClass>
+							<mainClass>com.webserver.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

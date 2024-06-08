@@ -14,7 +14,7 @@ import java.util.List;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
-public class WebserverApplication {
+public class Application {
 	public static void main(String[] args) {
 
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
