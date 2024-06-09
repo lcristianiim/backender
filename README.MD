@@ -17,6 +17,15 @@
 - set the main class in the corresponding input "com.webserver.Application"
 After the above are set the application can run in normal or debug mode
 
+## Cool features
+- the server literally starts instantly (on the laptop used to testing it takes around 167ms)
+- using JPMS to ensure Clean Architecture
+- the maven 'package' phase builds the modules in one folder and all the project dependencies are in another folder. This permits very clean deployments.
+- static content cached
+- use virtual threads (based on Java Project Loom)
+- at server startup it writes a file called pid that contains the process id of the java process
+
+
 
 ## :scroll: License
 Apache License, Version 2.0 © Cristian Szabo
