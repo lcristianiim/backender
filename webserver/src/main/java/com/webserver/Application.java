@@ -24,6 +24,7 @@ public class Application {
 					javalinConfig.staticFiles.add(staticFileConfig -> {
 						staticFileConfig.hostedPath = "/images";
 						staticFileConfig.directory = "images";
+						staticFileConfig.precompress = true;
 					});
 
 					DefaultMustacheFactory factory = new DefaultMustacheFactory("templates");
