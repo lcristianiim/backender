@@ -11,6 +11,7 @@
 - `./run.sh` This will start the webserver
 
 ### Intellij
+- first run the `build.sh` script to build the project. 
 - Add a new configuration of type "Application"
 - in the "-cp" input select "webserver"
 - in the "vm options" input write "-p dependencies:modules"
