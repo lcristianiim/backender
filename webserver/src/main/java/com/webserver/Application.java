@@ -20,20 +20,21 @@ public class Application {
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
 		writePidFile();
 
-		Javalin.create(javalinConfig -> {
+		var app = Javalin.create(javalinConfig -> {
 					javalinConfig.staticFiles.add(staticFileConfig -> {
 						staticFileConfig.hostedPath = "/images";
 						staticFileConfig.directory = "images";
 						staticFileConfig.precompress = true;
 					});
+					javalinConfig.useVirtualThreads = true;
 
 					DefaultMustacheFactory factory = new DefaultMustacheFactory("templates");
 					javalinConfig.fileRenderer(new JavalinMustache(factory));
-				})
-				.get("/", ctx -> {
+				});
+
+		app.get("/", ctx -> {
 							PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
 							List<PersonDTO> persons = personsPersistenceService.getAllPersons();
-
 
 							ctx.render("hello.mustache", model(
 									"person1", persons.get(0),
