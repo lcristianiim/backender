@@ -2,7 +2,7 @@
 ![alt text](https://github.com/lcristianiim/backender/blob/jigsaw-implementation/description.png?raw=true)
 
 ## Requirements
-- java 17
+- java 21 
 
 ## How to run it
 ### Command line
