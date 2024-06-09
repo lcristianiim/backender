@@ -13,9 +13,7 @@ public class PersonsPersistenceService {
     }
 
     public List<PersonDTO> getAllPersons() {
-        PersonDTO personDTO = new PersonDTO(1, "a", "b", null);
         return personsRepository.getAllPersons();
-//        return List.of(personDTO);
     }
 
     public void savePerson(PersonDTO person) {

@@ -21,6 +21,7 @@ public class PersonRepositoryImplementation implements PersonsRepository {
 
     private static List<PersonEntity> getPersons() {
         EntityManager em = getEntityManager();
+        em.clear();
         em.getTransaction().begin();
         List<PersonEntity> persons = em.createQuery("SELECT e FROM PersonEntity e").getResultList();
         em.getTransaction().commit();
