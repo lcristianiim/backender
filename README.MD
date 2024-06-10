@@ -20,6 +20,7 @@ After the above are set the application can run in normal or debug mode
 
 ## Cool features
 - using JPMS to ensure Clean Architecture
+- each module can be easily transformed if/when needed into a dedicated microservice
 - the server literally starts instantly, on the laptop used for testing it takes around 167ms.
 - very small memory footprint. The whole project together with the webserver itself and with absolutely all the dependencies are using around 23.6MB.
 - the maven 'package' phase builds the modules in one folder and all the project dependencies are in another folder. This permits very clean deployments.
