@@ -23,12 +23,14 @@ public class PersonsPersistenceService {
     private static void setProvider() {
         ServiceLoader<PersonsRepository> sl
                 = ServiceLoader.load(PersonsRepository.class);
+
         Optional<PersonsRepository> repositoryImplementation = sl.findFirst();
+
         if (repositoryImplementation.isEmpty())
             throw new NoHibernateProviderException();
+
         personsRepository = repositoryImplementation.get();
     }
-
 
     private static class NoHibernateProviderException extends RuntimeException {
         public NoHibernateProviderException() {

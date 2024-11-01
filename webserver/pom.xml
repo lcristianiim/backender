@@ -74,16 +74,6 @@
 
 
 
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-core</artifactId>
-			<version>1.13.6</version> <!-- Check for the latest version -->
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId> <!-- Example for Prometheus -->
-			<version>1.13.6</version>
-		</dependency>
 	</dependencies>
 
 	<build>

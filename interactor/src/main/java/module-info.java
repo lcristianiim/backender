@@ -1,6 +1,6 @@
-import org.interactor.personsa.PersonsRepository;
-
 module org.interactormodule {
     exports org.interactor.personsa;
-    uses PersonsRepository;
+    exports org.interactor.metrics;
+    uses org.interactor.personsa.PersonsRepository;
+    uses org.interactor.metrics.ApplicationMetrics;
 }

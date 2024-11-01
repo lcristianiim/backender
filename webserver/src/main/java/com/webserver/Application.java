@@ -4,6 +4,7 @@ package com.webserver;
 import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinMustache;
+import org.interactor.metrics.MetricsService;
 import org.interactor.personsa.PersonDTO;
 import org.interactor.personsa.PersonsPersistenceService;
 
@@ -20,6 +21,7 @@ public class Application {
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
 		writePidFile();
 
+
 		var app = Javalin.create(javalinConfig -> {
 					javalinConfig.staticFiles.add(staticFileConfig -> {
 						staticFileConfig.hostedPath = "/images";
@@ -32,6 +34,7 @@ public class Application {
 					javalinConfig.fileRenderer(new JavalinMustache(factory));
 				});
 
+
 		app.get("/", ctx -> {
 							PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
 							List<PersonDTO> persons = personsPersistenceService.getAllPersons();
@@ -41,7 +44,15 @@ public class Application {
 									"person2", persons.get(1),
 									"image", "images/a.jpg"));
 						}
-				)
+				).
+				get("/metrics", ctx -> {
+					MetricsService metricsService = new MetricsService();
+					ctx.result(metricsService.getMetrics());
+				})
+				.get("/increment", ctx -> {
+					MetricsService metricsService = new MetricsService();
+					metricsService.incrementCounter();
+				})
 				.start(7070);
 	}
 
