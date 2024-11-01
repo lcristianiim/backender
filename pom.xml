@@ -27,7 +27,7 @@
         <module>webserver</module>
         <module>interactor</module>
         <module>eclipselinkdatacenter</module>
-        <module>prometeusmetrics</module>
+        <module>prometheusmetrics</module>
     </modules>
 
 </project>
