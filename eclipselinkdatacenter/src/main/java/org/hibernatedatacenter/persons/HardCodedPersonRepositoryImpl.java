@@ -1,8 +1,8 @@
 package org.hibernatedatacenter.persons;
 
-import org.interactor.personsa.AddressDTO;
-import org.interactor.personsa.PersonDTO;
-import org.interactor.personsa.PersonsRepository;
+import org.interactor.modules.datacenter.AddressDTO;
+import org.interactor.modules.datacenter.PersonDTO;
+import org.interactor.modules.datacenter.PersonsRepository;
 
 import java.util.List;
 

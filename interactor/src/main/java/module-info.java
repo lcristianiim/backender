@@ -1,6 +1,6 @@
 module org.interactormodule {
-    exports org.interactor.personsa;
-    exports org.interactor.metrics;
-    uses org.interactor.personsa.PersonsRepository;
-    uses org.interactor.metrics.ApplicationMetrics;
+    exports org.interactor.modules.datacenter;
+    exports org.interactor.modules.metrics;
+    uses org.interactor.modules.datacenter.PersonsRepository;
+    uses org.interactor.modules.metrics.ApplicationMetrics;
 }

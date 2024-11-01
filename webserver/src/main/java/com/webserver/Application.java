@@ -4,9 +4,9 @@ package com.webserver;
 import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinMustache;
-import org.interactor.metrics.MetricsService;
-import org.interactor.personsa.PersonDTO;
-import org.interactor.personsa.PersonsPersistenceService;
+import org.interactor.modules.metrics.MetricsService;
+import org.interactor.modules.datacenter.PersonDTO;
+import org.interactor.modules.datacenter.PersonsPersistenceService;
 
 import java.io.IOException;
 import java.nio.file.Files;

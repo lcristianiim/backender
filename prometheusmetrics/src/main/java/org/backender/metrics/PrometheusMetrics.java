@@ -4,7 +4,7 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Metrics;
 import io.micrometer.prometheusmetrics.PrometheusConfig;
 import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
-import org.interactor.metrics.ApplicationMetrics;
+import org.interactor.modules.metrics.ApplicationMetrics;
 
 public class PrometheusMetrics implements ApplicationMetrics {
     private static final PrometheusMeterRegistry prometheusRegistry = createPrometheusMetrics();
