@@ -12,10 +12,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
+	private static MetricsService metricsService = new MetricsService();
+
 	public static void main(String[] args) {
 
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
@@ -34,8 +37,17 @@ public class Application {
 					javalinConfig.fileRenderer(new JavalinMustache(factory));
 				});
 
+		app.before(ctx -> {
+			// Check if the request is for a static file
+			if (!ctx.path().startsWith("/images")) {
+				// Handle the request (e.g., log it, modify it, etc.)
+				System.out.println("Handling request for: " + ctx.path());
+			}
+		});
+
 
 		app.get("/", ctx -> {
+					metricsService.incrementCounter();
 							PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
 							List<PersonDTO> persons = personsPersistenceService.getAllPersons();
 
@@ -50,10 +62,32 @@ public class Application {
 					ctx.result(metricsService.getMetrics());
 				})
 				.get("/increment", ctx -> {
-					MetricsService metricsService = new MetricsService();
 					metricsService.incrementCounter();
-				})
-				.start(7070);
+				});
+
+		app.get("/**", ctx -> {
+			metricsService.incrementCounter();
+			try {
+				Thread.sleep(5000); // Simulate delay
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			ctx.result("This is some data!");
+		});
+
+		app.start(7070);
+
+	}
+
+	private static CompletableFuture<String> getRandomCatFactFuture() {
+		return CompletableFuture.supplyAsync(() -> {
+			try {
+				Thread.sleep(10000); // Simulate delay
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			return "This is some data!";
+		});
 	}
 
 	public static void writePidFile() {
