@@ -1,7 +1,7 @@
 import org.interactor.modules.metrics.ApplicationMetrics;
 
-module org.prometheusmetrics {
-    requires org.interactormodule;
+module prometheusmetrics {
+    requires interactor;
     requires micrometer.registry.prometheus;
     requires micrometer.core;
 

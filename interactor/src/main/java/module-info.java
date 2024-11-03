@@ -1,4 +1,4 @@
-module org.interactormodule {
+module interactor {
     exports org.interactor.modules.datacenter;
     exports org.interactor.modules.metrics;
     exports org.interactor.router;

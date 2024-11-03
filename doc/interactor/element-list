@@ -1,0 +1,6 @@
+module:interactor
+org.interactor.modules
+org.interactor.modules.datacenter
+org.interactor.modules.metrics
+org.interactor.router
+org.interactor.security

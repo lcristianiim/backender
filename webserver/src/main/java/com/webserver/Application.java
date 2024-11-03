@@ -21,14 +21,13 @@ import java.util.Objects;
 import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
-	private static MetricsServiceBean metricsServiceBean = MetricsServiceBean.INSTANCE;
+	private static final MetricsServiceBean metricsServiceBean = MetricsServiceBean.INSTANCE;
 
 	public static void main(String[] args) {
 
 
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
 		writePidFile();
-
 
 		var app = Javalin.create(javalinConfig -> {
 					javalinConfig.staticFiles.add(staticFileConfig -> {
@@ -50,24 +49,25 @@ public class Application {
 			}
 		});
 
-
 		app.get("/", ctx -> {
-							metricsServiceBean.incrementCounter();
-							PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
-							List<PersonDTO> persons = personsPersistenceService.getAllPersons();
-
-							ctx.render("hello.mustache", model(
-									"person1", persons.get(0),
-									"person2", persons.get(1),
-									"image", "images/a.jpg"));
-						}
-				).
-				get("/metrics", ctx -> {
-					ctx.result(metricsServiceBean.getMetrics());
-				})
-				.get("/increment", ctx -> {
 					metricsServiceBean.incrementCounter();
-				});
+					PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
+					List<PersonDTO> persons = personsPersistenceService.getAllPersons();
+
+					ctx.render("hello.mustache", model(
+							"person1", persons.get(0),
+							"person2", persons.get(1),
+							"image", "images/a.jpg"));
+				}
+		);
+
+		app.get("/metrics", ctx -> {
+			ctx.result(metricsServiceBean.getMetrics());
+		});
+
+		app.get("/increment", ctx -> {
+			metricsServiceBean.incrementCounter();
+		});
 
 		app.get("/json/**", ctx -> {
 			metricsServiceBean.incrementCounter();

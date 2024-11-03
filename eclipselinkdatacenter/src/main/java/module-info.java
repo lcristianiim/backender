@@ -1,12 +1,12 @@
 import org.interactor.modules.datacenter.PersonsRepository;
 
-module org.hibernatedatacentermodule {
-    requires org.interactormodule;
+module eclipselinkdatacenter {
+    requires interactor;
     requires jakarta.persistence;
 
-    opens org.hibernatedatacenter.persons;
+    opens org.eclipselinkdatacenter.persons;
 
-    exports org.hibernatedatacenter.persons;
+    exports org.eclipselinkdatacenter.persons;
 
-    provides PersonsRepository with org.hibernatedatacenter.persons.HardCodedPersonRepositoryImpl;
+    provides PersonsRepository with org.eclipselinkdatacenter.persons.HardCodedPersonRepositoryImpl;
 }
