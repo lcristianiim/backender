@@ -3,23 +3,28 @@ package com.webserver;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
-import org.interactor.modules.metrics.MetricsService;
+import org.interactor.modules.metrics.MetricsServiceBean;
+import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Locale;
+import java.util.Objects;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
-	private static MetricsService metricsService = new MetricsService();
+	private static MetricsServiceBean metricsServiceBean = MetricsServiceBean.INSTANCE;
 
 	public static void main(String[] args) {
+
 
 		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
 		writePidFile();
@@ -47,7 +52,7 @@ public class Application {
 
 
 		app.get("/", ctx -> {
-					metricsService.incrementCounter();
+							metricsServiceBean.incrementCounter();
 							PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
 							List<PersonDTO> persons = personsPersistenceService.getAllPersons();
 
@@ -58,37 +63,33 @@ public class Application {
 						}
 				).
 				get("/metrics", ctx -> {
-					MetricsService metricsService = new MetricsService();
-					ctx.result(metricsService.getMetrics());
+					ctx.result(metricsServiceBean.getMetrics());
 				})
 				.get("/increment", ctx -> {
-					metricsService.incrementCounter();
+					metricsServiceBean.incrementCounter();
 				});
 
-		app.get("/**", ctx -> {
-			metricsService.incrementCounter();
-			try {
-				Thread.sleep(5000); // Simulate delay
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
+		app.get("/json/**", ctx -> {
+			metricsServiceBean.incrementCounter();
+			String path = ctx.path();
+			Locale locale = getLocale(ctx);
+
+			Router router = new Router();
+			router.get(path, locale);
+
 			ctx.result("This is some data!");
 		});
 
 		app.start(7070);
-
 	}
 
-	private static CompletableFuture<String> getRandomCatFactFuture() {
-		return CompletableFuture.supplyAsync(() -> {
-			try {
-				Thread.sleep(10000); // Simulate delay
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-			return "This is some data!";
-		});
+	private static Locale getLocale(@NotNull Context ctx) {
+		return ctx.header("Accept-Language") != null
+				? Locale.forLanguageTag(Objects.requireNonNull(ctx.header("Accept-Language"))
+				.split(",")[0])
+				: Locale.getDefault();
 	}
+
 
 	public static void writePidFile() {
 		String fileName = "pid";
