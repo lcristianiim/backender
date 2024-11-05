@@ -6,6 +6,7 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
 import org.interactor.modules.metrics.MetricsServiceBean;
+import org.interactor.router.ResponseBody;
 import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
@@ -69,15 +70,16 @@ public class Application {
 			metricsServiceBean.incrementCounter();
 		});
 
-		app.get("/json/**", ctx -> {
+		app.get("/api/**", ctx -> {
 			metricsServiceBean.incrementCounter();
 			String path = ctx.path();
 			Locale locale = getLocale(ctx);
 
 			Router router = new Router();
-			router.get(path, locale);
+			ResponseBody response = router.get(path.split("/api/")[1], locale);
 
-			ctx.result("This is some data!");
+			ctx.status(response.code());
+			ctx.json(response.body());
 		});
 
 		app.start(7070);

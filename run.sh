@@ -1,2 +1,2 @@
 #!/bin/bash
-java -p modules:dependencies -m com.backender.webservermodule/com.webserver.Application
+java -p modules:dependencies -m webserver/com.webserver.Application
