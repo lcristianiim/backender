@@ -28,6 +28,9 @@ After the above are set the application can run in normal or debug mode
 - use virtual threads (based on Java Project Loom)
 - at server startup it writes a file called pid that contains the process id of the java process.
 - not using complex dependencies. For example in order to use JPA we need just 3 simple dependencies: jakarta.persistence-api, eclipselink implementation and postgresql driver, that's it.
+- jpms module for logging
+- jpms module for monitoring
+- jpms module for persistence
 
 ## :scroll: License
 Apache License, Version 2.0 © Cristian Szabo
