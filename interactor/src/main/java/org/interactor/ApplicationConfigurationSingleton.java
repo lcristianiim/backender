@@ -12,6 +12,7 @@ public enum ApplicationConfigurationSingleton {
 
     ApplicationConfigurationSingleton() {
         loadConfig();
+        loadTheGETRRoutes();
         API_PATH = (String) config.get("api.path");
     }
 
@@ -23,7 +24,7 @@ public enum ApplicationConfigurationSingleton {
         }
     }
 
-    private void loadGetRequestsConfig() {
+    private void loadTheGETRRoutes() {
         try (InputStream input = this.getClass().getClassLoader().getResourceAsStream("get-routes.properties")) {
             getRoutes.load(input);
         } catch (IOException e) {

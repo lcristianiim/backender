@@ -6,7 +6,7 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
 import org.interactor.ApplicationConfigurationSingleton;
-import org.interactor.modules.metrics.MetricsServiceBean;
+import org.interactor.modules.metrics.MetricsServiceBeanSingleton;
 import org.interactor.router.ResponseBody;
 import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
@@ -23,7 +23,7 @@ import java.util.Objects;
 import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
-	private static final MetricsServiceBean metricsServiceBean = MetricsServiceBean.INSTANCE;
+	private static final MetricsServiceBeanSingleton METRICS_SERVICE_BEAN_SINGLETON = MetricsServiceBeanSingleton.INSTANCE;
 	private static final ApplicationConfigurationSingleton applicationConfiguration =
 			ApplicationConfigurationSingleton.INSTANCE;
 
@@ -54,7 +54,7 @@ public class Application {
 		});
 
 		app.get("/", ctx -> {
-					metricsServiceBean.incrementCounter();
+					METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
 					PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
 					List<PersonDTO> persons = personsPersistenceService.getAllPersons();
 
@@ -66,15 +66,15 @@ public class Application {
 		);
 
 		app.get("/metrics", ctx -> {
-			ctx.result(metricsServiceBean.getMetrics());
+			ctx.result(METRICS_SERVICE_BEAN_SINGLETON.getMetrics());
 		});
 
 		app.get("/increment", ctx -> {
-			metricsServiceBean.incrementCounter();
+			METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
 		});
 
 		app.get(applicationConfiguration.getApiPath() + "/**", ctx -> {
-			metricsServiceBean.incrementCounter();
+			METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
 
 			Locale locale = getLocale(ctx);
 
