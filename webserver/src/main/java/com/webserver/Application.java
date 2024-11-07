@@ -45,13 +45,13 @@ public class Application {
 					javalinConfig.fileRenderer(new JavalinMustache(factory));
 				});
 
-		app.before(ctx -> {
-			// Check if the request is for a static file
-			if (!ctx.path().startsWith("/images")) {
-				// Handle the request (e.g., log it, modify it, etc.)
-				System.out.println("Handling request for: " + ctx.path());
-			}
-		});
+//		app.before(ctx -> {
+// 			Check if the request is for a static file
+//			if (!ctx.path().startsWith("/images")) {
+// 				Handle the request (e.g., log it, modify it, etc.)
+//				System.out.println("Handling request for: " + ctx.path());
+//			}
+//		});
 
 		app.get("/", ctx -> {
 					METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();

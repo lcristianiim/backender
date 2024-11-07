@@ -28,5 +28,6 @@
         <module>interactor</module>
         <module>eclipselinkdatacenter</module>
         <module>prometheusmetrics</module>
+        <module>logger</module>
     </modules>
 </project>

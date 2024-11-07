@@ -1,0 +1,29 @@
+<configuration>
+    <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app.%d{dd.MM.yyyy}.json</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Retain logs for 30 days -->
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                    <pattern>dd.MM.yyyy'T'HH:mm:ss.SSSZ</pattern>
+                </timestamp>
+                <loggerImplementation/>
+                <thread/>
+                <level/>
+                <message/>
+                <context/>
+                <mdc/>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <root level="INFO">
+        <appender-ref ref="JSON" />
+    </root>
+</configuration>

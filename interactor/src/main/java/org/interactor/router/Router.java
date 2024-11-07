@@ -1,6 +1,7 @@
 package org.interactor.router;
 
 import org.interactor.ApplicationConfigurationSingleton;
+import org.interactor.modules.logging.LoggerServiceSingleton;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
@@ -13,6 +14,7 @@ public class Router {
     Function<String, Controller> controllerResolver = this::getControllerInstance;
     Function<String,String> pathWithoutTheAPI = PathOperations.getPathWithoutTheAPIPart();
     Properties theGETRoutes = ApplicationConfigurationSingleton.INSTANCE.getGETRoutes();
+    LoggerServiceSingleton logger =  LoggerServiceSingleton.INSTANCE;
 
     /**
      * This is the main gateway from webserver to the interactor module for all GET requests
@@ -23,6 +25,7 @@ public class Router {
      */
     public ResponseBody get(String requestPath, Locale locale) {
         String pathWithoutAPI = pathWithoutTheAPI.apply(requestPath);
+        logger.getLogging().info("Request path:" + requestPath, Router.class);
 
         for (Map.Entry<Object, Object> routeElement : theGETRoutes.entrySet()) {
 
