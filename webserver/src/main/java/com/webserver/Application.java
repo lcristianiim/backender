@@ -5,6 +5,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
+import org.interactor.ApplicationConfigurationSingleton;
 import org.interactor.modules.metrics.MetricsServiceBean;
 import org.interactor.router.ResponseBody;
 import org.interactor.router.Router;
@@ -23,6 +24,8 @@ import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
 	private static final MetricsServiceBean metricsServiceBean = MetricsServiceBean.INSTANCE;
+	private static final ApplicationConfigurationSingleton applicationConfiguration =
+			ApplicationConfigurationSingleton.INSTANCE;
 
 	public static void main(String[] args) {
 
@@ -70,13 +73,13 @@ public class Application {
 			metricsServiceBean.incrementCounter();
 		});
 
-		app.get("/api/**", ctx -> {
+		app.get(applicationConfiguration.getApiPath() + "/**", ctx -> {
 			metricsServiceBean.incrementCounter();
-			String path = ctx.path();
+
 			Locale locale = getLocale(ctx);
 
 			Router router = new Router();
-			ResponseBody response = router.get(path.split("/api/")[1], locale);
+			ResponseBody response = router.get(ctx.path(), locale);
 
 			ctx.status(response.code());
 			ctx.json(response.body());
