@@ -17,12 +17,12 @@ public class Router {
     /**
      * This is the main gateway from webserver to the interactor module for all GET requests
      *
-     * @param path this is the path accessed by the user through webserver module
+     * @param requestPath this is the requestPath accessed by the user through webserver module and it does include the api prefix
      * @param locale locale decided in the webserver module
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      */
-    public ResponseBody get(String path, Locale locale) {
-        String pathWithoutAPI = pathWithoutTheAPI.apply(path);
+    public ResponseBody get(String requestPath, Locale locale) {
+        String pathWithoutAPI = pathWithoutTheAPI.apply(requestPath);
 
         for (Map.Entry<Object, Object> routeElement : theGETRoutes.entrySet()) {
 
