@@ -20,26 +20,19 @@ public class PersonRepositoryImplementation implements PersonsRepository {
         em.getTransaction().commit();
     }
 
-    private static List<PersonEntity> getPersons() {
+    private static List<PersonEntity> fetchAllPersonsFromDb() {
         EntityManager em = getEntityManager();
         em.clear();
 
         em.getTransaction().begin();
+
         String sql = "SELECT p FROM %s p".formatted(PersonEntity.TABLE_NAME);
         TypedQuery<PersonEntity> query = em.createQuery(sql, PersonEntity.class);
         List<PersonEntity> persons = query.getResultList();
+
         em.getTransaction().commit();
 
         return persons;
-    }
-
-    private static EntityManager getEntityManager() {
-        if (em == null) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.unit");
-            em = emf.createEntityManager();
-        }
-
-        return em;
     }
 
     @Override
@@ -63,8 +56,7 @@ public class PersonRepositoryImplementation implements PersonsRepository {
 
     @Override
     public List<PersonDTO> getAllPersons() {
-//        createInitialPersons();
-        List<PersonEntity> personEntities = getPersons();
+        List<PersonEntity> personEntities = fetchAllPersonsFromDb();
         return personEntities.stream()
                 .map(e -> new PersonDTO(e.getId(), e.getFirstName(), e.getLastName(),
                         e.getAddresses().stream()
@@ -73,10 +65,12 @@ public class PersonRepositoryImplementation implements PersonsRepository {
                 .toList();
     }
 
-    private void createInitialPersons() {
-        PersonDTO personDTO = new PersonDTO(0, "John", "Perry", List.of(new AddressDTO(0, "First Street", 1234)));
-        savePerson(personDTO);
-        PersonDTO secondPersonDTO = new PersonDTO(1, "Mike", "Adams", List.of(new AddressDTO(0, "Second Street", 1234)));
-        savePerson(secondPersonDTO);
+    private static EntityManager getEntityManager() {
+        if (em == null) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.unit");
+            em = emf.createEntityManager();
+        }
+
+        return em;
     }
 }
