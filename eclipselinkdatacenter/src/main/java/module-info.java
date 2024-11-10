@@ -8,5 +8,5 @@ module eclipselinkdatacenter {
 
     exports org.eclipselinkdatacenter.persons;
 
-    provides PersonsRepository with org.eclipselinkdatacenter.persons.HardCodedPersonRepositoryImpl;
+    provides PersonsRepository with org.eclipselinkdatacenter.persons.PersonRepositoryImplementation;
 }

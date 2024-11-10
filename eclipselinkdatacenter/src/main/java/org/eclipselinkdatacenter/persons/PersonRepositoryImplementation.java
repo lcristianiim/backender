@@ -3,6 +3,7 @@ package org.eclipselinkdatacenter.persons;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 import org.interactor.modules.datacenter.AddressDTO;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsRepository;
@@ -22,9 +23,13 @@ public class PersonRepositoryImplementation implements PersonsRepository {
     private static List<PersonEntity> getPersons() {
         EntityManager em = getEntityManager();
         em.clear();
+
         em.getTransaction().begin();
-        List<PersonEntity> persons = em.createQuery("SELECT e FROM PersonEntity e").getResultList();
+        String sql = "SELECT p FROM %s p".formatted(PersonEntity.TABLE_NAME);
+        TypedQuery<PersonEntity> query = em.createQuery(sql, PersonEntity.class);
+        List<PersonEntity> persons = query.getResultList();
         em.getTransaction().commit();
+
         return persons;
     }
 
