@@ -9,9 +9,15 @@ import org.interactor.router.ResponseBody;
 
 import java.util.List;
 
-public class UsersService implements Controller {
+public class UsersServiceController implements Controller {
 
-    public String getResponseBody() {
+    @Override
+    public ResponseBody getResponse() {
+        String body = getResponseBody();
+        return new ResponseBody(body, 200);
+    }
+
+    private String getResponseBody() {
         ObjectMapper mapper = new ObjectMapper();
         PersonDTO personDTO = new PersonDTO(123, "John", "Joe",
                 List.of((new AddressDTO(10, "Washington Street", 123456))));
@@ -22,11 +28,5 @@ public class UsersService implements Controller {
             throw new RuntimeException(e);
         }
 
-    }
-
-    @Override
-    public ResponseBody getResponse() {
-        String body = getResponseBody();
-        return new ResponseBody(body, 200);
     }
 }

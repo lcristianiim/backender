@@ -36,11 +36,13 @@ public class LoggerImplementation implements ApplicationLogging {
                 .findFirst();
 
         classLogger.ifPresentOrElse(
-                value -> value.info(message),
-                () -> {
+                value -> Thread.ofVirtual().start(() -> {
+                    value.info(message);
+                }),
+                () -> Thread.ofVirtual().start(() -> {
                     Logger loggerImplementation = createLoggerAndAddItToLoggerObjects(clazz);
                     loggerImplementation.info(message);
-                }
+                })
         );
     }
 

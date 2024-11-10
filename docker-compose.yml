@@ -11,12 +11,16 @@ services:
       POSTGRES_DB: initial
     ports:
       - 5432:5432
+    networks:
+      - pgnetwork
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8081:8080
+    networks:
+      - pgnetwork
 
 # for prometheusmetrics module
   prometheus:
@@ -40,4 +44,6 @@ services:
     network_mode: "host"
 
 networks:
+  pgnetwork:
+    driver: bridge
   monitoring:  # Define a custom network
