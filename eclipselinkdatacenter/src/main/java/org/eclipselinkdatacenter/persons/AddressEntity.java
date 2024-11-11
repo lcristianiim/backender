@@ -7,7 +7,7 @@ import static org.eclipselinkdatacenter.persons.AddressEntity.TABLE_NAME;
 @Entity(name = TABLE_NAME)
 public class AddressEntity {
     public static final String TABLE_NAME = "addresses";
-    public static final String ADDRESS = "address";
+    public static final String ADDRESS = "addresses";
     public static final String POSTAL_CODE = "postal_code";
 
     @Id

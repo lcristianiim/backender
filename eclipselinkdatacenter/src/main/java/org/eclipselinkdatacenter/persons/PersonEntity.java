@@ -13,7 +13,6 @@ public class PersonEntity {
     public static final String LAST_NAME = "last_name";
     public static final String PERSON_ID_MAPPING = "person_id";
 
-
     @Id
     @GeneratedValue
     private int id;
@@ -26,10 +25,6 @@ public class PersonEntity {
 
     @OneToMany(mappedBy = "person", cascade = {CascadeType.ALL, CascadeType.REMOVE})
     private List<AddressEntity> addresses = new java.util.ArrayList<>();
-
-    public void setAddresses(List<AddressEntity> addresses) {
-        this.addresses = addresses;
-    }
 
     public int getId() {
         return id;
@@ -57,5 +52,9 @@ public class PersonEntity {
 
     public List<AddressEntity> getAddresses() {
         return addresses;
+    }
+
+    public void setAddresses(List<AddressEntity> addresses) {
+        this.addresses = addresses;
     }
 }

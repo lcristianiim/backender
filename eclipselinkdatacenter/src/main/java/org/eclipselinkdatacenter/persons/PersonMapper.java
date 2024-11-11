@@ -9,9 +9,8 @@ import org.mapstruct.factory.Mappers;
 public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
-    PersonEntity toEntity(PersonDTO userDTO);
+    PersonEntity toEntity(PersonDTO personDTO);
     PersonDTO toDTO(PersonEntity personEntity);
-
-    AddressEntity toEntity(AddressEntity addressEntity);
-    AddressDTO toDTO(AddressDTO addressDTO);
+    AddressEntity toEntity(AddressDTO addressDTO);
+    AddressDTO toDTO(AddressEntity addressEntity);
 }
