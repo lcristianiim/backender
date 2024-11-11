@@ -5,7 +5,7 @@ module interactor {
     exports org.interactor.modules.logging;
     exports org.interactor.router;
     exports org.interactor;
-    uses org.interactor.modules.datacenter.PersonsRepository;
+    uses org.interactor.modules.datacenter.PersonsPersistence;
     uses org.interactor.modules.metrics.ApplicationMetrics;
     uses org.interactor.modules.logging.ApplicationLogging;
 }
