@@ -1,12 +1,13 @@
 package com.webserver;
 
-
 import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
-import org.interactor.ApplicationConfigurationSingleton;
-import org.interactor.modules.metrics.MetricsServiceBeanSingleton;
+import org.eclipselinkdatacenter.internal.EntityManagerFactorySingleton;
+import org.interactor.ApplicationConfiguration;
+import org.interactor.modules.logging.LoggerService;
+import org.interactor.modules.metrics.MetricsService;
 import org.interactor.router.ResponseBody;
 import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
@@ -23,14 +24,17 @@ import java.util.Objects;
 import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
-	private static final MetricsServiceBeanSingleton METRICS_SERVICE_BEAN_SINGLETON = MetricsServiceBeanSingleton.INSTANCE;
-	private static final ApplicationConfigurationSingleton applicationConfiguration =
-			ApplicationConfigurationSingleton.INSTANCE;
+	private static final MetricsService METRICS_SERVICE = MetricsService.INSTANCE;
+	private static final ApplicationConfiguration APPLICATION_CONFIGURATION = ApplicationConfiguration.INSTANCE;
+	private static final LoggerService LOGGER = LoggerService.INSTANCE;
+	private static final PersonsPersistenceService PERSONS_PERSISTENCE_SERVICE = PersonsPersistenceService.INSTANCE;
+	private static final Class<Application> clazz = Application.class;
 
 	public static void main(String[] args) {
+		LOGGER.getLogging().info("Starting server on JAVA VERSION:" + System.getProperty("java.version"),
+				clazz);
 
-
-		System.out.println("JAVA VERSION:" + System.getProperty("java.version"));
+		eagerInitialization();
 		writePidFile();
 
 		var app = Javalin.create(javalinConfig -> {
@@ -45,36 +49,37 @@ public class Application {
 					javalinConfig.fileRenderer(new JavalinMustache(factory));
 				});
 
-//		app.before(ctx -> {
-// 			Check if the request is for a static file
-//			if (!ctx.path().startsWith("/images")) {
-// 				Handle the request (e.g., log it, modify it, etc.)
-//				System.out.println("Handling request for: " + ctx.path());
-//			}
-//		});
-
 		app.get("/", ctx -> {
-					METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
-					PersonsPersistenceService personsPersistenceService = new PersonsPersistenceService();
-					List<PersonDTO> persons = personsPersistenceService.getAllPersons();
+					LOGGER.getLogging().info("Start", clazz);
+					METRICS_SERVICE.incrementCounter();
+					LOGGER.getLogging().info("Metrics done", clazz);
+					List<PersonDTO> persons = PERSONS_PERSISTENCE_SERVICE.getAllPersons();
+					LOGGER.getLogging().info("Fetch all persons done", clazz);
 
 					ctx.render("hello.mustache", model(
 							"person1", persons.get(0),
-							"person2", persons.get(1),
-							"image", "images/a.jpg"));
+							"person2", persons.get(1)
+					));
+					LOGGER.getLogging().info("render done", clazz);
+				}
+		);
+
+		app.get("/carte", ctx -> {
+					ctx.status(200);
+					ctx.json("carte");
 				}
 		);
 
 		app.get("/metrics", ctx -> {
-			ctx.result(METRICS_SERVICE_BEAN_SINGLETON.getMetrics());
+			ctx.result(METRICS_SERVICE.getMetrics());
 		});
 
 		app.get("/increment", ctx -> {
-			METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
+			METRICS_SERVICE.incrementCounter();
 		});
 
-		app.get(applicationConfiguration.getApiPath() + "/**", ctx -> {
-			METRICS_SERVICE_BEAN_SINGLETON.incrementCounter();
+		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
+			METRICS_SERVICE.incrementCounter();
 
 			Locale locale = getLocale(ctx);
 
@@ -86,6 +91,17 @@ public class Application {
 		});
 
 		app.start(7070);
+	}
+
+	private static void eagerInitialization() {
+		initializeFirstEntityManager();
+	}
+
+	private static void initializeFirstEntityManager() {
+		EntityManagerFactorySingleton instance = EntityManagerFactorySingleton.INSTANCE;
+		try (var irrelevant = instance.create()) {
+			irrelevant.clear();
+		}
 	}
 
 	private static Locale getLocale(@NotNull Context ctx) {

@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public enum ApplicationConfigurationSingleton {
+public enum ApplicationConfiguration {
     INSTANCE;
     private final String API_PATH;
     private final Properties config = new Properties();
     private final Properties getRoutes = new Properties();
 
-    ApplicationConfigurationSingleton() {
+    ApplicationConfiguration() {
         loadConfig();
         loadTheGETRRoutes();
         API_PATH = (String) config.get("api.path");

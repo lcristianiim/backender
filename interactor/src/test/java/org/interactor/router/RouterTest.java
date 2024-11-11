@@ -1,6 +1,6 @@
 package org.interactor.router;
 
-import org.interactor.ApplicationConfigurationSingleton;
+import org.interactor.ApplicationConfiguration;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -11,7 +11,7 @@ class RouterTest {
 
     @Test
     public void givenPathRegisteredInProperties_ShouldReturnTheAssociatedRequestBody() {
-        String apiPrefix = ApplicationConfigurationSingleton.INSTANCE.getApiPath();
+        String apiPrefix = ApplicationConfiguration.INSTANCE.getApiPath();
         String theGETRoute = "cool-path";
         String requestPath = apiPrefix + "/" + theGETRoute;
         String body = "associated body";
