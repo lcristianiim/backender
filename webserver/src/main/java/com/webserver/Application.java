@@ -94,14 +94,7 @@ public class Application {
 	}
 
 	private static void eagerInitialization() {
-		initializeFirstEntityManager();
-	}
-
-	private static void initializeFirstEntityManager() {
-		EntityManagerFactorySingleton instance = EntityManagerFactorySingleton.INSTANCE;
-		try (var irrelevant = instance.create()) {
-			irrelevant.clear();
-		}
+//		todo
 	}
 
 	private static Locale getLocale(@NotNull Context ctx) {
