@@ -4,14 +4,14 @@ import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.Function;
 
 public class Router {
 
-    Function<String, Controller> controllerResolver = this::getControllerInstance;
+    ControllerResolver<String, RequestContext, Controller> controllerResolver = this::getControllerInstance;
+
     Function<String,String> pathWithoutTheAPI = PathOperations.getPathWithoutTheAPIPart();
     Properties theGETRoutes = ApplicationConfiguration.INSTANCE.getGETRoutes();
     LoggerService logger =  LoggerService.INSTANCE;
@@ -20,33 +20,36 @@ public class Router {
     /**
      * This is the main gateway from webserver to the interactor module for all GET requests
      *
-     * @param requestPath this is the requestPath accessed by the user through webserver module and it does include the api prefix
-     * @param locale locale decided in the webserver module
+     * @param ctx this is the all the request context
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      */
-    public ResponseBody get(String requestPath, Locale locale) {
-        String pathWithoutAPI = pathWithoutTheAPI.apply(requestPath);
-        logger.getLogging().info("Request path:" + requestPath, clazz);
+    public ResponseBody get(RequestContext ctx) {
+        String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
+        logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
 
         for (Map.Entry<Object, Object> routeElement : theGETRoutes.entrySet()) {
 
-            String key = (String) routeElement.getKey();
-            String value = (String) routeElement.getValue();
+            String pathFromConf = (String) routeElement.getKey();
+            String controllerName = (String) routeElement.getValue();
 
-            if (key.equals(pathWithoutAPI)) {
-                Controller controller = controllerResolver.apply(value);
+            if (pathFromConf.equals(pathWithoutAPI)) {
+                Controller controller = controllerResolver.apply(controllerName, new RequestContext());
                 return controller.getResponse();
             }
         }
 
-        return new ResponseBody("Path: " + pathWithoutAPI + " is not part of the API", 500);
+        ResponseBody response = new ResponseBody();
+        response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
+        response.setCode(500);
+        response.setType(ResponseType.JSON);
+
+        return response;
     }
 
-
-    private Controller getControllerInstance(String value) {
+    private Controller getControllerInstance(String className, RequestContext ctx) {
         try {
             Class<?> clazz = null;
-            clazz = Class.forName(value);
+            clazz = Class.forName(className);
             return (Controller) clazz.getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException | ClassNotFoundException e) {
@@ -54,7 +57,7 @@ public class Router {
         }
     };
 
-    public void setControllerResolver(Function<String, Controller> controllerResolver) {
+    public void setControllerResolver(ControllerResolver<String, RequestContext, Controller> controllerResolver) {
         this.controllerResolver = controllerResolver;
     }
 

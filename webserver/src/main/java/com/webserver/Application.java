@@ -4,11 +4,12 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
-import org.eclipselinkdatacenter.internal.EntityManagerFactorySingleton;
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
+import org.interactor.router.RequestContext;
 import org.interactor.router.ResponseBody;
+import org.interactor.router.ResponseType;
 import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
@@ -17,9 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 
@@ -81,20 +80,33 @@ public class Application {
 		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
 			METRICS_SERVICE.incrementCounter();
 
-			Locale locale = getLocale(ctx);
+			RequestContext reqContext = setupRequestCtx(ctx);
 
 			Router router = new Router();
-			ResponseBody response = router.get(ctx.path(), locale);
+			ResponseBody response = router.get(reqContext);
 
-			ctx.status(response.code());
-			ctx.json(response.body());
+			if (response.getType() == ResponseType.JSON) {
+				ctx.status(response.getCode());
+				ctx.json(response.getBody());
+			} else {
+// 			todo currently supporting only json response. Will be implemented as needed.
+			}
+
 		});
 
 		app.start(7070);
 	}
 
+	@NotNull
+	private static RequestContext setupRequestCtx(Context ctx) {
+		RequestContext reqContext = new RequestContext();
+		reqContext.setRequestPath(ctx.path());
+		reqContext.setLocale(getLocale(ctx));
+		return reqContext;
+	}
+
 	private static void eagerInitialization() {
-//		todo
+//		todo eager initialization for singletons from other jpms modules
 	}
 
 	private static Locale getLocale(@NotNull Context ctx) {

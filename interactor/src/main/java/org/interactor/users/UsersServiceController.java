@@ -5,17 +5,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.router.Controller;
+import org.interactor.router.RequestContext;
 import org.interactor.router.ResponseBody;
 
 import java.util.List;
 
+import static org.interactor.router.ResponseType.JSON;
+
 public class UsersServiceController implements Controller {
     PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
+    RequestContext ctx;
+
 
     @Override
     public ResponseBody getResponse() {
         String body = getResponseBody();
-        return new ResponseBody(body, 200);
+
+        ResponseBody result = new ResponseBody();
+        result.setBody(body);
+        result.setCode(200);
+        result.setType(JSON);
+
+        return result;
+    }
+
+    @Override
+    public void initialize(RequestContext ctx) {
+        this.ctx = ctx;
     }
 
     private String getResponseBody() {
