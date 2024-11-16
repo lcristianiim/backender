@@ -24,9 +24,9 @@ class RouterTest {
         properties.setProperty(theGETRoute, "IrrelevantInThisTestClass");
         router.setTheGETRoutes(properties);
 
-        RequestContext ctx = new RequestContext();
+        ReqContextDTO ctx = new ReqContextDTO();
         ctx.setRequestPath(requestPath);
-        ResponseBody result = router.get(ctx);
+        RouterResponse result = router.get(ctx);
 
         assertEquals(body, result.getBody());
         assertEquals(responseCode, result.getCode());
@@ -34,19 +34,19 @@ class RouterTest {
 
     }
 
-    Controller getController(String className, RequestContext ctx) {
+    Controller getController(String className, ReqContextDTO ctx) {
         return new Controller() {
             @Override
-            public ResponseBody getResponse() {
-                ResponseBody responseBody = new ResponseBody();
-                responseBody.setType(JSON);
-                responseBody.setCode(200);
-                responseBody.setBody("associated body");
-                return responseBody;
+            public RouterResponse getResponse() {
+                RouterResponse routerResponse = new RouterResponse();
+                routerResponse.setType(JSON);
+                routerResponse.setCode(200);
+                routerResponse.setBody("associated body");
+                return routerResponse;
             }
 
             @Override
-            public void initialize(RequestContext controllerData) {
+            public void initialize(ReqContextDTO controllerData) {
 
             }
         };

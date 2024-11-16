@@ -2,7 +2,7 @@ package org.interactor.router;
 
 import java.util.Locale;
 
-public class RequestContext {
+public class ReqContextDTO {
     String requestPath;
     Locale locale;
     String body;

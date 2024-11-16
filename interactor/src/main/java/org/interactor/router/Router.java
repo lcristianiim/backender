@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class Router {
 
-    ControllerResolver<String, RequestContext, Controller> controllerResolver = this::getControllerInstance;
+    ControllerResolver<String, ReqContextDTO, Controller> controllerResolver = this::getControllerInstance;
 
     Function<String,String> pathWithoutTheAPI = PathOperations.getPathWithoutTheAPIPart();
     Properties theGETRoutes = ApplicationConfiguration.INSTANCE.getGETRoutes();
@@ -23,7 +23,7 @@ public class Router {
      * @param ctx this is the all the request context
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      */
-    public ResponseBody get(RequestContext ctx) {
+    public RouterResponse get(ReqContextDTO ctx) {
         String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
         logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
 
@@ -33,12 +33,12 @@ public class Router {
             String controllerName = (String) routeElement.getValue();
 
             if (pathFromConf.equals(pathWithoutAPI)) {
-                Controller controller = controllerResolver.apply(controllerName, new RequestContext());
+                Controller controller = controllerResolver.apply(controllerName, new ReqContextDTO());
                 return controller.getResponse();
             }
         }
 
-        ResponseBody response = new ResponseBody();
+        RouterResponse response = new RouterResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
         response.setCode(500);
         response.setType(ResponseType.JSON);
@@ -46,7 +46,7 @@ public class Router {
         return response;
     }
 
-    private Controller getControllerInstance(String className, RequestContext ctx) {
+    private Controller getControllerInstance(String className, ReqContextDTO ctx) {
         try {
             Class<?> clazz = null;
             clazz = Class.forName(className);
@@ -57,7 +57,7 @@ public class Router {
         }
     };
 
-    public void setControllerResolver(ControllerResolver<String, RequestContext, Controller> controllerResolver) {
+    public void setControllerResolver(ControllerResolver<String, ReqContextDTO, Controller> controllerResolver) {
         this.controllerResolver = controllerResolver;
     }
 

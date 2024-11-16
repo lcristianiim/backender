@@ -1,19 +1,19 @@
 package com.webserver;
 
 import com.github.mustachejava.DefaultMustacheFactory;
+import com.webserver.response.ProcessJSONResponseHandler;
+import com.webserver.response.ResponseHandler;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
-import org.interactor.router.RequestContext;
-import org.interactor.router.ResponseBody;
-import org.interactor.router.ResponseType;
+import org.interactor.router.ReqContextDTO;
+import org.interactor.router.RouterResponse;
 import org.interactor.router.Router;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -80,26 +80,20 @@ public class Application {
 		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
 			METRICS_SERVICE.incrementCounter();
 
-			RequestContext reqContext = setupRequestCtx(ctx);
+			ReqContextDTO reqContext = transformJavalinContextToContextDTO(ctx);
 
 			Router router = new Router();
-			ResponseBody response = router.get(reqContext);
+			RouterResponse response = router.get(reqContext);
 
-			if (response.getType() == ResponseType.JSON) {
-				ctx.status(response.getCode());
-				ctx.json(response.getBody());
-			} else {
-// 			todo currently supporting only json response. Will be implemented as needed.
-			}
-
+			ResponseHandler handler = new ProcessJSONResponseHandler();
+			handler.handleRequest(response, ctx);
 		});
 
 		app.start(7070);
 	}
 
-	@NotNull
-	private static RequestContext setupRequestCtx(Context ctx) {
-		RequestContext reqContext = new RequestContext();
+	private static ReqContextDTO transformJavalinContextToContextDTO(Context ctx) {
+		ReqContextDTO reqContext = new ReqContextDTO();
 		reqContext.setRequestPath(ctx.path());
 		reqContext.setLocale(getLocale(ctx));
 		return reqContext;
@@ -109,7 +103,7 @@ public class Application {
 //		todo eager initialization for singletons from other jpms modules
 	}
 
-	private static Locale getLocale(@NotNull Context ctx) {
+	private static Locale getLocale(Context ctx) {
 		return ctx.header("Accept-Language") != null
 				? Locale.forLanguageTag(Objects.requireNonNull(ctx.header("Accept-Language"))
 				.split(",")[0])

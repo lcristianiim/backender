@@ -1,6 +1,6 @@
 package org.interactor.router;
 
-public class ResponseBody {
+public class RouterResponse {
 
     private String body;
     private int code;
