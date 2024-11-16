@@ -18,10 +18,12 @@ public class Router {
     Class<Router> clazz = Router.class;
 
     /**
-     * This is the main gateway from webserver to the interactor module for all GET requests
-     *
+     * This is the link from webserver to the interactor module for all GET requests
+     * <p>
+     * the controllerResolver decides what controller to use and then returns the response
      * @param ctx this is the all the request context
      * @return Always ResponseBody is the object that is returned by Controllers by convention
+     *
      */
     public RouterResponse get(ReqContextDTO ctx) {
         String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());

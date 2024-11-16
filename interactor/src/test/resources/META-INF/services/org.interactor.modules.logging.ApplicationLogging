@@ -1,0 +1,3 @@
+org.backender.logger.LoggerImplementation
+# this is needed for the maven-surefire-plugin to be able to find the implementation
+# when running the tests via command line

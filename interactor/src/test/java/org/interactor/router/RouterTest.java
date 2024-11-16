@@ -12,8 +12,7 @@ class RouterTest {
     @Test
     public void givenPathRegisteredInProperties_ShouldReturnTheAssociatedRequestBody() {
         String apiPrefix = ApplicationConfiguration.INSTANCE.getApiPath();
-        String theGETRoute = "cool-path";
-        String requestPath = apiPrefix + "/" + theGETRoute;
+        String requestPath = apiPrefix + "/cool-path";
         String body = "associated body";
         int responseCode = 200;
 
@@ -21,7 +20,7 @@ class RouterTest {
         router.setControllerResolver(this::getController);
 
         Properties properties = new Properties();
-        properties.setProperty(theGETRoute, "IrrelevantInThisTestClass");
+        properties.setProperty("cool-path", "IrrelevantInThisTestClass");
         router.setTheGETRoutes(properties);
 
         ReqContextDTO ctx = new ReqContextDTO();
@@ -34,8 +33,30 @@ class RouterTest {
 
     }
 
+    @Test
+    void a() {
+        String apiPrefix = ApplicationConfiguration.INSTANCE.getApiPath();
+        String requestPath = apiPrefix + "products/1";
+        String body = "associated body";
+        int responseCode = 200;
+
+        Router router = new Router();
+        router.setControllerResolver(this::getController);
+
+        Properties properties = new Properties();
+        properties.setProperty("products/{id}", "IrrelevantInThisTestClass");
+        router.setTheGETRoutes(properties);
+
+        ReqContextDTO ctx = new ReqContextDTO();
+        ctx.setRequestPath(requestPath);
+        RouterResponse result = router.get(ctx);
+    }
+
     Controller getController(String className, ReqContextDTO ctx) {
         return new Controller() {
+            private String id;
+
+
             @Override
             public RouterResponse getResponse() {
                 RouterResponse routerResponse = new RouterResponse();
@@ -47,7 +68,6 @@ class RouterTest {
 
             @Override
             public void initialize(ReqContextDTO controllerData) {
-
             }
         };
     }
