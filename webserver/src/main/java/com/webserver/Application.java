@@ -94,8 +94,11 @@ public class Application {
 
 	private static ReqContextDTO transformJavalinContextToContextDTO(Context ctx) {
 		ReqContextDTO reqContext = new ReqContextDTO();
-		reqContext.setRequestPath(ctx.path());
-		reqContext.setLocale(getLocale(ctx));
+		if (!Objects.requireNonNull(ctx.queryString()).isEmpty()) {
+			reqContext.setRequestPath(ctx.path() + "?" + ctx.queryString());
+		} else {
+			reqContext.setLocale(getLocale(ctx));
+		}
 		return reqContext;
 	}
 

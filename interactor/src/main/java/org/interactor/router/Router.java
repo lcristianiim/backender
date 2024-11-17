@@ -5,6 +5,7 @@ import org.interactor.modules.logging.LoggerService;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Function;
 
@@ -29,23 +30,41 @@ public class Router {
         String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
         logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
 
-        for (Map.Entry<Object, Object> routeElement : theGETRoutes.entrySet()) {
+        Optional<String> registeredEntry = getControllerClassNeededForInstantiation(pathWithoutAPI, theGETRoutes);
 
-            String pathFromConf = (String) routeElement.getKey();
-            String controllerName = (String) routeElement.getValue();
+        if (registeredEntry.isPresent()) {
+            String registeredPath = registeredEntry.get().split(":")[0];
+            String controllerName = registeredEntry.get().split(":")[1];
 
-            if (pathFromConf.equals(pathWithoutAPI)) {
-                Controller controller = controllerResolver.apply(controllerName, new ReqContextDTO());
-                return controller.getResponse();
-            }
+            Controller controller = controllerResolver.apply(controllerName, new ReqContextDTO());
+            controller.initialize(ctx, registeredPath);
+
+            return controller.getResponse();
         }
 
+        return invalidRequestResponse(pathWithoutAPI);
+    }
+
+    private static RouterResponse invalidRequestResponse(String pathWithoutAPI) {
         RouterResponse response = new RouterResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
         response.setCode(500);
         response.setType(ResponseType.JSON);
-
         return response;
+    }
+
+    private Optional<String> getControllerClassNeededForInstantiation(String pathWithoutAPI, Properties theGETRoutes) {
+        for (Map.Entry<Object, Object> routeElement : theGETRoutes.entrySet()) {
+
+            String registeredPath = (String) routeElement.getKey();
+            String controllerName = (String) routeElement.getValue();
+
+            PathCommonOperations operations = new PathCommonOperations();
+            if (operations.isARegisteredControllerMatch(registeredPath, pathWithoutAPI))
+                return Optional.of(registeredPath + ":" + controllerName);
+
+        }
+        return Optional.empty();
     }
 
     private Controller getControllerInstance(String className, ReqContextDTO ctx) {
@@ -65,5 +84,11 @@ public class Router {
 
     public void setTheGETRoutes(Properties theGETRoutes) {
         this.theGETRoutes = theGETRoutes;
+    }
+
+    private static class NoControllerRegisteredToRequestedRoute extends RuntimeException {
+        public NoControllerRegisteredToRequestedRoute(String message) {
+            super(message);
+        }
     }
 }

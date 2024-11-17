@@ -1,4 +1,4 @@
-package org.interactor.users;
+package org.interactor.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +14,7 @@ import static org.interactor.router.ResponseType.JSON;
 
 public class UsersServiceController implements Controller {
     PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
-    ReqContextDTO ctx;
+    String productId;
 
     @Override
     public RouterResponse getResponse() {
@@ -29,8 +29,7 @@ public class UsersServiceController implements Controller {
     }
 
     @Override
-    public void initialize(ReqContextDTO ctx) {
-        this.ctx = ctx;
+    public void initialize(ReqContextDTO ctx, String registeredPath) {
     }
 
     private String getResponseBody() {
