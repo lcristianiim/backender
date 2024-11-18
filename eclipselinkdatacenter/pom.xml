@@ -50,6 +50,12 @@
             <version>1.5.3.Final</version> <!-- Check for the latest version -->
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>6.2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

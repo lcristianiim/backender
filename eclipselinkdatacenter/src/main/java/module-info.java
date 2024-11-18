@@ -6,6 +6,7 @@ module eclipselinkdatacenter {
     requires jakarta.activation;
     requires com.sun.xml.bind.core;
     requires org.mapstruct;
+    requires com.zaxxer.hikari;
 
     opens org.eclipselinkdatacenter.persons;
 

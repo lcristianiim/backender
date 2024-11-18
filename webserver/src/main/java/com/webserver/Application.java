@@ -6,6 +6,7 @@ import com.webserver.response.ResponseHandler;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
+import org.eclipselinkdatacenter.internal.Hikari;
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
@@ -80,7 +81,7 @@ public class Application {
 		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
 			METRICS_SERVICE.incrementCounter();
 
-			ReqContextDTO reqContext = transformJavalinContextToContextDTO(ctx);
+			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
 
 			Router router = new Router();
 			RouterResponse response = router.get(reqContext);
@@ -90,13 +91,22 @@ public class Application {
 		});
 
 		app.start(7070);
+
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			System.out.println("Shutting down...");
+			// todo
+//			Hikari.INSTANCE.getDataSource().close(); // Close HikariCP DataSource
+			app.stop(); // Stop Javalin app
+			System.out.println("Shutdown complete.");
+		}));
 	}
 
-	private static ReqContextDTO transformJavalinContextToContextDTO(Context ctx) {
+	private static ReqContextDTO transformJavalinContextToInteractorContextDTO(Context ctx) {
 		ReqContextDTO reqContext = new ReqContextDTO();
-		if (!Objects.requireNonNull(ctx.queryString()).isEmpty()) {
+		if (ctx.queryString() != null) {
 			reqContext.setRequestPath(ctx.path() + "?" + ctx.queryString());
 		} else {
+			reqContext.setRequestPath(ctx.path());
 			reqContext.setLocale(getLocale(ctx));
 		}
 		return reqContext;
@@ -124,4 +134,5 @@ public class Application {
             throw new RuntimeException(e);
         }
     }
+
 }
