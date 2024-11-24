@@ -9,10 +9,12 @@ public enum ApplicationConfiguration {
     private final String API_PATH;
     private final Properties config = new Properties();
     private final Properties getRoutes = new Properties();
+    private final Properties postRoutes = new Properties();
 
     ApplicationConfiguration() {
         loadConfig();
         loadTheGETRRoutes();
+        loadThePOSTRoutes();
         API_PATH = (String) config.get("api.path");
     }
 
@@ -32,6 +34,14 @@ public enum ApplicationConfiguration {
         }
     }
 
+    private void loadThePOSTRoutes() {
+        try (InputStream input = this.getClass().getClassLoader().getResourceAsStream("post-routes.properties")) {
+            postRoutes.load(input);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public String getApiPath() {
         return API_PATH;
     }
@@ -40,4 +50,7 @@ public enum ApplicationConfiguration {
         return getRoutes;
     }
 
+    public Properties getPOSTRoutes() {
+        return postRoutes;
+    }
 }

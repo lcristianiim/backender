@@ -14,7 +14,8 @@ public class PersonEntity {
     public static final String PERSON_ID_MAPPING = "person_id";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "persons_id_seq_generator")
+    @SequenceGenerator(name = "persons_id_seq_generator", sequenceName = "persons_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = FIRST_NAME)
@@ -23,7 +24,7 @@ public class PersonEntity {
     @Column(name = LAST_NAME)
     private String lastName;
 
-    @OneToMany(mappedBy = "person", cascade = {CascadeType.ALL, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "person", cascade = {CascadeType.ALL})
     private List<AddressEntity> addresses = new java.util.ArrayList<>();
 
     public int getId() {

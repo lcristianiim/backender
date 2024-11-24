@@ -7,11 +7,12 @@ import static org.eclipselinkdatacenter.persons.AddressEntity.TABLE_NAME;
 @Entity(name = TABLE_NAME)
 public class AddressEntity {
     public static final String TABLE_NAME = "addresses";
-    public static final String ADDRESS = "addresses";
+    public static final String ADDRESS = "address";
     public static final String POSTAL_CODE = "postal_code";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addresses_id_seq_generator")
+    @SequenceGenerator(name = "addresses_id_seq_generator", sequenceName = "addresses_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = ADDRESS)
@@ -21,7 +22,7 @@ public class AddressEntity {
     private int postalCode;
 
     @ManyToOne
-    @JoinColumn (name = PersonEntity.PERSON_ID_MAPPING)
+    @JoinColumn (name = PersonEntity.PERSON_ID_MAPPING, nullable = false)
     private PersonEntity person;
 
     public int getId() {
@@ -48,11 +49,11 @@ public class AddressEntity {
         this.postalCode = postalCode;
     }
 
-    public PersonEntity getPersonId() {
+    public PersonEntity getPerson() {
         return person;
     }
 
-    public void setPersonId(PersonEntity personId) {
-        this.person = personId;
+    public void setPerson(PersonEntity person) {
+        this.person = person;
     }
 }

@@ -14,7 +14,6 @@ import static org.interactor.router.ResponseType.JSON;
 
 public class UsersServiceController implements Controller {
     PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
-    String productId;
 
     @Override
     public RouterResponse getResponse() {
@@ -37,7 +36,7 @@ public class UsersServiceController implements Controller {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            return mapper.writeValueAsString(persons.getFirst());
+            return mapper.writeValueAsString(persons);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

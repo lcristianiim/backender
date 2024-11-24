@@ -1,6 +1,5 @@
 package org.eclipselinkdatacenter.persons;
 
-import org.interactor.modules.datacenter.AddressDTO;
 import org.interactor.modules.datacenter.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistence;
 
@@ -14,8 +13,9 @@ public class HardCodedPersonRepositoryImpl implements PersonsPersistence {
 
     @Override
     public List<PersonDTO> findAll() {
-        PersonDTO personDTO = new PersonDTO(0, "John", "Perry", List.of(new AddressDTO(0, "First Street", 1234)));
-        PersonDTO secondPersonDTO = new PersonDTO(1, "Mike", "Adams", List.of(new AddressDTO(0, "Second Street", 1234)));
-        return List.of(personDTO, secondPersonDTO);
+//        PersonDTO personDTO = new PersonDTO(0, "John", "Perry", List.of(new AddressDTO(0, "First Street", 1234)));
+//        PersonDTO secondPersonDTO = new PersonDTO(1, "Mike", "Adams", List.of(new AddressDTO(0, "Second Street", 1234)));
+//        return List.of(personDTO, secondPersonDTO);
+        return List.of();
     }
 }

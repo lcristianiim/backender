@@ -90,6 +90,18 @@ public class Application {
 			handler.handleRequest(response, ctx);
 		});
 
+		app.post(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
+			METRICS_SERVICE.incrementCounter();
+
+			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
+
+			Router router = new Router();
+			RouterResponse response = router.post(reqContext);
+
+			ResponseHandler handler = new ProcessJSONResponseHandler();
+			handler.handleRequest(response, ctx);
+		});
+
 		app.start(7070);
 
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -109,7 +121,8 @@ public class Application {
 			reqContext.setRequestPath(ctx.path());
 			reqContext.setLocale(getLocale(ctx));
 		}
-		return reqContext;
+        reqContext.setBody(ctx.body());
+        return reqContext;
 	}
 
 	private static void eagerInitialization() {

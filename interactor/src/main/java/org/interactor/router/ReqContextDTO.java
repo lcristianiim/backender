@@ -22,4 +22,12 @@ public class ReqContextDTO {
     public void setLocale(Locale locale) {
         this.locale = locale;
     }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 };

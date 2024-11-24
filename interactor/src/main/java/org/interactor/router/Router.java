@@ -15,6 +15,7 @@ public class Router {
 
     Function<String,String> pathWithoutTheAPI = PathOperations.getPathWithoutTheAPIPart();
     Properties theGETRoutes = ApplicationConfiguration.INSTANCE.getGETRoutes();
+    Properties thePOSTRoutes = ApplicationConfiguration.INSTANCE.getPOSTRoutes();
     LoggerService logger =  LoggerService.INSTANCE;
     Class<Router> clazz = Router.class;
 
@@ -31,6 +32,33 @@ public class Router {
         logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
 
         Optional<String> registeredEntry = getControllerClassNeededForInstantiation(pathWithoutAPI, theGETRoutes);
+
+        if (registeredEntry.isPresent()) {
+            String registeredPath = registeredEntry.get().split(":")[0];
+            String controllerName = registeredEntry.get().split(":")[1];
+
+            Controller controller = controllerResolver.apply(controllerName, new ReqContextDTO());
+            controller.initialize(ctx, registeredPath);
+
+            return controller.getResponse();
+        }
+
+        return invalidRequestResponse(pathWithoutAPI);
+    }
+
+    /**
+     * This is the link from webserver to the interactor module for all POST requests
+     * <p>
+     * the controllerResolver decides what controller to use and then returns the response
+     * @param ctx this is the all the request context
+     * @return Always ResponseBody is the object that is returned by Controllers by convention
+     *
+     */
+    public RouterResponse post(ReqContextDTO ctx) {
+        String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
+        logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
+
+        Optional<String> registeredEntry = getControllerClassNeededForInstantiation(pathWithoutAPI, thePOSTRoutes);
 
         if (registeredEntry.isPresent()) {
             String registeredPath = registeredEntry.get().split(":")[0];
