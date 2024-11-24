@@ -30,5 +30,12 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="4" author="your_username">
+        <sqlFile path="sql/V4__alter_sequence.sql" />
+        <rollback>
+            <sqlFile path="sql/V4__rollback.sql"/>
+        </rollback>
+    </changeSet>
+
 
 </databaseChangeLog>

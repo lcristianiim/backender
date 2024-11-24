@@ -1,0 +1,2 @@
+ALTER SEQUENCE persons_id_seq INCREMENT BY 5;
+ALTER SEQUENCE addresses_id_seq INCREMENT BY 5;
