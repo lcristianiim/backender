@@ -2,17 +2,20 @@ package org.eclipselinkdatacenter.persons;
 
 import jakarta.persistence.*;
 
+import static org.eclipselinkdatacenter.internal.CommonTablesConfiguration.*;
 import static org.eclipselinkdatacenter.persons.AddressEntity.TABLE_NAME;
 
 @Entity(name = TABLE_NAME)
 public class AddressEntity {
     public static final String TABLE_NAME = "addresses";
+    public static final String SEQ_GENERATOR = TABLE_NAME + SEQUENCE_GENERATOR_SUFFIX;
+    public static final String SEQ_NAME = TABLE_NAME + SEQUENCE_NAME_SUFFIX;
     public static final String ADDRESS = "address";
     public static final String POSTAL_CODE = "postal_code";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addresses_id_seq_generator")
-    @SequenceGenerator(name = "addresses_id_seq_generator", sequenceName = "addresses_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_GENERATOR)
+    @SequenceGenerator(name = SEQ_GENERATOR, sequenceName = SEQ_NAME, allocationSize = INCREMENT_ALLOCATION_SIZE)
     private int id;
 
     @Column(name = ADDRESS)
