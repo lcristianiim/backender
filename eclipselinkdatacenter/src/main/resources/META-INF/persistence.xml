@@ -14,12 +14,16 @@
             <property name="eclipselink.ddl-generation" value="none"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/new"/>
             <property name="jakarta.persistence.jdbc.user" value="admin"/>
             <property name="jakarta.persistence.jdbc.password" value="admin"/>
 <!--            cache-->
             <property name="eclipselink.cache.query.default" value="false"/>
             <property name="eclipselink.cache.type.default" value="NONE"/>
+
+<!--            <property name="eclipselink.logging.level" value="FINE"/>-->
+<!--            <property name="eclipselink.logging.level.sql" value="FINE"/>-->
+<!--            <property name="eclipselink.logging.level.transaction" value="FINE"/>-->
+<!--            <property name="eclipselink.logging.level.jpa.sql" value="FINE"/>-->
         </properties>
     </persistence-unit>
 </persistence>

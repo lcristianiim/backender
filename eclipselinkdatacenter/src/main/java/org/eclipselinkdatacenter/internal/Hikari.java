@@ -10,7 +10,7 @@ public enum Hikari {
 
     Hikari() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/new");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/pgmodeler");
         config.setUsername("admin");
         config.setPassword("admin");
         config.setMaximumPoolSize(10);

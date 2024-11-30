@@ -1,62 +1,101 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.eclipselinkdatacenter.entities;
 
 import jakarta.persistence.*;
 
-import static org.eclipselinkdatacenter.internal.CommonTablesConfiguration.*;
-import static org.eclipselinkdatacenter.entities.AddressEntity.TABLE_NAME;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
-@Entity(name = TABLE_NAME)
-public class AddressEntity {
-    public static final String TABLE_NAME = "addresses";
-    public static final String SEQ_GENERATOR = TABLE_NAME + SEQUENCE_GENERATOR_SUFFIX;
-    public static final String SEQ_NAME = TABLE_NAME + SEQUENCE_NAME_SUFFIX;
-    public static final String ADDRESS = "address";
-    public static final String POSTAL_CODE = "postal_code";
+/**
+ *
+ * @author cristian
+ */
+@Entity
+@Table(name = "addresses")
+public class AddressEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_GENERATOR)
-    @SequenceGenerator(name = SEQ_GENERATOR, sequenceName = SEQ_NAME, allocationSize = INCREMENT_ALLOCATION_SIZE)
-    private int id;
+	private static final long serialVersionUID = 1L;
+	@Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Basic(optional = false)
+        @Column(name = "id")
+	private Integer id;
+	@Column(name = "street")
+	private String street;
+	@Column(name = "postal_code")
+	private String postalCode;
+	@JoinTable(name = "many_persons_has_many_addresses", joinColumns = {
+        	@JoinColumn(name = "id_addresses", referencedColumnName = "id")}, inverseJoinColumns = {
+        	@JoinColumn(name = "id_persons", referencedColumnName = "id")})
+        @ManyToMany(cascade = CascadeType.ALL)
+	private Collection<PersonEntity> personsCollection;
 
-    @Column(name = ADDRESS)
-    private String address;
+	public AddressEntity() {
+	}
 
-    @Column(name = POSTAL_CODE)
-    private int postalCode;
+	public AddressEntity(Integer id) {
+		this.id = id;
+	}
 
-    @ManyToOne
-    @JoinColumn (name = PersonEntity.PERSON_ID_MAPPING, nullable = false)
-    private PersonEntity person;
+	public Integer getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public String getStreet() {
+		return street;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getPostalCode() {
+		return postalCode;
+	}
 
-    public int getPostalCode() {
-        return postalCode;
-    }
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
-    }
+	public Collection<PersonEntity> getPersonsCollection() {
+		return personsCollection;
+	}
 
-    public PersonEntity getPerson() {
-        return person;
-    }
+	public void setPersonsCollection(List<PersonEntity> personsCollection) {
+		this.personsCollection = personsCollection;
+	}
 
-    public void setPerson(PersonEntity person) {
-        this.person = person;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof AddressEntity)) {
+			return false;
+		}
+		AddressEntity other = (AddressEntity) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "com.mycompany.mavenproject1.Addresses[ id=" + id + " ]";
+	}
+	
 }

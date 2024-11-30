@@ -15,9 +15,10 @@ import java.util.List;
 public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
-    @Mapping(target = "addresses", expression = "java(mapAddresses(personDTO.addresses(), personEntity))")
+    @Mapping(target = "addressesCollection", expression = "java(mapAddresses(personDTO.addresses(), personEntity))")
     PersonEntity toEntity(PersonDTO personDTO);
 
+    @Mapping(target = "addresses", source = "addressesCollection")
     PersonDTO toDTO(PersonEntity personEntity);
     AddressEntity toEntity(AddressDTO addressDTO);
     AddressDTO toDTO(AddressEntity addressEntity);
@@ -29,7 +30,10 @@ public interface PersonMapper {
         List<AddressEntity> addressEntities = new ArrayList<>();
         for (AddressDTO addressDTO : addressDTOs) {
             AddressEntity addressEntity = toEntity(addressDTO);
-            addressEntity.setPerson(personEntity); // Set the person reference
+            if (addressEntity.getPersonsCollection() == null)
+                addressEntity.setPersonsCollection(new ArrayList<>());
+
+            addressEntity.getPersonsCollection().add(personEntity); // Set the person reference
             addressEntities.add(addressEntity);
         }
         return addressEntities;

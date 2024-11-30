@@ -1,66 +1,98 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.eclipselinkdatacenter.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
-import static org.eclipselinkdatacenter.internal.CommonTablesConfiguration.*;
+/**
+ *
+ * @author cristian
+ */
+@Entity
+@Table(name = "persons")
+public class PersonEntity implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	@Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Basic(optional = false)
+        @Column(name = "id")
+	private Integer id;
+	@Column(name = "first_name")
+	private String firstName;
+	@Column(name = "last_name")
+	private String lastName;
+	@ManyToMany(mappedBy = "personsCollection", cascade = CascadeType.ALL)
+	private Collection<AddressEntity> addressesCollection;
 
-@Entity(name = PersonEntity.TABLE_NAME)
-public class PersonEntity {
-    public static final String TABLE_NAME = "persons";
-    public static final String SEQ_GENERATOR = TABLE_NAME + SEQUENCE_GENERATOR_SUFFIX;
-    public static final String SEQ_NAME = TABLE_NAME + SEQUENCE_NAME_SUFFIX;
+	public PersonEntity() {
+	}
 
-    public static final String FIRST_NAME = "first_name";
-    public static final String LAST_NAME = "last_name";
-    public static final String PERSON_ID_MAPPING = "person_id";
+	public PersonEntity(Integer id) {
+		this.id = id;
+	}
 
+	public Integer getId() {
+		return id;
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_GENERATOR)
-    @SequenceGenerator(name = SEQ_GENERATOR, sequenceName = SEQ_NAME, allocationSize = INCREMENT_ALLOCATION_SIZE)
-    private int id;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    @Column(name = FIRST_NAME)
-    private String firstName;
+	public String getFirstName() {
+		return firstName;
+	}
 
-    @Column(name = LAST_NAME)
-    private String lastName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    @OneToMany(mappedBy = "person", cascade = {CascadeType.ALL})
-    private List<AddressEntity> addresses = new java.util.ArrayList<>();
+	public String getLastName() {
+		return lastName;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Collection<AddressEntity> getAddressesCollection() {
+		return addressesCollection;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setAddressesCollection(List<AddressEntity> addressesCollection) {
+		this.addressesCollection = addressesCollection;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof PersonEntity)) {
+			return false;
+		}
+		PersonEntity other = (PersonEntity) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public List<AddressEntity> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<AddressEntity> addresses) {
-        this.addresses = addresses;
-    }
+	@Override
+	public String toString() {
+		return "com.mycompany.mavenproject1.Persons[ id=" + id + " ]";
+	}
+	
 }
