@@ -1,5 +1,6 @@
-package org.eclipselinkdatacenter.persons;
+package org.eclipselinkdatacenter.repositories;
 
+import org.eclipselinkdatacenter.entities.PersonEntity;
 import org.eclipselinkdatacenter.internal.CommonRepositoryOperations;
 import org.eclipselinkdatacenter.internal.GenericRepository;
 

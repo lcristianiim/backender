@@ -87,17 +87,17 @@ loadScripts(document, 'script');</script>
 <h1 title="Class HardCodedPersonRepositoryImpl" class="title">Class HardCodedPersonRepositoryImpl</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">org.eclipselinkdatacenter.persons.HardCodedPersonRepositoryImpl</div>
+<div class="inheritance">org.eclipselinkdatacenter.interactorimplementations.HardCodedPersonRepositoryImpl</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>org.interactor.modules.datacenter.PersonsPersistence</code></dd>
+<dd><code>org.interactor.modules.datacenter.interfaces.PersonsPersistence</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">HardCodedPersonRepositoryImpl</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements org.interactor.modules.datacenter.PersonsPersistence</span></div>
+implements org.interactor.modules.datacenter.interfaces.PersonsPersistence</span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -125,11 +125,11 @@ implements org.interactor.modules.datacenter.PersonsPersistence</span></div>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;org.interactor.modules.datacenter.PersonDTO&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;org.interactor.modules.datacenter.dtos.PersonDTO&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllPersons()" class="member-name-link">getAllPersons</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#savePerson(org.interactor.modules.datacenter.PersonDTO)" class="member-name-link">savePerson</a><wbr>(org.interactor.modules.datacenter.PersonDTO&nbsp;person)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#savePerson(org.interactor.modules.datacenter.dtos.PersonDTO)" class="member-name-link">savePerson</a><wbr>(org.interactor.modules.datacenter.dtos.PersonDTO&nbsp;person)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -163,22 +163,22 @@ implements org.interactor.modules.datacenter.PersonsPersistence</span></div>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="savePerson(org.interactor.modules.datacenter.PersonDTO)">
+<section class="detail" id="savePerson(org.interactor.modules.datacenter.dtos.PersonDTO)">
 <h3>savePerson</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">savePerson</span><wbr><span class="parameters">(org.interactor.modules.datacenter.PersonDTO&nbsp;person)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">savePerson</span><wbr><span class="parameters">(org.interactor.modules.datacenter.dtos.PersonDTO&nbsp;person)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code>savePerson</code>&nbsp;in interface&nbsp;<code>org.interactor.modules.datacenter.PersonsPersistence</code></dd>
+<dd><code>savePerson</code>&nbsp;in interface&nbsp;<code>org.interactor.modules.datacenter.interfaces.PersonsPersistence</code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getAllPersons()">
 <h3>getAllPersons</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.interactor.modules.datacenter.PersonDTO&gt;</span>&nbsp;<span class="element-name">getAllPersons</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;org.interactor.modules.datacenter.dtos.PersonDTO&gt;</span>&nbsp;<span class="element-name">getAllPersons</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code>getAllPersons</code>&nbsp;in interface&nbsp;<code>org.interactor.modules.datacenter.PersonsPersistence</code></dd>
+<dd><code>getAllPersons</code>&nbsp;in interface&nbsp;<code>org.interactor.modules.datacenter.interfaces.PersonsPersistence</code></dd>
 </dl>
 </section>
 </li>

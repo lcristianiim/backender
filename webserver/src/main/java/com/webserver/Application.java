@@ -6,14 +6,13 @@ import com.webserver.response.ResponseHandler;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.rendering.template.JavalinMustache;
-import org.eclipselinkdatacenter.internal.Hikari;
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
 import org.interactor.router.ReqContextDTO;
 import org.interactor.router.RouterResponse;
 import org.interactor.router.Router;
-import org.interactor.modules.datacenter.PersonDTO;
+import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package org.eclipselinkdatacenter.persons;
+package org.eclipselinkdatacenter.entities;
 
 import jakarta.persistence.*;
 
 import static org.eclipselinkdatacenter.internal.CommonTablesConfiguration.*;
-import static org.eclipselinkdatacenter.persons.AddressEntity.TABLE_NAME;
+import static org.eclipselinkdatacenter.entities.AddressEntity.TABLE_NAME;
 
 @Entity(name = TABLE_NAME)
 public class AddressEntity {

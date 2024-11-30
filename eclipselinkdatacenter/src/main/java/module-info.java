@@ -1,4 +1,4 @@
-import org.interactor.modules.datacenter.PersonsPersistence;
+import org.interactor.modules.datacenter.interfaces.PersonsPersistence;
 
 module eclipselinkdatacenter {
     requires interactor;
@@ -8,11 +8,16 @@ module eclipselinkdatacenter {
     requires org.mapstruct;
     requires com.zaxxer.hikari;
 
-    opens org.eclipselinkdatacenter.persons;
-
-    exports org.eclipselinkdatacenter.persons;
     exports org.eclipselinkdatacenter.internal;
     opens org.eclipselinkdatacenter.internal;
+    exports org.eclipselinkdatacenter.entities;
+    opens org.eclipselinkdatacenter.entities;
+    exports org.eclipselinkdatacenter.mappers;
+    opens org.eclipselinkdatacenter.mappers;
+    exports org.eclipselinkdatacenter.repositories;
+    opens org.eclipselinkdatacenter.repositories;
+    exports org.eclipselinkdatacenter.interactorimplementations;
+    opens org.eclipselinkdatacenter.interactorimplementations;
 
-    provides PersonsPersistence with org.eclipselinkdatacenter.persons.PersonsPersistenceImpl;
+    provides PersonsPersistence with org.eclipselinkdatacenter.interactorimplementations.PersonsPersistenceImpl;
 }
