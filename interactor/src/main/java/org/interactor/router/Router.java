@@ -29,7 +29,7 @@ public class Router {
      */
     public RouterResponse get(ReqContextDTO ctx) {
         String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
-        logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
+        logger.getLogging().info("GET Request path:" + ctx.requestPath, clazz);
 
         Optional<String> registeredEntry = getControllerClassNeededForInstantiation(pathWithoutAPI, theGETRoutes);
 
@@ -56,7 +56,7 @@ public class Router {
      */
     public RouterResponse post(ReqContextDTO ctx) {
         String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
-        logger.getLogging().info("Request path:" + ctx.requestPath, clazz);
+        logger.getLogging().info("POST Request path:" + ctx.requestPath, clazz);
 
         Optional<String> registeredEntry = getControllerClassNeededForInstantiation(pathWithoutAPI, thePOSTRoutes);
 
