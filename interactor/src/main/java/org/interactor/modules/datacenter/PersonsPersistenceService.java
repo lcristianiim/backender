@@ -20,7 +20,6 @@ public enum PersonsPersistenceService {
     }
 
     public void savePerson(PersonDTO person) {
-        fdsa
         personsRepository.save(person);
     }
 }
