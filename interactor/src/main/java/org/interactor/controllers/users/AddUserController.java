@@ -1,7 +1,7 @@
 package org.interactor.controllers.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.logging.LoggerService;
@@ -18,12 +18,11 @@ public class AddUserController implements Controller {
 
     @Override
     public RouterResponse getResponse() {
-        ObjectMapper mapper = new ObjectMapper();
         RouterResponse result = new RouterResponse();
         result.setType(JSON);
 
         try {
-            PersonDTO person = mapper.readValue(body, PersonDTO.class);
+            PersonDTO person = ObjectMapperSingleton.INSTANCE.getObjectMapper().readValue(body, PersonDTO.class);
 
             try {
                 personsPersistenceService.savePerson(person);

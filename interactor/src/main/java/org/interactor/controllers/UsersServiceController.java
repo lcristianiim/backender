@@ -1,7 +1,7 @@
 package org.interactor.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.router.Controller;
@@ -33,10 +33,9 @@ public class UsersServiceController implements Controller {
 
     private String getResponseBody() {
         List<PersonDTO> persons = personsPersistenceService.getAllPersons();
-        ObjectMapper mapper = new ObjectMapper();
 
         try {
-            return mapper.writeValueAsString(persons);
+            return ObjectMapperSingleton.INSTANCE.getObjectMapper().writeValueAsString(persons);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
