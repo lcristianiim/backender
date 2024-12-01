@@ -1,5 +1,5 @@
 logs/**
-modules
+/modules
 dependencies
 node_modules
 deployable
