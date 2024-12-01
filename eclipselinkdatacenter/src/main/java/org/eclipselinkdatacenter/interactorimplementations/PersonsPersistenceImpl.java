@@ -1,7 +1,7 @@
 package org.eclipselinkdatacenter.interactorimplementations;
 
-import org.eclipselinkdatacenter.entities.PersonEntity;
-import org.eclipselinkdatacenter.mappers.PersonMapper;
+import org.eclipselinkdatacenter.persistence.entities.PersonEntity;
+import org.eclipselinkdatacenter.persistence.mappers.PersonMapper;
 import org.eclipselinkdatacenter.repositories.PersonRepository;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.interfaces.PersonsPersistence;

@@ -1,6 +1,6 @@
-package org.eclipselinkdatacenter.mappers;
+package org.eclipselinkdatacenter.persistence.mappers;
 
-import org.eclipselinkdatacenter.entities.AddressEntity;
+import org.eclipselinkdatacenter.persistence.entities.AddressEntity;
 import org.interactor.modules.datacenter.dtos.AddressDTO;
 
 public interface AddressMapper {

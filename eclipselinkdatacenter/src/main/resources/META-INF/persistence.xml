@@ -6,8 +6,8 @@
     <persistence-unit name="org.backender.main-unit" transaction-type="RESOURCE_LOCAL">
         <description>Hibernate EntityManager Demo</description>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>org.eclipselinkdatacenter.entities.PersonEntity</class>
-        <class>org.eclipselinkdatacenter.entities.AddressEntity</class>
+        <class>org.eclipselinkdatacenter.persistence.entities.PersonEntity</class>
+        <class>org.eclipselinkdatacenter.persistence.entities.AddressEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
 <!--            <property name="eclipselink.ddl-generation" value="create-tables"/>-->

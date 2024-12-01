@@ -1,0 +1,15 @@
+meta {
+  name: Post users
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:7070/api/add-user
+  body: json
+  auth: none
+}
+
+body:json {
+  {"firstName":"Honda","lastName":"Motora","addresses":[{"street":"(1,Cluj,12345,2)","postalCode":12345}]}
+}

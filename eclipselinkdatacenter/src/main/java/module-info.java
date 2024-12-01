@@ -10,10 +10,10 @@ module eclipselinkdatacenter {
 
     exports org.eclipselinkdatacenter.internal;
     opens org.eclipselinkdatacenter.internal;
-    exports org.eclipselinkdatacenter.entities;
-    opens org.eclipselinkdatacenter.entities;
-    exports org.eclipselinkdatacenter.mappers;
-    opens org.eclipselinkdatacenter.mappers;
+    exports org.eclipselinkdatacenter.persistence.entities;
+    opens org.eclipselinkdatacenter.persistence.entities;
+    exports org.eclipselinkdatacenter.persistence.mappers;
+    opens org.eclipselinkdatacenter.persistence.mappers;
     exports org.eclipselinkdatacenter.repositories;
     opens org.eclipselinkdatacenter.repositories;
     exports org.eclipselinkdatacenter.interactorimplementations;

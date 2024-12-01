@@ -1,4 +1,4 @@
-package org.eclipselinkdatacenter.entities;
+package org.eclipselinkdatacenter.persistence.entities;
 
 import jakarta.persistence.*;
 

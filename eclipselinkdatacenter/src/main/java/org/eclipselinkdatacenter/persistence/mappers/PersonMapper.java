@@ -1,7 +1,7 @@
-package org.eclipselinkdatacenter.mappers;
+package org.eclipselinkdatacenter.persistence.mappers;
 
-import org.eclipselinkdatacenter.entities.AddressEntity;
-import org.eclipselinkdatacenter.entities.PersonEntity;
+import org.eclipselinkdatacenter.persistence.entities.AddressEntity;
+import org.eclipselinkdatacenter.persistence.entities.PersonEntity;
 import org.interactor.modules.datacenter.dtos.AddressDTO;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.mapstruct.Mapper;
