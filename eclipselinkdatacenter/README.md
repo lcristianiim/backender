@@ -7,3 +7,9 @@ This file contains the data that can populate the database. This file can be eas
 This file is obtained by running the `generate-inserts.sh` script
 ## persistence (folder)
 This contains all the jpa entities and mappers needed. They should just be copied in the org.persistence.persistence package and everything should just work.
+
+# Workflow
+- to handle database structure us pgmodeler and store the dbm file in the eclipselinkdatacenter
+- jpa entities can be generated with netbeans directly by connecting to the database itself
+- use the generate-inserts.sh script to generate the data
+- always take care for the `persistence-versions`
