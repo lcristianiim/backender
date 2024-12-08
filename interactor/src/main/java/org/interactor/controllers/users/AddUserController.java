@@ -13,7 +13,7 @@ import static org.interactor.router.ResponseType.JSON;
 
 public class AddUserController implements Controller {
     LoggerService logger =  LoggerService.INSTANCE;
-    private PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
+    private final PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
     private String body;
 
     @Override
