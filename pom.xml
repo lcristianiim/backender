@@ -24,10 +24,11 @@
     </properties>
 
     <modules>
-        <module>eclipselinkdatacenter</module>
+<!--        <module>eclipselinkdatacenter</module>-->
         <module>prometheusmetrics</module>
         <module>logger</module>
         <module>webserver</module>
         <module>interactor</module>
+        <module>mongodbmodule</module>
     </modules>
 </project>

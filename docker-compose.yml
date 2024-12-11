@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # for eclipselinkdatacenter module
   db:
@@ -13,6 +11,18 @@ services:
       - 5432:5432
     networks:
       - pgnetwork
+
+  mongodb:
+    image: mongo:8.0.0  # Use the latest MongoDB image
+    container_name: mongodb  # Name of the container
+    ports:
+      - "27017:27017"  # Expose MongoDB on port 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin  # Set the root username
+      MONGO_INITDB_ROOT_PASSWORD: admin  # Set the root password
+    volumes:
+      - ./mongodbmodule/db:/data/db  # Persist data in a named volume
+
 
   adminer:
     image: adminer

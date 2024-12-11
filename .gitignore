@@ -5,6 +5,7 @@ node_modules
 deployable
 deployable/**
 pid
+/mongodbmodule/db
 
 HELP.md
 target/

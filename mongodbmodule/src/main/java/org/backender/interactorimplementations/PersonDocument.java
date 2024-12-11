@@ -1,29 +1,23 @@
-package org.interactor.modules.datacenter.dtos;
+package org.backender.interactorimplementations;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bson.types.ObjectId;
+import org.interactor.modules.datacenter.dtos.AddressDTO;
 
 import java.util.List;
 
-public class PersonDTO {
-    private String id;
+public class PersonDocument {
+    @JsonProperty("_id")
+    private ObjectId id;
     private String firstName;
-    String lastName;
-    List<AddressDTO> addresses;
+    private String lastName;
+    private List<AddressDTO> addresses;
 
-    public PersonDTO() {
-        // this is needed for Jackson
-    }
-
-    public PersonDTO(String id, String firstName, String lastName, List<AddressDTO> addresses) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.addresses = addresses;
-    }
-
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -51,4 +45,3 @@ public class PersonDTO {
         this.addresses = addresses;
     }
 }
-

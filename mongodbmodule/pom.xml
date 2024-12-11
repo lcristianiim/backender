@@ -10,11 +10,7 @@
     </parent>
     <packaging>jar</packaging>
 
-    <artifactId>prometheusmetrics</artifactId>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>mongodbmodule</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.backender</groupId>
@@ -23,14 +19,35 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-core</artifactId>
-            <version>1.13.6</version> <!-- Check for the latest version -->
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>5.2.1</version>
         </dependency>
         <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId> <!-- Example for Prometheus -->
-            <version>1.13.6</version>
+            <groupId>de.undercouch</groupId>
+            <artifactId>bson4jackson</artifactId>
+            <version>2.15.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.3.Final</version> <!-- Check for the latest version -->
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.3.Final</version> <!-- Check for the latest version -->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
@@ -56,7 +73,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>prometheus*.jar</include>
+                                        <include>mongodbmodule*.jar</include>
                                     </includes>
                                 </resource>
                             </resources>
@@ -64,8 +81,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--			This copies all the dependencies in the dependencies folder-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -81,7 +96,7 @@
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
-                            <excludeArtifactIds>prometheusmetrics,interactor</excludeArtifactIds>
+                            <excludeArtifactIds>mongodbmodule,interactor</excludeArtifactIds>
                         </configuration>
                     </execution>
                 </executions>

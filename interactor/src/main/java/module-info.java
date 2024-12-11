@@ -9,6 +9,8 @@ module interactor {
     exports org.interactor.modules.datacenter.interfaces;
     exports org.interactor.modules.datacenter.dtos;
 
+    opens org.interactor.modules.datacenter.dtos;
+
     uses org.interactor.modules.datacenter.interfaces.PersonsPersistence;
     uses org.interactor.modules.metrics.ApplicationMetrics;
     uses org.interactor.modules.logging.ApplicationLogging;

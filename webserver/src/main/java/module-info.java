@@ -3,7 +3,7 @@ module webserver {
     requires io.javalin;
     requires com.github.mustachejava;
     requires annotations;
-    requires eclipselinkdatacenter;
+//    requires eclipselinkdatacenter;
     requires interactor;
 
     opens templates;

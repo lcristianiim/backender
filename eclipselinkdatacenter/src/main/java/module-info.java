@@ -19,5 +19,6 @@ module eclipselinkdatacenter {
     exports org.eclipselinkdatacenter.interactorimplementations;
     opens org.eclipselinkdatacenter.interactorimplementations;
 
-    provides PersonsPersistence with org.eclipselinkdatacenter.interactorimplementations.PersonsPersistenceImpl;
+//    uncomment this to provide the bellow implementations at runtime
+//    provides PersonsPersistence with org.eclipselinkdatacenter.interactorimplementations.PersonsPersistenceImpl;
 }
