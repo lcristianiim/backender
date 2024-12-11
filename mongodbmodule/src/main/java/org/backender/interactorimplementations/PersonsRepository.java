@@ -6,58 +6,44 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public enum PersonsRepository implements GenericRepository<PersonDTO, ObjectId> {
     INSTANCE;
-    private static final String collectionName = "persons";
+    private static final String COLLECTION_NAME = "persons";
     private final MongoCollection<Document> readCollection;
     private final MongoCollection<Document> writeCollection;
 
     PersonsRepository() {
-        this.readCollection = MongoReadSingleton.INSTANCE.getDatabase().getCollection(collectionName);
-        this.writeCollection = MongoWriteSingleton.INSTANCE.getDatabase().getCollection(collectionName);
+        this.readCollection = MongoReadSingleton.INSTANCE.getDatabase().getCollection(COLLECTION_NAME);
+        this.writeCollection = MongoWriteSingleton.INSTANCE.getDatabase().getCollection(COLLECTION_NAME);
     }
 
-    @Override
     public PersonDTO findById(ObjectId objectId) {
-        Document doc = readCollection.find(Filters.eq("_id", objectId)).first();
-        if (doc != null)
-            return MapperUtil.fromDocument(doc, PersonDTO.class);
-
-        return null;
+        return this.findById(objectId, PersonDTO.class, readCollection);
     }
 
-    @Override
     public List<PersonDTO> findAll() {
-        List<PersonDTO> persons = new ArrayList<>();
-        for (Document doc : readCollection.find()) {
-            persons.add(MapperUtil.fromDocument(doc, PersonDTO.class));
-        }
-        return persons;
+        return this.findAll(PersonDTO.class, readCollection);
     }
 
     @Override
-    public void save(PersonDTO document) {
-        if (document.getId() == null) {
-            Document doc = MapperUtil.toDocument(document);
+    public void save(PersonDTO dto) {
+        Document doc = MapperUtil.toDocument(dto);
+        if (dto.getId() == null) {
             doc.remove("id");
-
             writeCollection.insertOne(doc);
-            ObjectId userId = doc.getObjectId("_id");
         } else {
-            Document doc = MapperUtil.toDocument(document);
-            ObjectId objectId = new ObjectId(document.getId());
+            ObjectId objectId = new ObjectId(dto.getId());
             doc.put("_id", objectId);
             doc.remove("id");
             writeCollection.replaceOne(Filters.eq("_id", objectId), doc);
         }
     }
 
-    @Override
-    public void delete(PersonDTO entity) {
-
+    public void delete(Map<String, String> fields) {
+        this.delete(fields, writeCollection);
     }
 
 }
