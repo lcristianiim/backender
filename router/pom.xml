@@ -15,7 +15,18 @@
             <groupId>org.backender</groupId>
             <artifactId>interactor</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.backender</groupId>
+            <artifactId>mongodbmodule</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.backender</groupId>
+            <artifactId>logger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -70,6 +81,30 @@
                     </execution>
                 </executions>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                <version>3.5.2</version>-->
+<!--                <configuration>-->
+<!--                    <forkCount>1</forkCount>-->
+<!--                    <reuseForks>true</reuseForks>-->
+<!--                    <argLine>&#45;&#45;add-modules interactor</argLine>-->
+<!--                    <additionalClasspathDependencies>-->
+<!--                        <additionalClasspathDependency>-->
+<!--                            <groupId>org.backender</groupId>-->
+<!--                            <artifactId>interactor</artifactId>-->
+<!--                            <version>0.0.1-SNAPSHOT</version>-->
+<!--                            <scope>compile</scope>-->
+<!--                        </additionalClasspathDependency>-->
+<!--                    </additionalClasspathDependencies>-->
+<!--                    <useSystemClassLoader>true</useSystemClassLoader>-->
+<!--                    <useManifestOnlyJar>false</useManifestOnlyJar>-->
+<!--                    <includes>-->
+<!--                        <include>**/*Test.java</include>-->
+<!--                    </includes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

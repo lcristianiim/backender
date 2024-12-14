@@ -9,10 +9,11 @@ module interactor {
     exports org.interactor.modules.datacenter.interfaces;
     exports org.interactor.modules.datacenter.dtos;
 
-    opens org.interactor.modules.datacenter.dtos;
     exports org.interactor.modules.router;
     exports org.interactor.modules.router.dtos;
     exports org.interactor.modules.router.configuration;
+
+    opens org.interactor.modules.datacenter.dtos;
 
     uses org.interactor.modules.datacenter.interfaces.PersonsPersistence;
     uses org.interactor.modules.router.Router;

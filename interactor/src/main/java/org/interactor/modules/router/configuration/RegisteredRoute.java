@@ -15,9 +15,9 @@ public enum RegisteredRoute {
     PRODUCT(GET, "product/{id}?name&age", new TestController()),
     ADD_USER(POST, "add-user", new AddUserController());
 
-    private RequestType requestType;
-    private String path;
-    private Controller controller;
+    private final RequestType requestType;
+    private final String path;
+    private final Controller controller;
 
     RegisteredRoute(RequestType requestType, String path, Controller controller) {
         this.requestType = requestType;
