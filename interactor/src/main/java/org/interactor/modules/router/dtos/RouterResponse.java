@@ -1,4 +1,4 @@
-package org.interactor.router;
+package org.interactor.modules.router.dtos;
 
 public class RouterResponse {
 

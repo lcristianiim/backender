@@ -1,15 +1,19 @@
-package org.interactor.router;
+package org.backender.router;
 
 import org.interactor.ApplicationConfiguration;
+import org.interactor.modules.router.dtos.Controller;
+import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.RouterResponse;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-import static org.interactor.router.ResponseType.JSON;
-import static org.junit.jupiter.api.Assertions.*;
-class RouterTest {
+import static org.interactor.modules.router.dtos.ResponseType.JSON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class RouterImplementationTest {
 
     @Test
     public void givenPathRegisteredInProperties_ShouldReturnTheAssociatedRequestBody() {
@@ -18,16 +22,16 @@ class RouterTest {
         String body = "associated body";
         int responseCode = 200;
 
-        Router router = new Router();
-        router.setControllerResolver(this::getController);
 
-        Properties properties = new Properties();
-        properties.setProperty("cool-path", "IrrelevantInThisTestClass");
-        router.setTheGETRoutes(properties);
+        RouterImplementation routerImplementation = new RouterImplementation();
+
+        Map<String, Controller> getRoutes = new HashMap<>();
+        getRoutes.put("cool-path", getController());
+        routerImplementation.setGetRoutes(getRoutes);
 
         ReqContextDTO ctx = new ReqContextDTO();
         ctx.setRequestPath(requestPath);
-        RouterResponse result = router.get(ctx);
+        RouterResponse result = routerImplementation.get(ctx);
 
         assertEquals(body, result.getBody());
         assertEquals(responseCode, result.getCode());
@@ -41,21 +45,20 @@ class RouterTest {
         String requestPath = apiPrefix + "/products/1/something/blue?name=ball&age=20";
         String body = "1,blue,ball,20";
 
-        Router router = new Router();
-        router.setControllerResolver(this::getControllerWithPathAndQueryParams);
+        RouterImplementation routerImplementation = new RouterImplementation();
 
-        Properties properties = new Properties();
-        properties.setProperty("products/{id}/something/{color}?name&age", "IrrelevantInThisTestClass");
-        router.setTheGETRoutes(properties);
+        Map<String, Controller> getRoutes = new HashMap<>();
+        getRoutes.put("products/{id}/something/{color}?name&age", getControllerWithPathAndQueryParams());
+        routerImplementation.setGetRoutes(getRoutes);
 
         ReqContextDTO ctx = new ReqContextDTO();
         ctx.setRequestPath(requestPath);
-        RouterResponse result = router.get(ctx);
+        RouterResponse result = routerImplementation.get(ctx);
 
         assertEquals(body, result.getBody());
     }
 
-    Controller getControllerWithPathAndQueryParams(String className, ReqContextDTO ctx) {
+    Controller getControllerWithPathAndQueryParams() {
         return new Controller() {
             private String id;
             private String color;
@@ -92,7 +95,7 @@ class RouterTest {
         };
     }
 
-    Controller getController(String className, ReqContextDTO ctx) {
+    Controller getController() {
         return new Controller() {
 
             @Override

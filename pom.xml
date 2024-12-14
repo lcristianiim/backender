@@ -30,5 +30,6 @@
         <module>webserver</module>
         <module>interactor</module>
         <module>mongodbmodule</module>
+        <module>router</module>
     </modules>
 </project>

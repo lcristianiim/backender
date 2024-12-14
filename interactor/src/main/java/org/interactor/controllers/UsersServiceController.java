@@ -4,13 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
-import org.interactor.router.Controller;
-import org.interactor.router.ReqContextDTO;
-import org.interactor.router.RouterResponse;
+import org.interactor.modules.router.dtos.Controller;
+import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.RouterResponse;
 
 import java.util.List;
 
-import static org.interactor.router.ResponseType.JSON;
+import static org.interactor.modules.router.dtos.ResponseType.JSON;
 
 public class UsersServiceController implements Controller {
     PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;

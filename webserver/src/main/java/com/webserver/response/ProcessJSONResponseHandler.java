@@ -1,8 +1,8 @@
 package com.webserver.response;
 
 import io.javalin.http.Context;
-import org.interactor.router.ResponseType;
-import org.interactor.router.RouterResponse;
+import org.interactor.modules.router.dtos.ResponseType;
+import org.interactor.modules.router.dtos.RouterResponse;
 
 public class ProcessJSONResponseHandler extends ResponseHandler {
 

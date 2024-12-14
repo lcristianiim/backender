@@ -1,6 +1,6 @@
 package org.backender.logger;
 
-import org.interactor.router.Router;
+import org.interactor.modules.router.dtos.Controller;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class LoggerImplementationTest {
     void whenLoggingIsCalled_ShouldLog() {
         LoggerImplementation loggerImplementation = new LoggerImplementation();
 
-        loggerImplementation.info("hello", Router.class);
+        loggerImplementation.info("hello", Controller.class);
     }
 
 }

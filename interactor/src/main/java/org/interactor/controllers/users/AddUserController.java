@@ -5,11 +5,11 @@ import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.logging.LoggerService;
-import org.interactor.router.Controller;
-import org.interactor.router.ReqContextDTO;
-import org.interactor.router.RouterResponse;
+import org.interactor.modules.router.dtos.Controller;
+import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.RouterResponse;
 
-import static org.interactor.router.ResponseType.JSON;
+import static org.interactor.modules.router.dtos.ResponseType.JSON;
 
 public class AddUserController implements Controller {
     LoggerService logger =  LoggerService.INSTANCE;

@@ -1,11 +1,14 @@
 package org.interactor.controllers;
 
-import org.interactor.router.*;
+import org.interactor.modules.router.RouterService;
+import org.interactor.modules.router.dtos.Controller;
+import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.RouterResponse;
 
 import java.text.MessageFormat;
 import java.util.Map;
 
-import static org.interactor.router.ResponseType.JSON;
+import static org.interactor.modules.router.dtos.ResponseType.JSON;
 
 public class TestController implements Controller {
     private String id;
@@ -24,15 +27,12 @@ public class TestController implements Controller {
 
     @Override
     public void initialize(ReqContextDTO controllerData, String registeredPath) {
-        PathCommonOperations operations = new PathCommonOperations();
 
-        Map<String, String> pathParams = operations.getPathParams(
-                registeredPath, PathOperations.getPathWithoutTheAPIPart()
-                        .apply(controllerData.getRequestPath()));
+        Map<String, String> pathParams = RouterService.INSTANCE.getRouter()
+                .getPathParams(registeredPath, controllerData.getRequestPath());
 
-        Map<String, String> queryParams = operations.getQueryParams(
-                registeredPath, PathOperations.getPathWithoutTheAPIPart()
-                        .apply(controllerData.getRequestPath()));
+        Map<String, String> queryParams = RouterService.INSTANCE.getRouter()
+                .getQueryParams(registeredPath, controllerData.getRequestPath());
 
         id = pathParams.get("id");
         name = queryParams.get("name");

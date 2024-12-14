@@ -1,11 +1,11 @@
-package org.interactor.router;
+package org.interactor.modules.router.dtos;
 
 import java.util.Locale;
 
 public class ReqContextDTO {
-    String requestPath;
-    Locale locale;
-    String body;
+    private String requestPath;
+    private Locale locale;
+    private String body;
 
     public String getRequestPath() {
         return requestPath;
