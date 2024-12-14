@@ -44,11 +44,6 @@
                     </includes>
                     <forkCount>1</forkCount> <!-- Number of forks to use -->
                     <reuseForks>true</reuseForks> <!-- Reuse forks -->
-<!--                    <argLine>&#45;&#45;add-modules interactor</argLine> &lt;!&ndash; Add any necessary module arguments &ndash;&gt;-->
-                    <dependenciesToScan>
-                        <dependenciesToScan>mongodbmodule,webserver,interactor,router</dependenciesToScan>
-                    </dependenciesToScan>
-
                 </configuration>
                 <executions>
                     <execution>
