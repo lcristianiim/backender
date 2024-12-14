@@ -4,7 +4,7 @@ import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.logging.LoggerService;
 
 import org.interactor.modules.router.Router;
-import org.interactor.modules.router.configuration.RegisteredRoute;
+import org.interactor.configuration.RegisteredRoute;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.ReqContextDTO;
 import org.interactor.modules.router.dtos.ResponseType;

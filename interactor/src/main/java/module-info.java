@@ -11,7 +11,7 @@ module interactor {
 
     exports org.interactor.modules.router;
     exports org.interactor.modules.router.dtos;
-    exports org.interactor.modules.router.configuration;
+    exports org.interactor.configuration;
 
     opens org.interactor.modules.datacenter.dtos;
 

@@ -1,4 +1,4 @@
-package org.interactor.modules.router.configuration;
+package org.interactor.configuration;
 
 import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
