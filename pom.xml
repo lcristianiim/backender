@@ -24,7 +24,6 @@
     </properties>
 
     <modules>
-<!--        <module>eclipselinkdatacenter</module>-->
         <module>prometheusmetrics</module>
         <module>logger</module>
         <module>webserver</module>
