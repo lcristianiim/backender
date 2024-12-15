@@ -20,21 +20,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- JUnit 5 (Jupiter) API -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.3</version> <!-- Use the latest stable version -->
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- JUnit 5 (Jupiter) Engine -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.3</version> <!-- Use the same version as the API -->
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -73,23 +58,23 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version> <!-- Use the latest version -->
-                <configuration>
-                    <forkCount>1</forkCount>
-                    <useModulePath>true</useModulePath>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>3.0.0-M5</version> &lt;!&ndash; Use the latest version &ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <forkCount>1</forkCount>-->
+<!--                    <useModulePath>true</useModulePath>-->
 <!--                    this is needed because the tests needs the META-INF/services folder-->
 <!--                    the tests can be executed via commandline only after executing ./build.sh-->
 <!--                    that is actually generating modules and dependencies folders-->
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>../modules/*</additionalClasspathElement>
-                        <additionalClasspathElement>../dependencies/*</additionalClasspathElement>
-                    </additionalClasspathElements>
-                    <argLine>--add-opens interactor/org.interactor.router=ALL-UNNAMED</argLine>
-                </configuration>
-            </plugin>
+<!--                    <additionalClasspathElements>-->
+<!--                        <additionalClasspathElement>../modules/*</additionalClasspathElement>-->
+<!--                        <additionalClasspathElement>../dependencies/*</additionalClasspathElement>-->
+<!--                    </additionalClasspathElements>-->
+<!--                    <argLine>&#45;&#45;add-opens interactor/org.interactor.router=ALL-UNNAMED</argLine>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
         </plugins>
 
