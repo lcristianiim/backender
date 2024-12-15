@@ -12,7 +12,7 @@ import org.interactor.modules.metrics.MetricsService;
 import org.interactor.modules.router.RouterService;
 
 import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 
@@ -83,7 +83,7 @@ public class Application {
 
 			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
 
-			RouterResponse response = RouterService.INSTANCE.getRouter().get(reqContext);
+			InteractorResponse response = RouterService.INSTANCE.getRouter().get(reqContext);
 
 			ResponseHandler handler = new ProcessJSONResponseHandler();
 			handler.handleRequest(response, ctx);
@@ -94,7 +94,7 @@ public class Application {
 
 			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
 
-			RouterResponse response = RouterService.INSTANCE.getRouter().post(reqContext);
+			InteractorResponse response = RouterService.INSTANCE.getRouter().post(reqContext);
 
 			ResponseHandler handler = new ProcessJSONResponseHandler();
 			handler.handleRequest(response, ctx);

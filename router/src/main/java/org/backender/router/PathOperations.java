@@ -2,12 +2,18 @@ package org.backender.router;
 
 import org.interactor.ApplicationConfiguration;
 
-import java.util.function.Function;
-
 public class PathOperations {
 
-    public static Function<String,String> getPathWithoutTheAPIPart() {
+    public static String getPathWithoutTheAPIPart(String pathWithApi) {
         String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
-        return (s) -> s.split(apiPath + "/")[1];
-    }
+        if (null == pathWithApi)
+            return "";
+
+        String[] split = pathWithApi.split(apiPath + "/");
+        if (split.length > 0) {
+            return split[1];
+        } else {
+            return split[0];
+        }
+    };
 }

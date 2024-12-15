@@ -8,7 +8,7 @@ import org.interactor.configuration.RegisteredRoute;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.ReqContextDTO;
 import org.interactor.modules.router.dtos.ResponseType;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -20,16 +20,23 @@ public class RouterImplementation implements Router {
     Map<String, Controller> getRoutes = RegisteredRoute.getGETRoutes();
     Map<String, Controller> postRoutes = RegisteredRoute.getPOSTRoutes();
 
-    Function<String,String> pathWithoutTheAPI = PathOperations.getPathWithoutTheAPIPart();
 
     LoggerService logger =  LoggerService.INSTANCE;
     Class<RouterImplementation> clazz = RouterImplementation.class;
 
-    public RouterResponse get(ReqContextDTO ctx) {
-        String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
+    public Optional<RegisteredRoute> getRegisteredRoute(ReqContextDTO ctx) {
+        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
         logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
 
-        Optional<Map.Entry<String, Controller>> entry = getRegisteredRoute(pathWithoutAPI, getRoutes);
+        return getRegisteredRoute(pathWithoutAPI, getRoutes);
+    }
+
+
+    public InteractorResponse get(ReqContextDTO ctx) {
+        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
+        logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
+
+        Optional<Map.Entry<String, Controller>> entry = getRegisteredRouteAsEntry(pathWithoutAPI, getRoutes);
 
         if (entry.isPresent()) {
             String registeredPath = entry.get().getKey();
@@ -42,11 +49,11 @@ public class RouterImplementation implements Router {
         return invalidRequestResponse(pathWithoutAPI);
     }
 
-    public RouterResponse post(ReqContextDTO ctx) {
-        String pathWithoutAPI = pathWithoutTheAPI.apply(ctx.getRequestPath());
+    public InteractorResponse post(ReqContextDTO ctx) {
+        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
         logger.getLogging().info("POST Request path:" + ctx.getRequestPath(), clazz);
 
-        Optional<Map.Entry<String, Controller>> entry = getRegisteredRoute(pathWithoutAPI, postRoutes);
+        Optional<Map.Entry<String, Controller>> entry = getRegisteredRouteAsEntry(pathWithoutAPI, postRoutes);
 
         if (entry.isPresent()) {
             String registeredPath = entry.get().getKey();
@@ -79,19 +86,33 @@ public class RouterImplementation implements Router {
                 registeredPath, pathWithoutApi);
     }
 
-    private static RouterResponse invalidRequestResponse(String pathWithoutAPI) {
-        RouterResponse response = new RouterResponse();
+    private static InteractorResponse invalidRequestResponse(String pathWithoutAPI) {
+        InteractorResponse response = new InteractorResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
         response.setCode(500);
         response.setType(ResponseType.JSON);
         return response;
     }
 
-    private Optional<Map.Entry<String, Controller>> getRegisteredRoute(String pathWithoutAPI, Map<String, Controller> getRoutes) {
+    private Optional<Map.Entry<String, Controller>> getRegisteredRouteAsEntry(String pathWithoutAPI, Map<String, Controller> getRoutes) {
 
         for (Map.Entry<String, Controller> registeredRoute : getRoutes.entrySet()) {
 
             String registeredPath = registeredRoute.getKey();
+
+            PathCommonOperations operations = new PathCommonOperations();
+            if (operations.isARegisteredControllerMatch(registeredPath, pathWithoutAPI))
+                return Optional.of(registeredRoute);
+
+        }
+        return Optional.empty();
+    }
+
+
+    private Optional<RegisteredRoute> getRegisteredRoute(String pathWithoutAPI, Map<String, Controller> getRoutes) {
+        for (RegisteredRoute registeredRoute : RegisteredRoute.values()) {
+
+            String registeredPath = registeredRoute.getPath();
 
             PathCommonOperations operations = new PathCommonOperations();
             if (operations.isARegisteredControllerMatch(registeredPath, pathWithoutAPI))

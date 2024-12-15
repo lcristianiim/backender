@@ -11,7 +11,6 @@ module mongodbmodule {
     requires java.desktop;
 
     exports org.backender.interactorimplementations;
-
     opens org.backender.interactorimplementations;
 
     provides PersonsPersistence with org.backender.interactorimplementations.PersonsPersistenceImpl;

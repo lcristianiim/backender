@@ -45,28 +45,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version> <!-- Use the latest version -->
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include> <!-- Include test classes -->
-                    </includes>
-                    <forkCount>1</forkCount> <!-- Number of forks to use -->
-                    <reuseForks>true</reuseForks> <!-- Reuse forks -->
-                </configuration>
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>integration-test</goal>-->
-<!--                            <goal>verify</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-            </plugin>
-        </plugins>
-    </build>
 </project>

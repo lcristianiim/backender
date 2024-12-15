@@ -1,9 +1,11 @@
 package org.interactor.modules.router;
 
+import org.interactor.configuration.RegisteredRoute;
 import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.util.Map;
+import java.util.Optional;
 
 public interface Router {
 
@@ -15,7 +17,7 @@ public interface Router {
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      *
      */
-    RouterResponse get(ReqContextDTO ctx);
+    InteractorResponse get(ReqContextDTO ctx);
 
     /**
      * This is the link from webserver to the interactor module for all POST requests
@@ -25,8 +27,8 @@ public interface Router {
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      *
      */
-    RouterResponse post(ReqContextDTO ctx);
-
+    InteractorResponse post(ReqContextDTO ctx);
+    Optional<RegisteredRoute> getRegisteredRoute(ReqContextDTO ctx);
     Map<String, String> getPathParams(String registeredPath, String path);
     Map<String, String> getQueryParams(String registeredPath, String requestPath);
 }

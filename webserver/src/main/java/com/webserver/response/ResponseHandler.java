@@ -1,7 +1,7 @@
 package com.webserver.response;
 
 import io.javalin.http.Context;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 
 // chain of responsibility pattern
 public abstract class ResponseHandler {
@@ -11,5 +11,5 @@ public abstract class ResponseHandler {
         this.nextHandler = nextHandler;
     }
 
-    public abstract void handleRequest(RouterResponse response, Context ctx);
+    public abstract void handleRequest(InteractorResponse response, Context ctx);
 }

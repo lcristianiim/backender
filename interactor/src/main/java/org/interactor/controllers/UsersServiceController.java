@@ -6,7 +6,7 @@ import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ public class UsersServiceController implements Controller {
     PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
 
     @Override
-    public RouterResponse getResponse() {
+    public InteractorResponse getResponse() {
         String body = getResponseBody();
 
-        RouterResponse result = new RouterResponse();
+        InteractorResponse result = new InteractorResponse();
         result.setBody(body);
         result.setCode(200);
         result.setType(JSON);

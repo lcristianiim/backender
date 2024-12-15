@@ -3,7 +3,7 @@ package org.backender.router;
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
@@ -30,7 +30,7 @@ class RouterImplementationTest {
 
         ReqContextDTO ctx = new ReqContextDTO();
         ctx.setRequestPath(requestPath);
-        RouterResponse result = routerImplementation.get(ctx);
+        InteractorResponse result = routerImplementation.get(ctx);
 
         assertEquals(body, result.getBody());
         assertEquals(responseCode, result.getCode());
@@ -52,7 +52,7 @@ class RouterImplementationTest {
 
         ReqContextDTO ctx = new ReqContextDTO();
         ctx.setRequestPath(requestPath);
-        RouterResponse result = routerImplementation.get(ctx);
+        InteractorResponse result = routerImplementation.get(ctx);
 
         assertEquals(body, result.getBody());
     }
@@ -66,12 +66,12 @@ class RouterImplementationTest {
 
 
             @Override
-            public RouterResponse getResponse() {
-                RouterResponse routerResponse = new RouterResponse();
-                routerResponse.setType(JSON);
-                routerResponse.setCode(200);
-                routerResponse.setBody(MessageFormat.format("{0},{1},{2},{3}", id, color, name, age));
-                return routerResponse;
+            public InteractorResponse getResponse() {
+                InteractorResponse interactorResponse = new InteractorResponse();
+                interactorResponse.setType(JSON);
+                interactorResponse.setCode(200);
+                interactorResponse.setBody(MessageFormat.format("{0},{1},{2},{3}", id, color, name, age));
+                return interactorResponse;
             }
 
             @Override
@@ -79,12 +79,10 @@ class RouterImplementationTest {
                 PathCommonOperations operations = new PathCommonOperations();
 
                 Map<String, String> pathParams = operations.getPathParams(
-                        registeredPath, PathOperations.getPathWithoutTheAPIPart()
-                                .apply(controllerData.getRequestPath()));
+                        registeredPath, PathOperations.getPathWithoutTheAPIPart(controllerData.getRequestPath()));
 
                 Map<String, String> queryParams = operations.getQueryParams(
-                        registeredPath, PathOperations.getPathWithoutTheAPIPart()
-                                .apply(controllerData.getRequestPath()));
+                        registeredPath, PathOperations.getPathWithoutTheAPIPart(controllerData.getRequestPath()));
 
                 id = pathParams.get("id");
                 color = pathParams.get("color");
@@ -98,12 +96,12 @@ class RouterImplementationTest {
         return new Controller() {
 
             @Override
-            public RouterResponse getResponse() {
-                RouterResponse routerResponse = new RouterResponse();
-                routerResponse.setType(JSON);
-                routerResponse.setCode(200);
-                routerResponse.setBody("associated body");
-                return routerResponse;
+            public InteractorResponse getResponse() {
+                InteractorResponse interactorResponse = new InteractorResponse();
+                interactorResponse.setType(JSON);
+                interactorResponse.setCode(200);
+                interactorResponse.setBody("associated body");
+                return interactorResponse;
             }
 
             @Override

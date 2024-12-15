@@ -1,6 +1,6 @@
 package org.interactor.modules.router.dtos;
 
 public interface Controller {
-    RouterResponse getResponse();
+    InteractorResponse getResponse();
     void initialize(ReqContextDTO controllerData, String registeredPath);
 }

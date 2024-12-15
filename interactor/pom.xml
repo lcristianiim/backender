@@ -19,7 +19,6 @@
             <version>2.17.2</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -58,23 +57,38 @@
                 </configuration>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>3.0.0-M5</version> &lt;!&ndash; Use the latest version &ndash;&gt;-->
-<!--                <configuration>-->
-<!--                    <forkCount>1</forkCount>-->
-<!--                    <useModulePath>true</useModulePath>-->
-<!--                    this is needed because the tests needs the META-INF/services folder-->
-<!--                    the tests can be executed via commandline only after executing ./build.sh-->
-<!--                    that is actually generating modules and dependencies folders-->
-<!--                    <additionalClasspathElements>-->
-<!--                        <additionalClasspathElement>../modules/*</additionalClasspathElement>-->
-<!--                        <additionalClasspathElement>../dependencies/*</additionalClasspathElement>-->
-<!--                    </additionalClasspathElements>-->
-<!--                    <argLine>&#45;&#45;add-opens interactor/org.interactor.router=ALL-UNNAMED</argLine>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version> <!-- Use the latest version -->
+
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include> <!-- Include test classes -->
+                    </includes>
+
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>/home/cristian/projects/backender/modules/router-0.0.1-SNAPSHOT.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/bson-5.2.1.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/mongodb-driver-sync-5.2.1.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/mongodb-driver-core-5.2.1.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/bson4jackson-2.15.1.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/mapstruct-1.5.3.Final.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/modules/mongodbmodule-0.0.1-SNAPSHOT.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/dependencies/slf4j-api-2.0.16.jar</additionalClasspathElement>
+                        <additionalClasspathElement>/home/cristian/projects/backender/modules/logger-0.0.1-SNAPSHOT.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
 

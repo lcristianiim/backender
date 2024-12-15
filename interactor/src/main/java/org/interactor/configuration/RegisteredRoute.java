@@ -12,6 +12,7 @@ import static org.interactor.modules.router.dtos.RequestType.*;
 
 public enum RegisteredRoute {
     USERS(GET, "users", new UsersServiceController()),
+    TEST_USERS(GET, "test-users", new UsersServiceController()),
     PRODUCT(GET, "product/{id}?name&age", new TestController()),
     ADD_USER(POST, "add-user", new AddUserController());
 

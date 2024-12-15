@@ -1,6 +1,6 @@
 package org.interactor.modules.router.dtos;
 
-public class RouterResponse {
+public class InteractorResponse {
 
     private String body;
     private int code;

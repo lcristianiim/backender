@@ -51,11 +51,6 @@
         </dependency>
     </dependencies>
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -111,6 +106,7 @@
                     <source>${java.version}</source>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

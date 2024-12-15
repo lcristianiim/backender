@@ -7,7 +7,7 @@ import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.RouterResponse;
+import org.interactor.modules.router.dtos.InteractorResponse;
 
 import static org.interactor.modules.router.dtos.ResponseType.JSON;
 
@@ -17,8 +17,8 @@ public class AddUserController implements Controller {
     private String body;
 
     @Override
-    public RouterResponse getResponse() {
-        RouterResponse result = new RouterResponse();
+    public InteractorResponse getResponse() {
+        InteractorResponse result = new InteractorResponse();
         result.setType(JSON);
 
         try {
