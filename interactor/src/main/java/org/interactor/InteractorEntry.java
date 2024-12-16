@@ -8,7 +8,7 @@ import org.interactor.modules.router.dtos.ResponseType;
 
 import java.util.Optional;
 
-public class Gateway {
+public class InteractorEntry {
     InteractorResponse processGETRequest(ReqContextDTO ctx) {
         InteractorResponse response = new InteractorResponse();
         Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter().getRegisteredRoute(ctx);
