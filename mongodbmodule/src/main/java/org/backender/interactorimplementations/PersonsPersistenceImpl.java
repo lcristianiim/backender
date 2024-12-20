@@ -13,17 +13,6 @@ public class PersonsPersistenceImpl implements PersonsPersistence {
 
     @Override
     public void save(PersonDTO person) {
-
-        MongoDatabase database = MongoReadSingleton.INSTANCE.getDatabase();
-
-        MongoCollection<Document> usersCollection = database.getCollection("persons");
-
-        Document user = MapperUtil.toDocument(person);
-        user.remove("_id");
-        usersCollection.insertOne(user);
-        ObjectId userId = user.getObjectId("_id");
-
-
         PersonsRepository.INSTANCE.save(person);
     }
 

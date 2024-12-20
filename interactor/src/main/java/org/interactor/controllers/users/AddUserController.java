@@ -6,7 +6,7 @@ import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 import static org.interactor.modules.router.dtos.ResponseType.JSON;
@@ -44,7 +44,7 @@ public class AddUserController implements Controller {
     }
 
     @Override
-    public void initialize(ReqContextDTO controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, String registeredPath) {
         body = controllerData.getBody();
     }
 }

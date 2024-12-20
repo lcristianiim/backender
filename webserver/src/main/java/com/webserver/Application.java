@@ -5,16 +5,19 @@ import com.webserver.response.ProcessJSONResponseHandler;
 import com.webserver.response.ResponseHandler;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.HandlerType;
 import io.javalin.rendering.template.JavalinMustache;
 import org.interactor.ApplicationConfiguration;
+import org.interactor.InteractorEntry;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
 import org.interactor.modules.router.RouterService;
 
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
+import org.interactor.modules.router.dtos.RequestType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -78,27 +81,8 @@ public class Application {
 			METRICS_SERVICE.incrementCounter();
 		});
 
-		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
-			METRICS_SERVICE.incrementCounter();
-
-			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
-
-			InteractorResponse response = RouterService.INSTANCE.getRouter().get(reqContext);
-
-			ResponseHandler handler = new ProcessJSONResponseHandler();
-			handler.handleRequest(response, ctx);
-		});
-
-		app.post(APPLICATION_CONFIGURATION.getApiPath() + "/**", ctx -> {
-			METRICS_SERVICE.incrementCounter();
-
-			ReqContextDTO reqContext = transformJavalinContextToInteractorContextDTO(ctx);
-
-			InteractorResponse response = RouterService.INSTANCE.getRouter().post(reqContext);
-
-			ResponseHandler handler = new ProcessJSONResponseHandler();
-			handler.handleRequest(response, ctx);
-		});
+		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", Application::processRequestWithInteractor);
+		app.post(APPLICATION_CONFIGURATION.getApiPath() + "/**", Application::processRequestWithInteractor);
 
 		app.start(7070);
 
@@ -111,16 +95,53 @@ public class Application {
 		}));
 	}
 
-	private static ReqContextDTO transformJavalinContextToInteractorContextDTO(Context ctx) {
-		ReqContextDTO reqContext = new ReqContextDTO();
+	private static void processRequestWithInteractor(Context ctx) {
+		METRICS_SERVICE.incrementCounter();
+
+		InteractorRequest reqContext = transformJavalinContextToInteractorContextDTO(ctx);
+
+		InteractorEntry entry = new InteractorEntry();
+
+//		InteractorResponse response = RouterService.INSTANCE.getRouter().processRequest(reqContext);
+		InteractorResponse response = entry.processRequest(reqContext);
+
+		ResponseHandler handler = new ProcessJSONResponseHandler();
+		handler.handleRequest(response, ctx);
+	}
+
+	private static InteractorRequest transformJavalinContextToInteractorContextDTO(Context ctx) {
+		InteractorRequest reqContext = new InteractorRequest();
 		if (ctx.queryString() != null) {
 			reqContext.setRequestPath(ctx.path() + "?" + ctx.queryString());
 		} else {
 			reqContext.setRequestPath(ctx.path());
-			reqContext.setLocale(getLocale(ctx));
 		}
         reqContext.setBody(ctx.body());
+		reqContext.setLocale(getLocale(ctx));
+		reqContext.setRequestType(getRequestType(ctx));
         return reqContext;
+	}
+
+	private static RequestType getRequestType(Context ctx) {
+		HandlerType type = ctx.method();
+		return switch (type) {
+			case HandlerType.GET -> RequestType.GET;
+            case POST -> RequestType.POST;
+            case PUT -> RequestType.PUT;
+            case PATCH -> RequestType.PATCH;
+            case DELETE -> RequestType.DELETE;
+            case HEAD -> RequestType.HEAD;
+            case TRACE -> RequestType.TRACE;
+            case CONNECT -> RequestType.CONNECT;
+            case OPTIONS -> RequestType.OPTIONS;
+            case BEFORE -> RequestType.BEFORE;
+            case BEFORE_MATCHED -> RequestType.BEFORE_MATCHED;
+            case AFTER_MATCHED -> RequestType.AFTER_MATCHED;
+            case WEBSOCKET_BEFORE_UPGRADE -> RequestType.WEBSOCKET_BEFORE_UPGRADE;
+            case WEBSOCKET_AFTER_UPGRADE -> RequestType.WEBSOCKET_AFTER_UPGRADE;
+            case AFTER -> RequestType.AFTER;
+            case INVALID -> RequestType.INVALID;
+        };
 	}
 
 	private static void eagerInitialization() {

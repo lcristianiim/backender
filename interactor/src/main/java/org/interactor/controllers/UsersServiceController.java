@@ -5,7 +5,7 @@ import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
 import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class UsersServiceController implements Controller {
     }
 
     @Override
-    public void initialize(ReqContextDTO ctx, String registeredPath) {
+    public void initialize(InteractorRequest ctx, String registeredPath) {
     }
 
     private String getResponseBody() {

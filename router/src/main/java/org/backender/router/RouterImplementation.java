@@ -5,18 +5,14 @@ import org.interactor.modules.logging.LoggerService;
 
 import org.interactor.modules.router.Router;
 import org.interactor.configuration.RegisteredRoute;
-import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.ReqContextDTO;
-import org.interactor.modules.router.dtos.ResponseType;
-import org.interactor.modules.router.dtos.InteractorResponse;
+import org.interactor.modules.router.dtos.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.function.Function;
 
 public class RouterImplementation implements Router {
 
-    ControllerResolver<String, ReqContextDTO, Controller> controllerResolver = this::getControllerInstance;
+    ControllerResolver<String, InteractorRequest, Controller> controllerResolver = this::getControllerInstance;
     Map<String, Controller> getRoutes = RegisteredRoute.getGETRoutes();
     Map<String, Controller> postRoutes = RegisteredRoute.getPOSTRoutes();
 
@@ -24,19 +20,13 @@ public class RouterImplementation implements Router {
     LoggerService logger =  LoggerService.INSTANCE;
     Class<RouterImplementation> clazz = RouterImplementation.class;
 
-    public Optional<RegisteredRoute> getRegisteredRoute(ReqContextDTO ctx) {
+
+    public InteractorResponse processRequest(InteractorRequest ctx) {
         String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
         logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
 
-        return getRegisteredRoute(pathWithoutAPI, getRoutes);
-    }
-
-
-    public InteractorResponse get(ReqContextDTO ctx) {
-        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
-        logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
-
-        Optional<Map.Entry<String, Controller>> entry = getRegisteredRouteAsEntry(pathWithoutAPI, getRoutes);
+        Optional<Map.Entry<String, Controller>> entry =
+                getRegisteredRouteAsEntry(pathWithoutAPI, getRoutesByRequestType(ctx.getRequestType()));
 
         if (entry.isPresent()) {
             String registeredPath = entry.get().getKey();
@@ -49,7 +39,35 @@ public class RouterImplementation implements Router {
         return invalidRequestResponse(pathWithoutAPI);
     }
 
-    public InteractorResponse post(ReqContextDTO ctx) {
+    public Optional<RegisteredRoute> getRegisteredRoute(InteractorRequest ctx) {
+        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
+        logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
+
+        return getRegisteredRoute(pathWithoutAPI, getRoutes);
+    }
+
+    private Map<String, Controller> getRoutesByRequestType(RequestType requestType) {
+        return switch (requestType) {
+            case GET -> getRoutes;
+            case POST -> postRoutes;
+            case PUT -> null;
+            case PATCH -> null;
+            case HEAD -> null;
+            case TRACE -> null;
+            case CONNECT -> null;
+            case OPTIONS -> null;
+            case BEFORE -> null;
+            case BEFORE_MATCHED -> null;
+            case AFTER_MATCHED -> null;
+            case WEBSOCKET_BEFORE_UPGRADE -> null;
+            case WEBSOCKET_AFTER_UPGRADE -> null;
+            case AFTER -> null;
+            case INVALID -> null;
+            case DELETE -> null;
+        };
+    }
+
+    public InteractorResponse post(InteractorRequest ctx) {
         String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
         logger.getLogging().info("POST Request path:" + ctx.getRequestPath(), clazz);
 
@@ -122,7 +140,7 @@ public class RouterImplementation implements Router {
         return Optional.empty();
     }
 
-    private Controller getControllerInstance(String className, ReqContextDTO ctx) {
+    private Controller getControllerInstance(String className, InteractorRequest ctx) {
         try {
             Class<?> clazz = null;
             clazz = Class.forName(className);
@@ -130,12 +148,6 @@ public class RouterImplementation implements Router {
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException | ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
-    };
-
-    private static class NoControllerRegisteredToRequestedRoute extends RuntimeException {
-        public NoControllerRegisteredToRequestedRoute(String message) {
-            super(message);
         }
     }
 

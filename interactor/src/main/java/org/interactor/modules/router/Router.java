@@ -1,7 +1,7 @@
 package org.interactor.modules.router;
 
 import org.interactor.configuration.RegisteredRoute;
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.util.Map;
@@ -17,18 +17,9 @@ public interface Router {
      * @return Always ResponseBody is the object that is returned by Controllers by convention
      *
      */
-    InteractorResponse get(ReqContextDTO ctx);
+    InteractorResponse processRequest(InteractorRequest ctx);
 
-    /**
-     * This is the link from webserver to the interactor module for all POST requests
-     * <p>
-     * the controllerResolver decides what controller to use and then returns the response
-     * @param ctx this is the all the request context
-     * @return Always ResponseBody is the object that is returned by Controllers by convention
-     *
-     */
-    InteractorResponse post(ReqContextDTO ctx);
-    Optional<RegisteredRoute> getRegisteredRoute(ReqContextDTO ctx);
+    Optional<RegisteredRoute> getRegisteredRoute(InteractorRequest ctx);
     Map<String, String> getPathParams(String registeredPath, String path);
     Map<String, String> getQueryParams(String registeredPath, String requestPath);
 }

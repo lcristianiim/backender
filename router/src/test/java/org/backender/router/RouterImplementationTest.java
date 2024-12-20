@@ -2,7 +2,7 @@ package org.backender.router;
 
 import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.junit.jupiter.api.Test;
 
@@ -28,9 +28,9 @@ class RouterImplementationTest {
         getRoutes.put("cool-path", getController());
         routerImplementation.setGetRoutes(getRoutes);
 
-        ReqContextDTO ctx = new ReqContextDTO();
+        InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
-        InteractorResponse result = routerImplementation.get(ctx);
+        InteractorResponse result = routerImplementation.processRequest(ctx);
 
         assertEquals(body, result.getBody());
         assertEquals(responseCode, result.getCode());
@@ -50,9 +50,9 @@ class RouterImplementationTest {
         getRoutes.put("products/{id}/something/{color}?name&age", getControllerWithPathAndQueryParams());
         routerImplementation.setGetRoutes(getRoutes);
 
-        ReqContextDTO ctx = new ReqContextDTO();
+        InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
-        InteractorResponse result = routerImplementation.get(ctx);
+        InteractorResponse result = routerImplementation.processRequest(ctx);
 
         assertEquals(body, result.getBody());
     }
@@ -75,7 +75,7 @@ class RouterImplementationTest {
             }
 
             @Override
-            public void initialize(ReqContextDTO controllerData, String registeredPath) {
+            public void initialize(InteractorRequest controllerData, String registeredPath) {
                 PathCommonOperations operations = new PathCommonOperations();
 
                 Map<String, String> pathParams = operations.getPathParams(
@@ -105,7 +105,7 @@ class RouterImplementationTest {
             }
 
             @Override
-            public void initialize(ReqContextDTO controllerData, String registeredPath) {
+            public void initialize(InteractorRequest controllerData, String registeredPath) {
             }
         };
     }

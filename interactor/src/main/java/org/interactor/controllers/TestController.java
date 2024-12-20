@@ -2,7 +2,7 @@ package org.interactor.controllers;
 
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.ReqContextDTO;
+import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.text.MessageFormat;
@@ -26,7 +26,7 @@ public class TestController implements Controller {
     }
 
     @Override
-    public void initialize(ReqContextDTO controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, String registeredPath) {
 
         Map<String, String> pathParams = RouterService.INSTANCE.getRouter()
                 .getPathParams(registeredPath, controllerData.getRequestPath());
