@@ -1,6 +1,7 @@
 package org.interactor.internals;
 
 import org.interactor.configuration.RegisteredRoute;
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
@@ -18,7 +19,7 @@ public class RouterFilter implements RequestFilter {
 
     @Override
     public InteractorResponse execute(InteractorRequest ctx) {
-        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter()
+        Optional<Route> route = RouterService.INSTANCE.getRouter()
                 .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
         if (route.isEmpty()) {
@@ -43,7 +44,7 @@ public class RouterFilter implements RequestFilter {
     public InteractorResponse invalidRequestResponse(String pathWithoutAPI) {
         InteractorResponse response = new InteractorResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
-        response.setCode(500);
+        response.setCode(404);
         response.setType(ResponseType.JSON);
         return response;
     }

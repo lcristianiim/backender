@@ -1,6 +1,7 @@
 package org.backender.router;
 
 import org.interactor.configuration.RegisteredRoute;
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -149,7 +150,7 @@ class PathCommonOperationsTest {
         PathCommonOperations pathCommonOperations = new PathCommonOperations();
         String path = "product/200?name=Doe&age=20";
 
-        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter().getRegisteredRoute(path, GET);
+        Optional<Route> route = RouterService.INSTANCE.getRouter().getRegisteredRoute(path, GET);
 
         assertTrue(route.isPresent());
     }

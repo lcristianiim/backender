@@ -1,6 +1,7 @@
 package org.backender.router;
 
 import org.interactor.ApplicationConfiguration;
+import org.interactor.configuration.Route;
 import org.interactor.modules.logging.LoggerService;
 
 import org.interactor.modules.router.Router;
@@ -100,7 +101,7 @@ public class RouterImplementation implements Router {
     private static InteractorResponse invalidRequestResponse(String pathWithoutAPI) {
         InteractorResponse response = new InteractorResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
-        response.setCode(500);
+        response.setCode(404);
         response.setType(ResponseType.JSON);
         return response;
     }
@@ -120,11 +121,11 @@ public class RouterImplementation implements Router {
     }
 
 
-    public Optional<RegisteredRoute> getRegisteredRoute(String path, RequestType requestType) {
+    public Optional<Route> getRegisteredRoute(String path, RequestType requestType) {
         PathCommonOperations operations = new PathCommonOperations();
-            return Arrays.stream(RegisteredRoute.values())
-                    .filter(e -> e.getRequestType().equals(requestType))
-                    .filter(e -> operations.isARegisteredControllerMatch(e.getPath(), path))
+            return RegisteredRoute.getRegisteredRoutes().stream()
+                    .filter(e -> e.requestType().equals(requestType))
+                    .filter(e -> operations.isARegisteredControllerMatch(e.path(), path))
                     .findFirst();
     }
 

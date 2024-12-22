@@ -1,6 +1,6 @@
 package org.interactor.modules.router;
 
-import org.interactor.configuration.RegisteredRoute;
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.router.dtos.RequestType;
@@ -20,7 +20,7 @@ public interface Router {
      */
     InteractorResponse processRequest(InteractorRequest ctx);
 
-    Optional<RegisteredRoute> getRegisteredRoute(String path, RequestType requestType);
+    Optional<Route> getRegisteredRoute(String path, RequestType requestType);
     Map<String, String> getPathParams(String registeredPath, String path);
     Map<String, String> getQueryParams(String registeredPath, String requestPath);
 }

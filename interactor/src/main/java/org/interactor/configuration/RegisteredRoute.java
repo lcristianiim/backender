@@ -4,62 +4,61 @@ import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.controllers.users.AddUserController;
 import org.interactor.modules.router.dtos.Controller;
-import org.interactor.modules.router.dtos.RequestType;
 import org.interactor.security.Role;
 
 import java.util.*;
 
 import static org.interactor.modules.router.dtos.RequestType.*;
 
-public enum RegisteredRoute {
-    USERS(GET, "users", new UsersServiceController(), List.of()),
-    TEST_USERS(GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)),
-    PRODUCT(GET, "product/{id}?name&age", new TestController(), List.of()),
-    ADD_USER(POST, "add-user", new AddUserController(), List.of());
+public class RegisteredRoute {
 
-    private final RequestType requestType;
-    private final String path;
-    private final Controller controller;
-    private final List<Role> roles;
+    private static List<Route> registeredRoutes = new ArrayList<>();
+    {
+        register();
+    }
 
-    RegisteredRoute(RequestType requestType, String path, Controller controller, List<Role> roles) {
-        this.requestType = requestType;
-        this.path = path;
-        this.controller = controller;
-        this.roles = roles;
+    public void register() {
+        registeredRoutes.add(new Route(
+                GET, "users", new UsersServiceController(), List.of()
+        ));
+
+        registeredRoutes.add(new Route(
+                GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)
+        ));
+
+        registeredRoutes.add(new Route(
+                GET, "product/{id}?name&age", new TestController(), List.of()
+        ));
+
+        registeredRoutes.add(new Route(
+                POST, "add-user", new AddUserController(), List.of()
+        ));
     }
 
     public static Map<String, Controller> getGETRoutes() {
         Map<String, Controller> result = new HashMap<>();
-        Arrays.stream(RegisteredRoute.values())
-                .filter(e -> e.requestType.equals(GET))
-                .forEach(e -> result.put(e.getPath(), e.getController()));
+        registeredRoutes.stream()
+                .filter(e -> e.requestType().equals(GET))
+                .forEach(e -> result.put(e.path(), e.controller()));
 
         return result;
     }
 
     public static Map<String, Controller> getPOSTRoutes() {
         Map<String, Controller> result = new HashMap<>();
-        Arrays.stream(RegisteredRoute.values())
-                .filter(e -> e.requestType.equals(POST))
-                .forEach(e -> result.put(e.getPath(), e.getController()));
+        registeredRoutes.stream()
+                .filter(e -> e.requestType().equals(POST))
+                .forEach(e -> result.put(e.path(), e.controller()));
 
         return result;
     }
 
-    public String getPath() {
-        return path;
+    public static List<Route> getRegisteredRoutes() {
+        return registeredRoutes;
     }
 
-    public Controller getController() {
-        return controller;
-    }
-
-    public RequestType getRequestType() {
-        return requestType;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
+    // This was only added to be setup tests
+    public static void setCustomRoutesForTests(List<Route> routes) {
+        registeredRoutes = routes;
     }
 }

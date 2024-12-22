@@ -1,6 +1,6 @@
 package org.interactor.internals;
 
-import org.interactor.configuration.RegisteredRoute;
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
@@ -18,41 +18,36 @@ public class AuthenticationFilter implements RequestFilter {
 
     @Override
     public InteractorResponse execute(InteractorRequest ctx) {
-        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter()
+        Optional<Route> route = RouterService.INSTANCE.getRouter()
                 .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
         if (route.isEmpty()) {
             RouterFilter routerFilter = new RouterFilter();
             return routerFilter.execute(ctx);
+
+        } else if (!route.get().roles().isEmpty() && (null == ctx.getAuthorization() || ctx.getAuthorization().isEmpty())) {
+            return notAuthenticatedResponse();
+
+        } else if (nextFilter != null) {
+            return nextFilter.execute(ctx);
         }
 
-//        return nextFilter.execute(ctx);
+        return createInvalidResponse();
 
-        // do checks and return bad response if something goes wrong
-//        if (ctx.getAuthorization() == null) {
-//            return createInvalidResponse();
-
-            // all ok so pass to next
-//        } else if (nextFilter != null) {
-//            nextFilter.execute(ctx);
-//        }
-
-        return requestNotHandled();
-
-    }
-
-    private InteractorResponse requestNotHandled() {
-        InteractorResponse response = new InteractorResponse();
-        response.setCode(503);
-        response.setBody("The request was not handled by the Authentication Filter");
-        response.setType(ResponseType.JSON);
-        return response;
     }
 
     private InteractorResponse createInvalidResponse() {
         InteractorResponse response = new InteractorResponse();
         response.setCode(503);
         response.setBody("Authentication failed");
+        response.setType(ResponseType.JSON);
+        return response;
+    }
+
+    private InteractorResponse notAuthenticatedResponse() {
+        InteractorResponse response = new InteractorResponse();
+        response.setCode(403);
+        response.setBody("You need to be authenticated to access this request");
         response.setType(ResponseType.JSON);
         return response;
     }
