@@ -18,7 +18,8 @@ public class RouterFilter implements RequestFilter {
 
     @Override
     public InteractorResponse execute(InteractorRequest ctx) {
-        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter().getRegisteredRoute(ctx);
+        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter()
+                .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
         if (route.isEmpty()) {
             if (nextFilter != null) {

@@ -5,6 +5,7 @@ public class InteractorResponse {
     private String body;
     private int code;
     private ResponseType type;
+    private Principal principal;
 
     public String getBody() {
         return body;

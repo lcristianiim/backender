@@ -102,7 +102,6 @@ public class Application {
 
 		InteractorEntry entry = new InteractorEntry();
 
-//		InteractorResponse response = RouterService.INSTANCE.getRouter().processRequest(reqContext);
 		InteractorResponse response = entry.processRequest(reqContext);
 
 		ResponseHandler handler = new ProcessJSONResponseHandler();

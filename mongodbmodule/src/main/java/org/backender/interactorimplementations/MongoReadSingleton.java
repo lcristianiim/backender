@@ -19,17 +19,17 @@ public enum MongoReadSingleton {
 
     MongoReadSingleton() {
         this.connectionPoolSettings = connectionPoolSettings();
-        this.database = createDatabase("backender");
+        this.database = createDatabase();
     }
 
-    private MongoDatabase createDatabase(String backender) {
+    private MongoDatabase createDatabase() {
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .applyToConnectionPoolSettings(builder -> builder.applySettings(connectionPoolSettings))
                 .build();
 
         MongoClient mongoClient = MongoClients.create(settings);
-        return mongoClient.getDatabase(backender);
+        return mongoClient.getDatabase("backender");
     }
 
     private ConnectionPoolSettings connectionPoolSettings() {

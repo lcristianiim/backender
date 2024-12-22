@@ -39,13 +39,6 @@ public class RouterImplementation implements Router {
         return invalidRequestResponse(pathWithoutAPI);
     }
 
-    public Optional<RegisteredRoute> getRegisteredRoute(InteractorRequest ctx) {
-        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
-        logger.getLogging().info("GET Request path:" + ctx.getRequestPath(), clazz);
-
-        return getRegisteredRoute(pathWithoutAPI, getRoutes);
-    }
-
     private Map<String, Controller> getRoutesByRequestType(RequestType requestType) {
         return switch (requestType) {
             case GET -> getRoutes;
@@ -127,17 +120,12 @@ public class RouterImplementation implements Router {
     }
 
 
-    private Optional<RegisteredRoute> getRegisteredRoute(String pathWithoutAPI, Map<String, Controller> getRoutes) {
-        for (RegisteredRoute registeredRoute : RegisteredRoute.values()) {
-
-            String registeredPath = registeredRoute.getPath();
-
-            PathCommonOperations operations = new PathCommonOperations();
-            if (operations.isARegisteredControllerMatch(registeredPath, pathWithoutAPI))
-                return Optional.of(registeredRoute);
-
-        }
-        return Optional.empty();
+    public Optional<RegisteredRoute> getRegisteredRoute(String path, RequestType requestType) {
+        PathCommonOperations operations = new PathCommonOperations();
+            return Arrays.stream(RegisteredRoute.values())
+                    .filter(e -> e.getRequestType().equals(requestType))
+                    .filter(e -> operations.isARegisteredControllerMatch(e.getPath(), path))
+                    .findFirst();
     }
 
     private Controller getControllerInstance(String className, InteractorRequest ctx) {

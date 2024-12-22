@@ -1,9 +1,14 @@
 package org.backender.router;
 
+import org.interactor.configuration.RegisteredRoute;
+import org.interactor.modules.router.RouterService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
+import java.util.Optional;
 
+import static org.interactor.modules.router.dtos.RequestType.GET;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PathCommonOperationsTest {
@@ -131,12 +136,22 @@ class PathCommonOperationsTest {
     }
 
     @Test
-    void a() {
+    void givenValidPath_ShouldReturnTrue() {
         PathCommonOperations pathCommonOperations = new PathCommonOperations();
         String registeredPath = "product/{id}?name&age";
         String path = "product/200?name=Doe&age=20";
 
         assertTrue(pathCommonOperations.isARegisteredControllerMatch(registeredPath, path));
+    }
+
+    @Test
+    void givenValidPath_ShouldReturnTheRegisteredPath() {
+        PathCommonOperations pathCommonOperations = new PathCommonOperations();
+        String path = "product/200?name=Doe&age=20";
+
+        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter().getRegisteredRoute(path, GET);
+
+        assertTrue(route.isPresent());
     }
 
 

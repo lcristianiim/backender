@@ -1,11 +1,11 @@
 package org.backender.router;
 
+import org.interactor.configuration.RegisteredRoute;
+import org.interactor.modules.router.dtos.RequestType;
+
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -151,4 +151,5 @@ public class PathCommonOperations {
 
         return placeholders;
     }
+
 }

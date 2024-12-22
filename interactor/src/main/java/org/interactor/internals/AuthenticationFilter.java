@@ -1,8 +1,12 @@
 package org.interactor.internals;
 
+import org.interactor.configuration.RegisteredRoute;
+import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.router.dtos.ResponseType;
+
+import java.util.Optional;
 
 public class AuthenticationFilter implements RequestFilter {
     private RequestFilter nextFilter;
@@ -14,7 +18,15 @@ public class AuthenticationFilter implements RequestFilter {
 
     @Override
     public InteractorResponse execute(InteractorRequest ctx) {
-        return nextFilter.execute(ctx);
+        Optional<RegisteredRoute> route = RouterService.INSTANCE.getRouter()
+                .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
+
+        if (route.isEmpty()) {
+            RouterFilter routerFilter = new RouterFilter();
+            return routerFilter.execute(ctx);
+        }
+
+//        return nextFilter.execute(ctx);
 
         // do checks and return bad response if something goes wrong
 //        if (ctx.getAuthorization() == null) {
@@ -25,7 +37,7 @@ public class AuthenticationFilter implements RequestFilter {
 //            nextFilter.execute(ctx);
 //        }
 
-//        return requestNotHandled();
+        return requestNotHandled();
 
     }
 

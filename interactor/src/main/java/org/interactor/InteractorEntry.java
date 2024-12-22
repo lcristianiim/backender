@@ -14,6 +14,7 @@ public class InteractorEntry {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter();
         AuthorizationFilter authorizationFilter = new AuthorizationFilter();
         RouterFilter routerFilter = new RouterFilter();
+
         EntryChain chain = new EntryChain();
 
         authenticationFilter.setNextHandler(authorizationFilter);
