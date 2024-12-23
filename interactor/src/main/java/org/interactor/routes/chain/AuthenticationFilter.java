@@ -21,7 +21,7 @@ public class AuthenticationFilter implements RequestFilter {
         Optional<Route> route = RouterService.INSTANCE.getRouter()
                 .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
-        if (route.isEmpty() || (route.isPresent() && route.get().roles().isEmpty())) {
+        if (route.isEmpty() || route.get().roles().isEmpty()) {
             RouterFilter routerFilter = new RouterFilter();
             return routerFilter.execute(ctx);
 

@@ -1,9 +1,7 @@
 package org.backender.router;
 
-import org.interactor.configuration.RegisteredRoute;
 import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

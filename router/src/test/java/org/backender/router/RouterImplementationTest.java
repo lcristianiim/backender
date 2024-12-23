@@ -1,6 +1,5 @@
 package org.backender.router;
 
-import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
