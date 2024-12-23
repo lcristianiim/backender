@@ -8,10 +8,9 @@ import io.javalin.http.Context;
 import io.javalin.http.HandlerType;
 import io.javalin.rendering.template.JavalinMustache;
 import org.interactor.ApplicationConfiguration;
-import org.interactor.InteractorEntry;
+import org.interactor.routes.InteractorEntry;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
-import org.interactor.modules.router.RouterService;
 
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
@@ -110,10 +109,11 @@ public class Application {
 
 	private static InteractorRequest transformJavalinContextToInteractorContextDTO(Context ctx) {
 		InteractorRequest reqContext = new InteractorRequest();
+		String pathWithoutApi = ctx.path().split(ApplicationConfiguration.INSTANCE.getApiPath() + "/")[1];
 		if (ctx.queryString() != null) {
-			reqContext.setRequestPath(ctx.path() + "?" + ctx.queryString());
+			reqContext.setRequestPath(pathWithoutApi + "?" + ctx.queryString());
 		} else {
-			reqContext.setRequestPath(ctx.path());
+			reqContext.setRequestPath(pathWithoutApi);
 		}
         reqContext.setBody(ctx.body());
 		reqContext.setLocale(getLocale(ctx));

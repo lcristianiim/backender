@@ -1,6 +1,5 @@
-package org.interactor.internals;
+package org.interactor.routes.chain;
 
-import org.interactor.configuration.RegisteredRoute;
 import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;

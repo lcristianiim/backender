@@ -4,6 +4,7 @@ import org.interactor.ApplicationConfiguration;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
+import org.interactor.modules.router.dtos.RequestType;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
@@ -17,8 +18,7 @@ class RouterImplementationTest {
 
     @Test
     public void givenPathRegisteredInProperties_ShouldReturnTheAssociatedRequestBody() {
-        String apiPrefix = ApplicationConfiguration.INSTANCE.getApiPath();
-        String requestPath = apiPrefix + "/cool-path";
+        String requestPath = "cool-path";
         String body = "associated body";
         int responseCode = 200;
 
@@ -30,6 +30,7 @@ class RouterImplementationTest {
 
         InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
+        ctx.setRequestType(RequestType.GET);
         InteractorResponse result = routerImplementation.processRequest(ctx);
 
         assertEquals(body, result.getBody());
@@ -40,8 +41,7 @@ class RouterImplementationTest {
 
     @Test
     void givenRegisteredPathWithRequestAndQueryParams_ShouldReturnResponseProcessedByController() {
-        String apiPrefix = ApplicationConfiguration.INSTANCE.getApiPath();
-        String requestPath = apiPrefix + "/products/1/something/blue?name=ball&age=20";
+        String requestPath = "products/1/something/blue?name=ball&age=20";
         String body = "1,blue,ball,20";
 
         RouterImplementation routerImplementation = new RouterImplementation();
@@ -52,6 +52,7 @@ class RouterImplementationTest {
 
         InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
+        ctx.setRequestType(RequestType.GET);
         InteractorResponse result = routerImplementation.processRequest(ctx);
 
         assertEquals(body, result.getBody());
@@ -79,10 +80,10 @@ class RouterImplementationTest {
                 PathCommonOperations operations = new PathCommonOperations();
 
                 Map<String, String> pathParams = operations.getPathParams(
-                        registeredPath, PathOperations.getPathWithoutTheAPIPart(controllerData.getRequestPath()));
+                        registeredPath, controllerData.getRequestPath());
 
                 Map<String, String> queryParams = operations.getQueryParams(
-                        registeredPath, PathOperations.getPathWithoutTheAPIPart(controllerData.getRequestPath()));
+                        registeredPath, controllerData.getRequestPath());
 
                 id = pathParams.get("id");
                 color = pathParams.get("color");

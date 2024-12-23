@@ -12,28 +12,11 @@ import static org.interactor.modules.router.dtos.RequestType.*;
 
 public class RegisteredRoute {
 
-    private static List<Route> registeredRoutes = new ArrayList<>();
-    {
-        register();
-    }
-
-    public void register() {
-        registeredRoutes.add(new Route(
-                GET, "users", new UsersServiceController(), List.of()
-        ));
-
-        registeredRoutes.add(new Route(
-                GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)
-        ));
-
-        registeredRoutes.add(new Route(
-                GET, "product/{id}?name&age", new TestController(), List.of()
-        ));
-
-        registeredRoutes.add(new Route(
-                POST, "add-user", new AddUserController(), List.of()
-        ));
-    }
+    private static List<Route> registeredRoutes = List.of(
+            new Route(GET, "users", new UsersServiceController(), List.of()),
+            new Route(GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)),
+            new Route(GET, "product/{id}?name&age", new TestController(), List.of()),
+            new Route(POST, "add-user", new AddUserController(), List.of()));
 
     public static Map<String, Controller> getGETRoutes() {
         Map<String, Controller> result = new HashMap<>();

@@ -1,4 +1,4 @@
-package org.interactor.internals;
+package org.interactor.routes.chain;
 
 import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
@@ -21,7 +21,7 @@ public class AuthenticationFilter implements RequestFilter {
         Optional<Route> route = RouterService.INSTANCE.getRouter()
                 .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
-        if (route.isEmpty()) {
+        if (route.isEmpty() || (route.isPresent() && route.get().roles().isEmpty())) {
             RouterFilter routerFilter = new RouterFilter();
             return routerFilter.execute(ctx);
 

@@ -5,6 +5,8 @@ import org.interactor.configuration.Route;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
+import org.interactor.routes.chain.AuthenticationFilter;
+import org.interactor.routes.chain.RequestFilter;
 import org.interactor.security.Role;
 import org.junit.jupiter.api.Test;
 
