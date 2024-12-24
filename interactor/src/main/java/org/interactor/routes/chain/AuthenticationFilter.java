@@ -21,12 +21,11 @@ public class AuthenticationFilter implements RequestFilter {
         Optional<Route> route = RouterService.INSTANCE.getRouter()
                 .getRegisteredRoute(ctx.getRequestPath(), ctx.getRequestType());
 
-        if (route.isEmpty() || route.get().roles().isEmpty()) {
-            RouterFilter routerFilter = new RouterFilter();
-            return routerFilter.execute(ctx);
+        if ((route.isEmpty() || route.get().roles().isEmpty()) && nextFilter != null) {
+            return nextFilter.execute(ctx);
 
-        } else if (!route.get().roles().isEmpty() && (null == ctx.getAuthorization() || ctx.getAuthorization().isEmpty())) {
-            return notAuthenticatedResponse();
+        } else if ((route.isPresent() && !route.get().roles().isEmpty()) && (null == ctx.getAuthorization() || ctx.getAuthorization().isEmpty())) {
+            return authenticationRequiredResponse();
 
         } else if (nextFilter != null) {
             return nextFilter.execute(ctx);
@@ -44,7 +43,7 @@ public class AuthenticationFilter implements RequestFilter {
         return response;
     }
 
-    private InteractorResponse notAuthenticatedResponse() {
+    private InteractorResponse authenticationRequiredResponse() {
         InteractorResponse response = new InteractorResponse();
         response.setCode(403);
         response.setBody("You need to be authenticated to access this request");

@@ -27,6 +27,8 @@ public class JWTAuthorizationFilterImplementation implements AuthorizationMechan
     }
 
     private boolean isValidAuthorizationSetOnRequest(String authorization) {
+        if (authorization == null)
+            return false;
         String[] authorizationSplit = authorization.split(" ");
         int authorizationSplitLength = authorizationSplit.length;
         return authorizationSplitLength == 2

@@ -10,7 +10,7 @@ import org.interactor.routes.authorization.JWTAuthorizationFilterImplementation;
 
 import java.util.Optional;
 
-public class AuthorizationFilter implements RequestFilter {
+public class AuthorizationRequestFilter implements RequestFilter {
     private RequestFilter nextFilter;
 
     @Override

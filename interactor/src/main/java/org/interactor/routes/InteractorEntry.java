@@ -9,7 +9,7 @@ public class InteractorEntry {
     public InteractorResponse processRequest(InteractorRequest ctx) {
 
         RequestFilter authenticationFilter = new AuthenticationFilter();
-        RequestFilter authorizationFilter = new AuthorizationFilter();
+        RequestFilter authorizationFilter = new AuthorizationRequestFilter();
         RequestFilter routerFilter = new RouterFilter();
 
         ChainEntry chain = new ChainEntry();
