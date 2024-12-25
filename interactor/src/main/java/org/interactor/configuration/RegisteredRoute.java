@@ -2,7 +2,8 @@ package org.interactor.configuration;
 
 import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
-import org.interactor.controllers.users.AddUserController;
+import org.interactor.controllers.persons.AddPersonController;
+import org.interactor.controllers.users.RegisterNewUserController;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.security.Role;
 
@@ -16,7 +17,8 @@ public class RegisteredRoute {
             new Route(GET, "users", new UsersServiceController(), List.of()),
             new Route(GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)),
             new Route(GET, "product/{id}?name&age", new TestController(), List.of()),
-            new Route(POST, "add-user", new AddUserController(), List.of()));
+            new Route(POST, "add-user", new AddPersonController(), List.of()),
+            new Route(POST, "register-user", new RegisterNewUserController(), List.of()));
 
     public static Map<String, Controller> getGETRoutes() {
         Map<String, Controller> result = new HashMap<>();

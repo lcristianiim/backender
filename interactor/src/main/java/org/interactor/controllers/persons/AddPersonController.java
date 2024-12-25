@@ -1,4 +1,4 @@
-package org.interactor.controllers.users;
+package org.interactor.controllers.persons;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.interactor.internals.ObjectMapperSingleton;
@@ -11,7 +11,7 @@ import org.interactor.modules.router.dtos.InteractorResponse;
 
 import static org.interactor.modules.router.dtos.ResponseType.JSON;
 
-public class AddUserController implements Controller {
+public class AddPersonController implements Controller {
     LoggerService logger =  LoggerService.INSTANCE;
     private final PersonsPersistenceService personsPersistenceService = PersonsPersistenceService.INSTANCE;
     private String body;

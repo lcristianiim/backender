@@ -105,9 +105,9 @@ public class RouterImplementation implements Router {
         return response;
     }
 
-    private Optional<Map.Entry<String, Controller>> getRegisteredRouteAsEntry(String pathWithoutAPI, Map<String, Controller> getRoutes) {
+    private Optional<Map.Entry<String, Controller>> getRegisteredRouteAsEntry(String pathWithoutAPI, Map<String, Controller> routes) {
 
-        for (Map.Entry<String, Controller> registeredRoute : getRoutes.entrySet()) {
+        for (Map.Entry<String, Controller> registeredRoute : routes.entrySet()) {
 
             String registeredPath = registeredRoute.getKey();
 

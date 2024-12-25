@@ -22,4 +22,6 @@ module interactor {
     uses org.interactor.modules.router.Router;
     uses org.interactor.modules.metrics.ApplicationMetrics;
     uses org.interactor.modules.logging.ApplicationLogging;
+
+    exports org.interactor.usecases.users to com.fasterxml.jackson.databind;
 }
