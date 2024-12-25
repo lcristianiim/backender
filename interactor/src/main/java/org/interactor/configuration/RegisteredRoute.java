@@ -30,7 +30,7 @@ public class RegisteredRoute {
         return registeredRoutes;
     }
 
-    // This was only added to be setup tests
+    // This was only added to set up tests
     public static void setCustomRoutesForTests(List<Route> routes) {
         registeredRoutes = routes;
     }
