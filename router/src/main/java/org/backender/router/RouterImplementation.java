@@ -11,35 +11,34 @@ import org.interactor.modules.router.dtos.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
+import static org.interactor.configuration.RegisteredRoute.getRoutesByHttpMethod;
+import static org.interactor.modules.router.dtos.RequestType.GET;
+import static org.interactor.modules.router.dtos.RequestType.POST;
+
 public class RouterImplementation implements Router {
 
-    ControllerResolver<String, InteractorRequest, Controller> controllerResolver = this::getControllerInstance;
-    Map<String, Controller> getRoutes = RegisteredRoute.getGETRoutes();
-    Map<String, Controller> postRoutes = RegisteredRoute.getPOSTRoutes();
-
+    List<Route> getRoutes = getRoutesByHttpMethod(GET);
+    List<Route> postRoutes = getRoutesByHttpMethod(POST);
 
     LoggerService logger =  LoggerService.INSTANCE;
     Class<RouterImplementation> clazz = RouterImplementation.class;
 
-
     public InteractorResponse processRequest(InteractorRequest ctx) {
         logger.getLogging().info("Process request:" + ctx.getRequestPath(), clazz);
 
-        Optional<Map.Entry<String, Controller>> entry =
-                getRegisteredRouteAsEntry(ctx.getRequestPath(), getRoutesByRequestType(ctx.getRequestType()));
+        Optional<Route> entry =
+                getRegisteredRouteAsEntry(ctx.getRequestPath(), getRoutesByHttpMethod(ctx.getRequestType()));
 
         if (entry.isPresent()) {
-            String registeredPath = entry.get().getKey();
-            Controller controller = entry.get().getValue();
-            controller.initialize(ctx, registeredPath);
+            entry.get().controller().initialize(ctx, entry.get());
 
-            return controller.getResponse();
+            return entry.get().controller().getResponse();
         }
 
         return invalidRequestResponse(ctx.getRequestPath());
     }
 
-    private Map<String, Controller> getRoutesByRequestType(RequestType requestType) {
+    private List<Route> getRoutesByRequestType(RequestType requestType) {
         return switch (requestType) {
             case GET -> getRoutes;
             case POST -> postRoutes;
@@ -58,23 +57,6 @@ public class RouterImplementation implements Router {
             case INVALID -> null;
             case DELETE -> null;
         };
-    }
-
-    public InteractorResponse post(InteractorRequest ctx) {
-        String pathWithoutAPI = PathOperations.getPathWithoutTheAPIPart(ctx.getRequestPath());
-        logger.getLogging().info("POST Request path:" + ctx.getRequestPath(), clazz);
-
-        Optional<Map.Entry<String, Controller>> entry = getRegisteredRouteAsEntry(pathWithoutAPI, postRoutes);
-
-        if (entry.isPresent()) {
-            String registeredPath = entry.get().getKey();
-            Controller controller = entry.get().getValue();
-            controller.initialize(ctx, registeredPath);
-
-            return controller.getResponse();
-        }
-
-        return invalidRequestResponse(pathWithoutAPI);
     }
 
     @Override
@@ -105,11 +87,11 @@ public class RouterImplementation implements Router {
         return response;
     }
 
-    private Optional<Map.Entry<String, Controller>> getRegisteredRouteAsEntry(String pathWithoutAPI, Map<String, Controller> routes) {
+    private Optional<Route> getRegisteredRouteAsEntry(String pathWithoutAPI, List<Route> routes) {
 
-        for (Map.Entry<String, Controller> registeredRoute : routes.entrySet()) {
+        for (Route registeredRoute : routes) {
 
-            String registeredPath = registeredRoute.getKey();
+            String registeredPath = registeredRoute.path();
 
             PathCommonOperations operations = new PathCommonOperations();
             if (operations.isARegisteredControllerMatch(registeredPath, pathWithoutAPI))
@@ -140,11 +122,4 @@ public class RouterImplementation implements Router {
         }
     }
 
-    public void setGetRoutes(Map<String, Controller> getRoutes) {
-        this.getRoutes = getRoutes;
-    }
-
-    public void setPostRoutes(Map<String, Controller> postRoutes) {
-        this.postRoutes = postRoutes;
-    }
 }

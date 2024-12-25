@@ -4,7 +4,7 @@ import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.controllers.persons.AddPersonController;
 import org.interactor.controllers.users.RegisterNewUserController;
-import org.interactor.modules.router.dtos.Controller;
+import org.interactor.modules.router.dtos.RequestType;
 import org.interactor.security.Role;
 
 import java.util.*;
@@ -20,22 +20,10 @@ public class RegisteredRoute {
             new Route(POST, "add-user", new AddPersonController(), List.of()),
             new Route(POST, "register-user", new RegisterNewUserController(), List.of()));
 
-    public static Map<String, Controller> getGETRoutes() {
-        Map<String, Controller> result = new HashMap<>();
-        registeredRoutes.stream()
-                .filter(e -> e.requestType().equals(GET))
-                .forEach(e -> result.put(e.path(), e.controller()));
-
-        return result;
-    }
-
-    public static Map<String, Controller> getPOSTRoutes() {
-        Map<String, Controller> result = new HashMap<>();
-        registeredRoutes.stream()
-                .filter(e -> e.requestType().equals(POST))
-                .forEach(e -> result.put(e.path(), e.controller()));
-
-        return result;
+    public static List<Route> getRoutesByHttpMethod(RequestType type) {
+        return registeredRoutes.stream()
+                .filter(e -> e.requestType().equals(type))
+                .toList();
     }
 
     public static List<Route> getRegisteredRoutes() {

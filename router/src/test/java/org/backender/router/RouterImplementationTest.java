@@ -1,5 +1,6 @@
 package org.backender.router;
 
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
@@ -7,9 +8,10 @@ import org.interactor.modules.router.dtos.RequestType;
 import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import static org.interactor.configuration.RegisteredRoute.setCustomRoutesForTests;
 import static org.interactor.modules.router.dtos.ResponseType.JSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,9 +25,9 @@ class RouterImplementationTest {
 
         RouterImplementation routerImplementation = new RouterImplementation();
 
-        Map<String, Controller> getRoutes = new HashMap<>();
-        getRoutes.put("cool-path", getController());
-        routerImplementation.setGetRoutes(getRoutes);
+        setCustomRoutesForTests(List.of(
+                new Route(RequestType.GET, requestPath, getController(), List.of())
+        ));
 
         InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
@@ -41,13 +43,14 @@ class RouterImplementationTest {
     @Test
     void givenRegisteredPathWithRequestAndQueryParams_ShouldReturnResponseProcessedByController() {
         String requestPath = "products/1/something/blue?name=ball&age=20";
+        String controllerPath = "products/{id}/something/{color}?name&age";
         String body = "1,blue,ball,20";
 
         RouterImplementation routerImplementation = new RouterImplementation();
 
-        Map<String, Controller> getRoutes = new HashMap<>();
-        getRoutes.put("products/{id}/something/{color}?name&age", getControllerWithPathAndQueryParams());
-        routerImplementation.setGetRoutes(getRoutes);
+        setCustomRoutesForTests(List.of(
+                new Route(RequestType.GET, controllerPath, getControllerWithPathAndQueryParams(), List.of())
+        ));
 
         InteractorRequest ctx = new InteractorRequest();
         ctx.setRequestPath(requestPath);
@@ -75,14 +78,14 @@ class RouterImplementationTest {
             }
 
             @Override
-            public void initialize(InteractorRequest controllerData, String registeredPath) {
+            public void initialize(InteractorRequest controllerData, Route registeredPath) {
                 PathCommonOperations operations = new PathCommonOperations();
 
                 Map<String, String> pathParams = operations.getPathParams(
-                        registeredPath, controllerData.getRequestPath());
+                        registeredPath.path(), controllerData.getRequestPath());
 
                 Map<String, String> queryParams = operations.getQueryParams(
-                        registeredPath, controllerData.getRequestPath());
+                        registeredPath.path(), controllerData.getRequestPath());
 
                 id = pathParams.get("id");
                 color = pathParams.get("color");
@@ -105,7 +108,7 @@ class RouterImplementationTest {
             }
 
             @Override
-            public void initialize(InteractorRequest controllerData, String registeredPath) {
+            public void initialize(InteractorRequest controllerData, Route route) {
             }
         };
     }

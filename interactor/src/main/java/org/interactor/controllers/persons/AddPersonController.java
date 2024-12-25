@@ -1,6 +1,7 @@
 package org.interactor.controllers.persons;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.interactor.configuration.Route;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.PersonsPersistenceService;
@@ -44,7 +45,7 @@ public class AddPersonController implements Controller {
     }
 
     @Override
-    public void initialize(InteractorRequest controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, Route registeredPath) {
         body = controllerData.getBody();
     }
 }

@@ -1,5 +1,6 @@
 package org.interactor.controllers;
 
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
@@ -26,13 +27,13 @@ public class TestController implements Controller {
     }
 
     @Override
-    public void initialize(InteractorRequest controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, Route registeredRoute) {
 
         Map<String, String> pathParams = RouterService.INSTANCE.getRouter()
-                .getPathParams(registeredPath, controllerData.getRequestPath());
+                .getPathParams(registeredRoute.path(), controllerData.getRequestPath());
 
         Map<String, String> queryParams = RouterService.INSTANCE.getRouter()
-                .getQueryParams(registeredPath, controllerData.getRequestPath());
+                .getQueryParams(registeredRoute.path(), controllerData.getRequestPath());
 
         id = pathParams.get("id");
         name = queryParams.get("name");

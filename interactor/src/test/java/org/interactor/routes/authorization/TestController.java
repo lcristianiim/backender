@@ -1,5 +1,6 @@
 package org.interactor.routes.authorization;
 
+import org.interactor.configuration.Route;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
@@ -13,7 +14,7 @@ public class TestController implements Controller {
     }
 
     @Override
-    public void initialize(InteractorRequest controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, Route registeredPath) {
 
     }
 }

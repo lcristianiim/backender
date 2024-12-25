@@ -1,6 +1,7 @@
 package org.interactor.controllers.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.interactor.configuration.Route;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
@@ -16,7 +17,7 @@ public class RegisterNewUserController implements Controller {
     }
 
     @Override
-    public void initialize(InteractorRequest controllerData, String registeredPath) {
+    public void initialize(InteractorRequest controllerData, Route registeredPath) {
 
         try {
             input = ObjectMapperSingleton.INSTANCE.getObjectMapper()

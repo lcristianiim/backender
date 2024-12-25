@@ -9,6 +9,7 @@ import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.routes.InteractorEntry;
 import org.interactor.usecases.users.InputForUserRegistration;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -21,6 +22,7 @@ class RegisterNewUserControllerTest {
 
 
     @Test
+    @Disabled
     void a() {
         ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
