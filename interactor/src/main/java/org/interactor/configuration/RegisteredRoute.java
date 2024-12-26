@@ -4,6 +4,7 @@ import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.controllers.persons.AddPersonController;
 import org.interactor.controllers.users.ConfirmUserController;
+import org.interactor.controllers.users.LoginUserController;
 import org.interactor.controllers.users.RegisterNewUserController;
 import org.interactor.modules.router.dtos.RequestType;
 import org.interactor.security.Role;
@@ -21,7 +22,8 @@ public class RegisteredRoute {
             new Route(GET, "product/{id}?name&age", new TestController(), List.of()),
             new Route(POST, "add-user", new AddPersonController(), List.of()),
             new Route(POST, "auth/register-user", new RegisterNewUserController(), List.of()),
-            new Route(POST, "confirm/{%s}".formatted(ACTIVATION_ID), new ConfirmUserController(), List.of()));
+            new Route(POST, "auth/confirm/{%s}".formatted(ACTIVATION_ID), new ConfirmUserController(), List.of()),
+            new Route(POST, "auth/login", new LoginUserController(), List.of()));
 
 
     public static List<Route> getRoutesByHttpMethod(RequestType type) {

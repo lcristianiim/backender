@@ -94,20 +94,20 @@ class RegisterNewUserControllerTest {
         return jwtAuth;
     }
 
-    private static JWTAuth setupMockedJWTRegisterToAlwaysReturnTrue() {
+    private JWTAuth setupMockedJWTRegisterToAlwaysReturnTrue() {
         JWTAuth jwtAuth = mock(JWTAuth.class);
         JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "");
         when(jwtAuth.register(any(InputForUserRegistration.class))).thenReturn(jwtActionResponse);
         return jwtAuth;
     }
 
-    private static RegisterNewUserController setupController(JWTAuth jwtAuth) {
+    private RegisterNewUserController setupController(JWTAuth jwtAuth) {
         RegisterNewUserController controller = new RegisterNewUserController();
         controller.setJwtAuthForTesting(jwtAuth);
         return controller;
     }
 
-    private static InteractorRequest setupTheRequest(String body) {
+    private InteractorRequest setupTheRequest(String body) {
         InteractorRequest request = new InteractorRequest();
         request.setBody(body);
         return request;
