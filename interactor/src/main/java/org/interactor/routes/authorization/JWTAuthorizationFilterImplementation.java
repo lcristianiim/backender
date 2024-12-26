@@ -1,5 +1,6 @@
 package org.interactor.routes.authorization;
 
+import org.interactor.modules.jwtauth.JWTActionResponseWithPrincipal;
 import org.interactor.modules.jwtauth.JWTAuth;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.Principal;
@@ -18,7 +19,10 @@ public class JWTAuthorizationFilterImplementation implements AuthorizationMechan
     @Override
     public Optional<Principal> execute(InteractorRequest ctx) {
         if (isValidAuthorizationSetOnRequest(ctx.getAuthorization())) {
-            return Optional.of(jwtAuth.decode(ctx.getAuthorization().split(" ")[1]));
+            JWTActionResponseWithPrincipal response = jwtAuth.decode(ctx.getAuthorization().split(" ")[1]);
+            if (response.jwtActionResponse().isSuccess()) {
+                return Optional.of(response.principal());
+            }
         } else if (null != nextHandler) {
             return nextHandler.execute(ctx);
         }

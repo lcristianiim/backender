@@ -1,6 +1,6 @@
 package org.interactor.modules.jwtauth;
 
-public record RegisterInput(
+public record InputForUserRegistration(
     String name,
     String identifier,
     String pin,

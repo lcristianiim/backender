@@ -83,7 +83,6 @@ public class RouterImplementation implements Router {
         InteractorResponse response = new InteractorResponse();
         response.setBody("Path: " + pathWithoutAPI + " is not part of the API");
         response.setCode(404);
-        response.setType(ResponseType.JSON);
         return response;
     }
 

@@ -39,7 +39,6 @@ public class AuthenticationFilter implements RequestFilter {
         InteractorResponse response = new InteractorResponse();
         response.setCode(503);
         response.setBody("Authentication failed");
-        response.setType(ResponseType.JSON);
         return response;
     }
 
@@ -47,7 +46,6 @@ public class AuthenticationFilter implements RequestFilter {
         InteractorResponse response = new InteractorResponse();
         response.setCode(403);
         response.setBody("You need to be authenticated to access this request");
-        response.setType(ResponseType.JSON);
         return response;
     }
 }

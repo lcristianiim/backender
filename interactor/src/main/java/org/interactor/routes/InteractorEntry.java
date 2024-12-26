@@ -2,6 +2,7 @@ package org.interactor.routes;
 
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.router.dtos.InteractorRequest;
+import org.interactor.modules.router.dtos.ResponseType;
 import org.interactor.routes.chain.*;
 
 public class InteractorEntry {
@@ -18,7 +19,11 @@ public class InteractorEntry {
         authorizationFilter.setNextHandler(routerFilter);
 
         chain.setFirstHandler(authenticationFilter);
-        return chain.handleRequest(ctx);
+
+        InteractorResponse response = chain.handleRequest(ctx);
+        response.setType(ResponseType.JSON);
+
+        return response;
     }
 
 }

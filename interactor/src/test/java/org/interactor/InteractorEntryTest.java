@@ -4,6 +4,7 @@ import org.interactor.configuration.Route;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.RequestType;
+import org.interactor.modules.router.dtos.ResponseType;
 import org.interactor.routes.InteractorEntry;
 import org.interactor.routes.authorization.TestController;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ class InteractorEntryTest {
 
 
         assertEquals(111, result.getCode());
+        assertEquals(ResponseType.JSON, result.getType());
 
     }
 }

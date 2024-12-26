@@ -44,7 +44,6 @@ public class AuthorizationRequestFilter implements RequestFilter {
         InteractorResponse response = new InteractorResponse();
         response.setCode(503);
         response.setBody("The request was not handled by the Authorization Filter");
-        response.setType(ResponseType.JSON);
         return response;
     }
 
@@ -52,7 +51,6 @@ public class AuthorizationRequestFilter implements RequestFilter {
         InteractorResponse response = new InteractorResponse();
         response.setCode(503);
         response.setBody("Authorization failed");
-        response.setType(ResponseType.JSON);
         return response;
     }
 }

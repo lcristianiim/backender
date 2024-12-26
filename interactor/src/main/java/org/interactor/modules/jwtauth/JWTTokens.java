@@ -1,6 +1,6 @@
 package org.interactor.modules.jwtauth;
 
-public record TokensResponse(
+public record JWTTokens(
         String accessToken,
         String refreshToken
 ) {}

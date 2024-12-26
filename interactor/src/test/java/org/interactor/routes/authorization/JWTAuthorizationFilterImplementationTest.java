@@ -1,5 +1,8 @@
 package org.interactor.routes.authorization;
 
+import org.interactor.modules.jwtauth.JWTActionResponse;
+import org.interactor.modules.jwtauth.JWTActionResponseWithPrincipal;
+import org.interactor.modules.jwtauth.JWTActionResponseWithTokens;
 import org.interactor.modules.jwtauth.JWTAuth;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.Principal;
@@ -26,7 +29,10 @@ class JWTAuthorizationFilterImplementationTest {
         Principal mockedPrincipal = new Principal.Builder()
                 .setName(principalName)
                 .build();
-        when(jwtAuth.decode(token)).thenReturn(mockedPrincipal);
+
+        JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "");
+        JWTActionResponseWithPrincipal response = new JWTActionResponseWithPrincipal(jwtActionResponse, mockedPrincipal);
+        when(jwtAuth.decode(token)).thenReturn(response);
 
         AuthorizationMechanismFilter nextHandler = mock(JWTAuthorizationFilterImplementation.class);
 

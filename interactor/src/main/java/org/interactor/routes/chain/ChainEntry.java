@@ -22,7 +22,6 @@ public class ChainEntry {
         InteractorResponse response = new InteractorResponse();
         response.setCode(501);
         response.setBody("Internal server error related with request filters");
-        response.setType(ResponseType.JSON);
         return response;
     }
 }
