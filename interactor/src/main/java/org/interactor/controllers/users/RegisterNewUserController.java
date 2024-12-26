@@ -58,7 +58,7 @@ public class RegisterNewUserController implements Controller {
         }
     }
 
-    private static class SomethingWentWrongCallingTheAuthServiceException extends RuntimeException {
+    public static class SomethingWentWrongCallingTheAuthServiceException extends RuntimeException {
         public SomethingWentWrongCallingTheAuthServiceException(String message) {
             super(message);
         }

@@ -61,6 +61,32 @@ class RegisterNewUserControllerTest {
         assertEquals("failed", result.getBody());
     }
 
+    @Test
+    void givenExceptionFromJWTAuth_ShouldThrowCustomException() {
+        ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
+
+        JWTAuth jwtAuth = setupMockedJWTRegisterToThrowException();
+        RegisterNewUserController controller = setupController(jwtAuth);
+        Route route = new Route(
+                POST, "register-user", controller, List.of());
+
+        String body = createInputForUserRegistrationValidForRegistration(mapper);
+        InteractorRequest request = setupTheRequest(body);
+
+        controller.initialize(request, route);
+        InteractorResponse result = controller.getResponse();
+
+        assertEquals(500, result.getCode());
+        assertEquals("failed", result.getBody());
+    }
+
+    private JWTAuth setupMockedJWTRegisterToThrowException() {
+        JWTAuth jwtAuth = mock(JWTAuth.class);
+        when(jwtAuth.register(any(InputForUserRegistration.class)))
+                .thenThrow(ConfirmUserController.SomethingWentWrongCallingTheAuthServiceException.class);
+        return jwtAuth;
+    }
+
     private JWTAuth setupMockedJWTRegisterToAlwaysReturnFalse() {
         JWTAuth jwtAuth = mock(JWTAuth.class);
         JWTActionResponse jwtActionResponse = new JWTActionResponse(false, "failed");
