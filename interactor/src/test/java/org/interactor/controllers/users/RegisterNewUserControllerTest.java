@@ -7,15 +7,12 @@ import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.InputForUserRegistration;
 import org.interactor.modules.jwtauth.JWTActionResponse;
 import org.interactor.modules.jwtauth.JWTAuth;
-import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
-import org.interactor.routes.InteractorEntry;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.interactor.modules.router.dtos.RequestType.POST;
@@ -46,10 +43,10 @@ class RegisterNewUserControllerTest {
     }
 
     @Test
-    void givenJWTAuthResponseWithNonSuccessRegistration_ShouldReturnInteractorResponseWithCode200() {
+    void givenJWTAuthResponseWithNonSuccessRegistration_ShouldReturnInteractorResponseWithCode500AndReturnErrorMessageInBody() {
         ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
-        JWTAuth jwtAuth = setupMockedJWTRegisterToAlwaysReturnTrue();
+        JWTAuth jwtAuth = setupMockedJWTRegisterToAlwaysReturnFalse();
         RegisterNewUserController controller = setupController(jwtAuth);
         Route route = new Route(
                 POST, "register-user", controller, List.of());
@@ -60,7 +57,15 @@ class RegisterNewUserControllerTest {
         controller.initialize(request, route);
         InteractorResponse result = controller.getResponse();
 
-        assertEquals(200, result.getCode());
+        assertEquals(500, result.getCode());
+        assertEquals("failed", result.getBody());
+    }
+
+    private JWTAuth setupMockedJWTRegisterToAlwaysReturnFalse() {
+        JWTAuth jwtAuth = mock(JWTAuth.class);
+        JWTActionResponse jwtActionResponse = new JWTActionResponse(false, "failed");
+        when(jwtAuth.register(any(InputForUserRegistration.class))).thenReturn(jwtActionResponse);
+        return jwtAuth;
     }
 
     private static JWTAuth setupMockedJWTRegisterToAlwaysReturnTrue() {

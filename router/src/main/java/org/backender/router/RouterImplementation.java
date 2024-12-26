@@ -62,21 +62,21 @@ public class RouterImplementation implements Router {
     @Override
     public Map<String, String> getPathParams(String registeredPath, String requestPath) {
         PathCommonOperations operations = new PathCommonOperations();
-        String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
-        String pathWithoutApi = requestPath.split(apiPath + "/")[1];
+//        String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
+//        String pathWithoutApi = requestPath.split(apiPath + "/")[1];
 
         return operations.getPathParams(
-                registeredPath, pathWithoutApi);
+                registeredPath, requestPath);
     }
 
     @Override
     public Map<String, String> getQueryParams(String registeredPath, String requestPath) {
         PathCommonOperations operations = new PathCommonOperations();
-        String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
-        String pathWithoutApi = requestPath.split(apiPath + "/")[1];
+//        String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
+//        String pathWithoutApi = requestPath.split(apiPath + "/")[1];
 
         return operations.getQueryParams(
-                registeredPath, pathWithoutApi);
+                registeredPath, requestPath);
     }
 
     private static InteractorResponse invalidRequestResponse(String pathWithoutAPI) {

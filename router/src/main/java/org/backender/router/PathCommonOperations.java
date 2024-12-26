@@ -1,8 +1,5 @@
 package org.backender.router;
 
-import org.interactor.configuration.RegisteredRoute;
-import org.interactor.modules.router.dtos.RequestType;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
