@@ -1,5 +1,6 @@
 module interactor {
     requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
     requires jdk.httpserver;
     requires org.mockito;
 
