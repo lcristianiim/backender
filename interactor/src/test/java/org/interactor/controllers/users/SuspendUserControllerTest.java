@@ -55,7 +55,7 @@ class SuspendUserControllerTest {
         InteractorResponse result = controller.getResponse();
 
         assertEquals(500, result.getCode());
-        assertEquals("failed", result.getBody());
+        assertEquals("User has not been suspended.", result.getBody());
     }
 
     @Test
@@ -71,10 +71,9 @@ class SuspendUserControllerTest {
         InteractorRequest request = setupTheRequest(body);
 
         controller.initialize(request, route);
-        InteractorResponse result = controller.getResponse();
 
-        assertEquals(500, result.getCode());
-        assertEquals("failed", result.getBody());
+        assertThrows(SuspendUserController.SomethingWentWrongCallingTheAuthServiceException.class,
+                controller::getResponse);
     }
 
     private JWTAuth setupMockedJWTRegisterToThrowException() {

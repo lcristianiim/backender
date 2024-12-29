@@ -1,6 +1,8 @@
 package org.interactor.controllers.users;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.interactor.configuration.Route;
+import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.InputForUserSuspend;
 import org.interactor.modules.jwtauth.JWTActionResponse;
 import org.interactor.modules.jwtauth.JWTAuth;
@@ -14,38 +16,40 @@ public class SuspendUserController implements Controller {
 
     @Override
     public InteractorResponse getResponse() {
-        JWTActionResponse registrationResponse;
+        JWTActionResponse response;
 
         try {
-            registrationResponse = jwtAuth.suspend(input);
+            response = jwtAuth.suspend(input);
         } catch (Exception e) {
             throw new SomethingWentWrongCallingTheAuthServiceException(e.getMessage());
         }
 
-        return evaluateRegistrationResponseAndCreateInteractorResponse(registrationResponse);
+        return evaluateRegistrationResponseAndCreateInteractorResponse(response);
     }
 
     private InteractorResponse evaluateRegistrationResponseAndCreateInteractorResponse(
             JWTActionResponse confirmationResponse) {
 
-//        if (confirmationResponse.isSuccess()) {
-//            InteractorResponse response = new InteractorResponse();
-//            response.setCode(200);
-//            response.setBody("User has been confirmed.");
-//            return response;
-//        }
-//
-//        InteractorResponse response = new InteractorResponse();
-//        response.setCode(500);
-//        response.setBody("User has not been confirmed.");
-//        return response;
+        if (confirmationResponse.isSuccess()) {
+            InteractorResponse response = new InteractorResponse();
+            response.setCode(200);
+            response.setBody("User has been suspended.");
+            return response;
+        }
 
-        return null;
+        InteractorResponse response = new InteractorResponse();
+        response.setCode(500);
+        response.setBody("User has not been suspended.");
+        return response;
     }
 
     @Override
     public void initialize(InteractorRequest controllerData, Route registeredPath) {
-
+        try {
+            input = ObjectMapperSingleton.INSTANCE.getObjectMapper().readValue(controllerData.getBody(), InputForUserSuspend.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static class SomethingWentWrongCallingTheAuthServiceException extends RuntimeException {
