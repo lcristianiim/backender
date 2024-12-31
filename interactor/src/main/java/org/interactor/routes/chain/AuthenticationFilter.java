@@ -4,7 +4,6 @@ import org.interactor.configuration.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
-import org.interactor.modules.router.dtos.ResponseType;
 
 import java.util.Optional;
 

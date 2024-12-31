@@ -3,10 +3,7 @@ package org.interactor.configuration;
 import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.controllers.persons.AddPersonController;
-import org.interactor.controllers.users.ConfirmUserController;
-import org.interactor.controllers.users.LoginUserController;
-import org.interactor.controllers.users.RefreshTokenController;
-import org.interactor.controllers.users.RegisterNewUserController;
+import org.interactor.controllers.users.*;
 import org.interactor.modules.router.dtos.RequestType;
 import org.interactor.security.Role;
 
@@ -26,7 +23,10 @@ public class RegisteredRoute {
             new Route(POST, "auth/confirm/{%s}".formatted(ACTIVATION_ID), new ConfirmUserController(), List.of()),
             new Route(POST, "auth/login", new LoginUserController(), List.of()),
             new Route(POST, "auth/refresh-token", new RefreshTokenController(), List.of()),
-            new Route(POST, "auth/suspend-user", new RefreshTokenController(), List.of()));
+            new Route(POST, "auth/suspend-user", new RefreshTokenController(), List.of()),
+            new Route(POST, "auth/unsuspend-user", new UnSuspendUserController(), List.of()),
+            new Route(POST, "auth/cancel-user", new CancelUserController(), List.of()),
+            new Route(POST, "auth/uncancel-user", new UnCancelUserController(), List.of()));
 
 
     public static List<Route> getRoutesByHttpMethod(RequestType type) {
