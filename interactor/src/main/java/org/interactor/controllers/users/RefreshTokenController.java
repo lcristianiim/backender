@@ -5,13 +5,14 @@ import org.interactor.configuration.Route;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.JWTActionResponseWithTokens;
 import org.interactor.modules.jwtauth.JWTAuth;
+import org.interactor.modules.jwtauth.JWTAuthService;
 import org.interactor.modules.jwtauth.RefreshTokenInput;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 public class RefreshTokenController implements Controller {
-    JWTAuth jwtAuth;
+    JWTAuth jwtAuth = JWTAuthService.INSTANCE.getJwtAuth();
     RefreshTokenInput input;
 
     @Override

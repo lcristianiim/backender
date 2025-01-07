@@ -11,7 +11,8 @@ public class ProcessJSONResponseHandler extends ResponseHandler {
 
         if (response.getType().equals(ResponseType.JSON)) {
             ctx.status(response.getCode());
-            ctx.json(response.getBody());
+            if (null != response.getBody())
+                ctx.json(response.getBody());
 
         } else if (nextHandler != null) {
             nextHandler.handleRequest(response, ctx);

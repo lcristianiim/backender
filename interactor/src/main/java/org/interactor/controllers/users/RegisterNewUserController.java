@@ -6,12 +6,13 @@ import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.JWTActionResponse;
 import org.interactor.modules.jwtauth.JWTAuth;
 import org.interactor.modules.jwtauth.InputForUserRegistration;
+import org.interactor.modules.jwtauth.JWTAuthService;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
 public class RegisterNewUserController implements Controller {
-    JWTAuth jwtAuth;
+    JWTAuth jwtAuth = JWTAuthService.INSTANCE.getJwtAuth();
     InputForUserRegistration input;
 
     @Override

@@ -13,6 +13,9 @@ public class Requester {
 
     private static final String LOGIN = "http://localhost:4000/auth/login";
     private static final String DECODE = "http://localhost:4000/auth/decode";
+    private static final String REFRESH_TOKEN = "http://localhost:4000/auth/token";
+    private static final String REGISTER = "http://localhost:4000/auth/register";
+    private static final String CONFIRM = "http://localhost:4000/auth/confirm";
     private final ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
     public JWTTokens login(LoginInput loginInput) {
@@ -38,6 +41,85 @@ public class Requester {
         return responseToPrincipal(mapper, response);
     }
 
+    public RefreshTokenResponse refreshToken(RefreshTokenInput refreshTokenInput) {
+        RefreshTokenInputDTO refreshTokenInputDTO = new RefreshTokenInputDTO(
+                refreshTokenInput.grandType(),
+                refreshTokenInput.refreshToken()
+        );
+        String payload = refreshTokenToPayload(refreshTokenInputDTO, mapper);
+
+        HttpResponse<String> response = Unirest.post(REFRESH_TOKEN)
+                .header("content-type", "application/json")
+                .body(payload)
+                .asString();
+
+        try {
+            JWTAuthServerErrorResponse result = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
+            return new RefreshTokenResponse(false, result, null);
+        } catch (JsonProcessingException e) {
+            try {
+                JWTTokens result = mapper.readValue(response.getBody(), JWTTokens.class);
+                return new RefreshTokenResponse(true, null, result);
+            } catch (JsonProcessingException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    public RegisterUserResponse register(InputForUserRegistration inputForUserRegistration) {
+        InputForUserRegistrationDTO input = new InputForUserRegistrationDTO(
+                inputForUserRegistration.name(),
+                inputForUserRegistration.identifier(),
+                inputForUserRegistration.pin(),
+                inputForUserRegistration.pinConfirm(),
+                inputForUserRegistration.termsOfConditions(),
+                inputForUserRegistration.privacyPolicy()
+        );
+
+        String payload = inputForUserRegistrationToPayload(input, mapper);
+
+        HttpResponse<String> response = Unirest.post(REGISTER)
+                .header("content-type", "application/json")
+                .body(payload)
+                .asString();
+
+        try {
+            JWTAuthServerErrorResponse result = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
+            return new RegisterUserResponse(false, result);
+        } catch (JsonProcessingException e) {
+            return new RegisterUserResponse(true, null);
+        }
+    }
+
+    public ConfirmUserResponse confirm(String confirmCode) {
+        HttpResponse<String> response = Unirest.get(CONFIRM + "/" + confirmCode)
+                .header("content-type", "application/json")
+                .asString();
+
+        try {
+            JWTAuthServerErrorResponse result = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
+            return new ConfirmUserResponse(false, result);
+        } catch (JsonProcessingException e) {
+            return new ConfirmUserResponse(true, null);
+        }
+    }
+
+    private String inputForUserRegistrationToPayload(InputForUserRegistrationDTO inputForUserRegistration, ObjectMapper mapper) {
+        try {
+            return mapper.writeValueAsString(inputForUserRegistration);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String refreshTokenToPayload(RefreshTokenInputDTO refreshTokenInput, ObjectMapper mapper) {
+        try {
+            return mapper.writeValueAsString(refreshTokenInput);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private String tokenToPayload(Token mappedToken) {
         try {
             return mapper.writeValueAsString(mappedToken);
@@ -49,7 +131,7 @@ public class Requester {
 
     private DecodeResponse responseToPrincipal(ObjectMapper mapper, HttpResponse<String> response) {
         try {
-            ErrorDecodeResponse errorResponse = mapper.readValue(response.getBody(), ErrorDecodeResponse.class);
+            JWTAuthServerErrorResponse errorResponse = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
             return new DecodeResponse(errorResponse.statusCode(), errorResponse.message(), Optional.empty());
         } catch (JsonProcessingException e) {
             try {

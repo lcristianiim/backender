@@ -1,6 +1,6 @@
 package org.backender.jwtauth;
 
-public record ErrorDecodeResponse(
+public record JWTAuthServerErrorResponse(
         String statusCode,
         String code,
         String error,

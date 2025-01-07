@@ -3,6 +3,8 @@ package org.backender.jwtauth;
 import org.interactor.modules.jwtauth.*;
 import org.interactor.modules.router.dtos.Principal;
 
+import java.util.List;
+
 public class JWTAuthImplementation implements JWTAuth {
     @Override
     public JWTActionResponseWithPrincipal decode(String token) {
@@ -20,9 +22,14 @@ public class JWTAuthImplementation implements JWTAuth {
     }
 
     private Principal convertJWTPrincipal(JWTPrincipal jwtPrincipal) {
+        List<String> roles = jwtPrincipal.roles().stream()
+                .map(JWTRole::name)
+                .toList();
+
         return new Principal.Builder()
                 .setName(jwtPrincipal.name())
-                .setIdentifier(jwtPrincipal.identifier())
+                .setUuid(jwtPrincipal.identifier())
+                .setRoles(roles)
                 .build();
     }
 
@@ -38,17 +45,40 @@ public class JWTAuthImplementation implements JWTAuth {
 
     @Override
     public JWTActionResponseWithTokens refreshToken(RefreshTokenInput refreshTokenInput) {
-        return null;
+        Requester requester = new Requester();
+        RefreshTokenResponse response = requester.refreshToken(refreshTokenInput);
+
+        if (response.isSuccess()) {
+            JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "success");
+            return new JWTActionResponseWithTokens(jwtActionResponse, response.tokens());
+        } else {
+            JWTActionResponse jwtActionResponse = new JWTActionResponse(false, response.errorResponse().message());
+            return new JWTActionResponseWithTokens(jwtActionResponse, null);
+        }
     }
 
     @Override
     public JWTActionResponse register(InputForUserRegistration inputForUserRegistration) {
-        return null;
+        Requester requester = new Requester();
+        RegisterUserResponse response = requester.register(inputForUserRegistration);
+
+        if (response.isSuccess()) {
+            return new JWTActionResponse(true, "User successfully registered");
+        } else {
+            return new JWTActionResponse(false, response.errorResponse().message());
+        }
     }
 
     @Override
     public JWTActionResponse confirm(String confirmCode) {
-        return null;
+        Requester requester = new Requester();
+        ConfirmUserResponse response = requester.confirm(confirmCode);
+
+        if (response.isSuccess()) {
+            return new JWTActionResponse(true, "User successfully confirm");
+        } else {
+            return new JWTActionResponse(false, response.errorResponse().message());
+        }
     }
 
     @Override
