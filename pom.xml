@@ -30,6 +30,7 @@
         <module>interactor</module>
         <module>mongodbmodule</module>
         <module>router</module>
+        <module>jwtauth</module>
     </modules>
     <dependencies>
         <dependency>

@@ -3,24 +3,23 @@ package org.interactor.controllers.users;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.interactor.configuration.Route;
 import org.interactor.internals.ObjectMapperSingleton;
-import org.interactor.modules.jwtauth.JWTActionResponseWithTokens;
+import org.interactor.modules.jwtauth.JWTActionResponseWithPrincipal;
 import org.interactor.modules.jwtauth.JWTAuth;
 import org.interactor.modules.jwtauth.JWTAuthService;
-import org.interactor.modules.jwtauth.LoginInput;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 
-public class LoginUserController implements Controller {
+public class DecodeUserController implements Controller {
     JWTAuth jwtAuth = JWTAuthService.INSTANCE.getJwtAuth();
-    LoginInput input;
+    DecoderInput input;
 
     @Override
     public InteractorResponse getResponse() {
-        JWTActionResponseWithTokens response;
+        JWTActionResponseWithPrincipal response;
 
         try {
-            response = jwtAuth.login(input);
+            response = jwtAuth.decode(input.token());
         } catch (Exception e) {
             throw new SomethingWentWrongCallingTheAuthServiceException(e.getMessage());
         }
@@ -29,20 +28,20 @@ public class LoginUserController implements Controller {
     }
 
     private InteractorResponse evaluateRegistrationResponseAndCreateInteractorResponse(
-            JWTActionResponseWithTokens loginResponse) {
+            JWTActionResponseWithPrincipal loginResponse) {
 
         if (loginResponse.jwtActionResponse().isSuccess()) {
-            String tokensAsJson;
+            String principal;
             try {
-                tokensAsJson = ObjectMapperSingleton.INSTANCE.getObjectMapper()
-                        .writeValueAsString(loginResponse.JWTTokens());
+                principal = ObjectMapperSingleton.INSTANCE.getObjectMapper()
+                        .writeValueAsString(loginResponse.principal());
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
 
             InteractorResponse response = new InteractorResponse();
             response.setCode(200);
-            response.setBody(tokensAsJson);
+            response.setBody(principal);
             return response;
         }
 
@@ -56,7 +55,7 @@ public class LoginUserController implements Controller {
     @Override
     public void initialize(InteractorRequest controllerData, Route registeredPath) {
         try {
-            input = ObjectMapperSingleton.INSTANCE.getObjectMapper().readValue(controllerData.getBody(), LoginInput.class);
+            input = ObjectMapperSingleton.INSTANCE.getObjectMapper().readValue(controllerData.getBody(), DecoderInput.class);
         } catch (JsonProcessingException e) {
             throw new CouldNotParseLoginInputException(e.getMessage());
         }
@@ -77,4 +76,6 @@ public class LoginUserController implements Controller {
     public void setJwtAuthForTesting(JWTAuth jwtAuth) {
         this.jwtAuth = jwtAuth;
     }
+
+    public record DecoderInput(String token) {}
 }

@@ -21,6 +21,7 @@ public class RegisteredRoute {
             new Route(POST, "add-user", new AddPersonController(), List.of()),
             new Route(POST, "auth/register-user", new RegisterNewUserController(), List.of()),
             new Route(POST, "auth/confirm/{%s}".formatted(ACTIVATION_ID), new ConfirmUserController(), List.of()),
+            new Route(POST, "auth/decode", new DecodeUserController(), List.of()),
             new Route(POST, "auth/login", new LoginUserController(), List.of()),
             new Route(POST, "auth/refresh-token", new RefreshTokenController(), List.of()),
             new Route(POST, "auth/suspend-user", new RefreshTokenController(), List.of()),

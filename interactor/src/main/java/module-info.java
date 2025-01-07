@@ -15,14 +15,18 @@ module interactor {
     exports org.interactor.modules.router.dtos;
     exports org.interactor.configuration;
 
+    exports org.interactor.modules.jwtauth;
+    exports org.interactor.controllers.users;
+
     opens org.interactor.modules.datacenter.dtos;
     exports org.interactor.routes;
     exports org.interactor.routes.chain;
+    exports org.interactor.internals;
 
     uses org.interactor.modules.datacenter.interfaces.PersonsPersistence;
     uses org.interactor.modules.router.Router;
     uses org.interactor.modules.metrics.ApplicationMetrics;
     uses org.interactor.modules.logging.ApplicationLogging;
+    uses org.interactor.modules.jwtauth.JWTAuth;
 
-    exports org.interactor.modules.jwtauth to com.fasterxml.jackson.databind;
 }
