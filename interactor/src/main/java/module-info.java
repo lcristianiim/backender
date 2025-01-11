@@ -3,6 +3,8 @@ module interactor {
     requires com.fasterxml.jackson.core;
     requires jdk.httpserver;
     requires org.mockito;
+    requires java.net.http;
+    requires unirest.java;
 
     exports org.interactor.modules.datacenter;
     exports org.interactor.modules.metrics;
