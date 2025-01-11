@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.ApiTest</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>1</exceptions>
+    </counts>
+    <date>2025-01-10T06:12:43+02:00</date>
+    <runTimeInMillis>93</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;org.interactor&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;script&lt;/td&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;api test&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;api/request&lt;/td&gt;
+		&lt;td colspan="4"&gt;{"user": "a", "pin": "b"}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor6"&gt;
+		&lt;td&gt;login; &lt;span class="error"&gt;No Method login[7] in class org.interactor.ApiTest.
+ Available methods:
+equals(java.lang.Object) -&amp;gt; boolean
+getClass() -&amp;gt; class java.lang.Class
+hashCode() -&amp;gt; int
+login(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; boolean
+notify() -&amp;gt; void
+notifyAll() -&amp;gt; void
+toString() -&amp;gt; class java.lang.String
+wait() -&amp;gt; void
+wait(long) -&amp;gt; void
+wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;http:localhost:7070/api/auth/login&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;{&lt;/td&gt;
+		&lt;td&gt;    "identifier": "ioan.szabo@yahoo.com",&lt;/td&gt;
+		&lt;td&gt;    "pin": "Test123!"&lt;/td&gt;
+		&lt;td&gt;}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>ApiTest</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='org.interactor'}</instruction>
+        <slimResult>pass(org.interactor)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>org.interactor</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_0', instruction='make', instanceName='scriptTableActor', className='ApiTest', args=[POST, api/request, {"user": "a", "pin": "b"}]}</instruction>
+        <slimResult>pass(api test)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_0</instructionId>
+          <col>1</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>api test</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_1', instruction='call', instanceName='scriptTableActor', methodName='login', args=[POST, http:localhost:7070/api/auth/login, , {,     "identifier": "ioan.szabo@yahoo.com",,     "pin": "Test123!", }]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>scriptTable_1_1</instructionId>
+          <type>ScriptActionExpectation</type>
+          <evaluationMessage>No Method login[7] in class org.interactor.ApiTest.
+ Available methods:
+equals(java.lang.Object) -&gt; boolean
+getClass() -&gt; class java.lang.Class
+hashCode() -&gt; int
+login(java.lang.String, java.lang.String, java.lang.String) -&gt; boolean
+notify() -&gt; void
+notifyAll() -&gt; void
+toString() -&gt; class java.lang.String
+wait() -&gt; void
+wait(long) -&gt; void
+wait(long, int) -&gt; void</evaluationMessage>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>281</totalRunTimeInMillis>
+</testResults>
+

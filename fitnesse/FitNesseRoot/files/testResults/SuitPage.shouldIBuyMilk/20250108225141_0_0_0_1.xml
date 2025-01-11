@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.shouldIBuyMilk</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>9</exceptions>
+    </counts>
+    <date>2025-01-08T22:51:41+02:00</date>
+    <runTimeInMillis>48</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="4"&gt;should I buy milk &lt;span class="error"&gt;Could not invoke constructor for ShouldIBuyMilk[0]&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;cash in wallet&lt;/td&gt;
+		&lt;td&gt;credit card&lt;/td&gt;
+		&lt;td&gt;pints of milk remaining&lt;/td&gt;
+		&lt;td&gt;go to store?
+&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;0 &lt;span class="error"&gt;The instance decisionTable_0.setCashInWallet. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;no &lt;span class="error"&gt;The instance decisionTable_0.setCreditCard. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;0 &lt;span class="error"&gt;The instance decisionTable_0.setPintsOfMilkRemaining. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;no &lt;span class="error"&gt;The instance decisionTable_0.setGoToStore. does not exist&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;1 &lt;span class="error"&gt;The instance decisionTable_0.setCashInWallet. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;no &lt;span class="error"&gt;The instance decisionTable_0.setCreditCard. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;1 &lt;span class="error"&gt;The instance decisionTable_0.setPintsOfMilkRemaining. does not exist&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;yes &lt;span class="error"&gt;The instance decisionTable_0.setGoToStore. does not exist&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>shouldIBuyMilk</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_0', instruction='make', instanceName='decisionTable_0', className='ShouldIBuyMilk', args=[]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_0</instructionId>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>Could not invoke constructor for ShouldIBuyMilk[0]</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_4', instruction='call', instanceName='decisionTable_0', methodName='setCashInWallet', args=[0]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_4</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setCashInWallet. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_5', instruction='call', instanceName='decisionTable_0', methodName='setCreditCard', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_5</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setCreditCard. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_6', instruction='call', instanceName='decisionTable_0', methodName='setPintsOfMilkRemaining', args=[0]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_6</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setPintsOfMilkRemaining. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_7', instruction='call', instanceName='decisionTable_0', methodName='setGoToStore', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_7</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setGoToStore. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_10', instruction='call', instanceName='decisionTable_0', methodName='setCashInWallet', args=[1]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_10</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setCashInWallet. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_11', instruction='call', instanceName='decisionTable_0', methodName='setCreditCard', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_11</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setCreditCard. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_12', instruction='call', instanceName='decisionTable_0', methodName='setPintsOfMilkRemaining', args=[1]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_12</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setPintsOfMilkRemaining. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_13', instruction='call', instanceName='decisionTable_0', methodName='setGoToStore', args=[yes]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_13</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>The instance decisionTable_0.setGoToStore. does not exist</evaluationMessage>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>216</totalRunTimeInMillis>
+</testResults>
+

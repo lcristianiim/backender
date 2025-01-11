@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.shouldIBuyMilk</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>2</exceptions>
+    </counts>
+    <date>2025-01-08T23:19:59+02:00</date>
+    <runTimeInMillis>72</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="4"&gt;&lt;span class="pass"&gt;org.interactor.ShouldIBuyMilk&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;cash in wallet&lt;/td&gt;
+		&lt;td&gt;credit card&lt;/td&gt;
+		&lt;td&gt;pints of milk remaining&lt;/td&gt;
+		&lt;td&gt;goToStore&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;no&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;no &lt;span class="error"&gt;No Method setGoToStore[1] in class org.interactor.ShouldIBuyMilk.
+ Available methods:
+beginTable() -&amp;gt; void
+endTable() -&amp;gt; void
+equals(java.lang.Object) -&amp;gt; boolean
+execute() -&amp;gt; void
+getClass() -&amp;gt; class java.lang.Class
+goToStore() -&amp;gt; class java.lang.String
+hashCode() -&amp;gt; int
+notify() -&amp;gt; void
+notifyAll() -&amp;gt; void
+reset() -&amp;gt; void
+setCashInWallet(int) -&amp;gt; void
+setCreditCard(java.lang.String) -&amp;gt; void
+setPintsOfMilkRemaining(int) -&amp;gt; void
+table(java.util.List) -&amp;gt; void
+toString() -&amp;gt; class java.lang.String
+wait() -&amp;gt; void
+wait(long) -&amp;gt; void
+wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;no&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;yes &lt;span class="error"&gt;No Method setGoToStore[1] in class org.interactor.ShouldIBuyMilk.
+ Available methods:
+beginTable() -&amp;gt; void
+endTable() -&amp;gt; void
+equals(java.lang.Object) -&amp;gt; boolean
+execute() -&amp;gt; void
+getClass() -&amp;gt; class java.lang.Class
+goToStore() -&amp;gt; class java.lang.String
+hashCode() -&amp;gt; int
+notify() -&amp;gt; void
+notifyAll() -&amp;gt; void
+reset() -&amp;gt; void
+setCashInWallet(int) -&amp;gt; void
+setCreditCard(java.lang.String) -&amp;gt; void
+setPintsOfMilkRemaining(int) -&amp;gt; void
+table(java.util.List) -&amp;gt; void
+toString() -&amp;gt; class java.lang.String
+wait() -&amp;gt; void
+wait(long) -&amp;gt; void
+wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>shouldIBuyMilk</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_0', instruction='make', instanceName='decisionTable_0', className='org.interactor.ShouldIBuyMilk', args=[]}</instruction>
+        <slimResult>pass(org.interactor.ShouldIBuyMilk)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_0_0</instructionId>
+          <col>0</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>org.interactor.ShouldIBuyMilk</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_4', instruction='call', instanceName='decisionTable_0', methodName='setCashInWallet', args=[0]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_4</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_5', instruction='call', instanceName='decisionTable_0', methodName='setCreditCard', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_5</instructionId>
+          <col>1</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_6', instruction='call', instanceName='decisionTable_0', methodName='setPintsOfMilkRemaining', args=[0]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_6</instructionId>
+          <col>2</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_7', instruction='call', instanceName='decisionTable_0', methodName='setGoToStore', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_7</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>No Method setGoToStore[1] in class org.interactor.ShouldIBuyMilk.
+ Available methods:
+beginTable() -&gt; void
+endTable() -&gt; void
+equals(java.lang.Object) -&gt; boolean
+execute() -&gt; void
+getClass() -&gt; class java.lang.Class
+goToStore() -&gt; class java.lang.String
+hashCode() -&gt; int
+notify() -&gt; void
+notifyAll() -&gt; void
+reset() -&gt; void
+setCashInWallet(int) -&gt; void
+setCreditCard(java.lang.String) -&gt; void
+setPintsOfMilkRemaining(int) -&gt; void
+table(java.util.List) -&gt; void
+toString() -&gt; class java.lang.String
+wait() -&gt; void
+wait(long) -&gt; void
+wait(long, int) -&gt; void</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_10', instruction='call', instanceName='decisionTable_0', methodName='setCashInWallet', args=[1]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_10</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_11', instruction='call', instanceName='decisionTable_0', methodName='setCreditCard', args=[no]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_11</instructionId>
+          <col>1</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_12', instruction='call', instanceName='decisionTable_0', methodName='setPintsOfMilkRemaining', args=[1]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_0_12</instructionId>
+          <col>2</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_0_13', instruction='call', instanceName='decisionTable_0', methodName='setGoToStore', args=[yes]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_0_13</instructionId>
+          <type>VoidReturnExpectation</type>
+          <evaluationMessage>No Method setGoToStore[1] in class org.interactor.ShouldIBuyMilk.
+ Available methods:
+beginTable() -&gt; void
+endTable() -&gt; void
+equals(java.lang.Object) -&gt; boolean
+execute() -&gt; void
+getClass() -&gt; class java.lang.Class
+goToStore() -&gt; class java.lang.String
+hashCode() -&gt; int
+notify() -&gt; void
+notifyAll() -&gt; void
+reset() -&gt; void
+setCashInWallet(int) -&gt; void
+setCreditCard(java.lang.String) -&gt; void
+setPintsOfMilkRemaining(int) -&gt; void
+table(java.util.List) -&gt; void
+toString() -&gt; class java.lang.String
+wait() -&gt; void
+wait(long) -&gt; void
+wait(long, int) -&gt; void</evaluationMessage>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>243</totalRunTimeInMillis>
+</testResults>
+

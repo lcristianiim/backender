@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.ApiTest</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>3</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2025-01-10T05:13:31+02:00</date>
+    <runTimeInMillis>95</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;org.interactor&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="5"&gt;&lt;span class="pass"&gt;api test&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="5"&gt;execute ?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;[&lt;span class="diff"&gt;/__VOID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;Method&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;Endpoint&lt;/td&gt;
+		&lt;td&gt;Request Body&lt;/td&gt;
+		&lt;td&gt;expected status ?&lt;/td&gt;
+		&lt;td&gt;expected body ?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;[&lt;span class="diff"&gt;/__V&lt;/span&gt;O&lt;span class="diff"&gt;ID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;P&lt;/span&gt;O&lt;span class="diff"&gt;ST&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;/api/resource&lt;/td&gt;
+		&lt;td&gt;{"key":"value"}&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;{"success":true}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;[&lt;span class="diff"&gt;/__VOID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;GET&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;/api/resource1&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;{"id":1, "key":"value"}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>ApiTest</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='org.interactor'}</instruction>
+        <slimResult>pass(org.interactor)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>org.interactor</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_0', instruction='make', instanceName='decisionTable_1', className='ApiTest', args=[]}</instruction>
+        <slimResult>pass(api test)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_1_0</instructionId>
+          <col>0</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>api test</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_5', instruction='call', instanceName='decisionTable_1', methodName='execute', args=[]}</instruction>
+        <slimResult>fail(a=/__VOID__/;e=Method)</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>decisionTable_1_5</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>ReturnedValueExpectation</type>
+          <actual>/__VOID__/</actual>
+          <expected>Method</expected>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_8', instruction='call', instanceName='decisionTable_1', methodName='execute', args=[]}</instruction>
+        <slimResult>fail(a=/__VOID__/;e=POST)</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>decisionTable_1_8</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>ReturnedValueExpectation</type>
+          <actual>/__VOID__/</actual>
+          <expected>POST</expected>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_11', instruction='call', instanceName='decisionTable_1', methodName='execute', args=[]}</instruction>
+        <slimResult>fail(a=/__VOID__/;e=GET)</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>decisionTable_1_11</instructionId>
+          <col>0</col>
+          <row>4</row>
+          <type>ReturnedValueExpectation</type>
+          <actual>/__VOID__/</actual>
+          <expected>GET</expected>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut>triggered
+triggered
+triggered
+triggered
+triggered
+triggered
+</stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>1</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>273</totalRunTimeInMillis>
+</testResults>
+

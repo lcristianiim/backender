@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.ApiTest</rootPath>
+  <result>
+    <counts>
+      <right>2</right>
+      <wrong>2</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2025-01-10T05:17:27+02:00</date>
+    <runTimeInMillis>103</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;org.interactor&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="5"&gt;&lt;span class="pass"&gt;api test&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;Method&lt;/td&gt;
+		&lt;td&gt;Endpoint&lt;/td&gt;
+		&lt;td&gt;Request Body&lt;/td&gt;
+		&lt;td&gt;expected status ?&lt;/td&gt;
+		&lt;td&gt;expected body ?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;/api/resource&lt;/td&gt;
+		&lt;td&gt;{"key":"value"}&lt;/td&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;200&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;[&lt;span class="diff"&gt;h&lt;/span&gt;e&lt;span class="diff"&gt;llo ki&lt;/span&gt;t&lt;span class="diff"&gt;ty&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;{"succ&lt;/span&gt;e&lt;span class="diff"&gt;ss":&lt;/span&gt;t&lt;span class="diff"&gt;rue}&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;GET&lt;/td&gt;
+		&lt;td&gt;/api/resource1&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;200&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;[&lt;span class="diff"&gt;hello&lt;/span&gt; k&lt;span class="diff"&gt;itt&lt;/span&gt;y] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;{"id":1,&lt;/span&gt; &lt;span class="diff"&gt;"&lt;/span&gt;k&lt;span class="diff"&gt;e&lt;/span&gt;y&lt;span class="diff"&gt;":"value"}&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>ApiTest</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='org.interactor'}</instruction>
+        <slimResult>pass(org.interactor)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>org.interactor</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_0', instruction='make', instanceName='decisionTable_1', className='ApiTest', args=[]}</instruction>
+        <slimResult>pass(api test)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_1_0</instructionId>
+          <col>0</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>api test</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_4', instruction='call', instanceName='decisionTable_1', methodName='setMethod', args=[POST]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_4</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_5', instruction='call', instanceName='decisionTable_1', methodName='setEndpoint', args=[/api/resource]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_5</instructionId>
+          <col>1</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_6', instruction='call', instanceName='decisionTable_1', methodName='setRequestBody', args=[{"key":"value"}]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_6</instructionId>
+          <col>2</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_8', instruction='call', instanceName='decisionTable_1', methodName='expectedStatus', args=[]}</instruction>
+        <slimResult>pass(200)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_1_8</instructionId>
+          <col>3</col>
+          <row>2</row>
+          <type>ReturnedValueExpectation</type>
+          <evaluationMessage>200</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_9', instruction='call', instanceName='decisionTable_1', methodName='expectedBody', args=[]}</instruction>
+        <slimResult>fail(a=hello kitty;e={"success":true})</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>decisionTable_1_9</instructionId>
+          <col>4</col>
+          <row>2</row>
+          <type>ReturnedValueExpectation</type>
+          <actual>hello kitty</actual>
+          <expected>{"success":true}</expected>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_11', instruction='call', instanceName='decisionTable_1', methodName='setMethod', args=[GET]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_11</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_12', instruction='call', instanceName='decisionTable_1', methodName='setEndpoint', args=[/api/resource1]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_12</instructionId>
+          <col>1</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_13', instruction='call', instanceName='decisionTable_1', methodName='setRequestBody', args=[]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_13</instructionId>
+          <col>2</col>
+          <row>3</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_15', instruction='call', instanceName='decisionTable_1', methodName='expectedStatus', args=[]}</instruction>
+        <slimResult>pass(200)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_1_15</instructionId>
+          <col>3</col>
+          <row>3</row>
+          <type>ReturnedValueExpectation</type>
+          <evaluationMessage>200</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_16', instruction='call', instanceName='decisionTable_1', methodName='expectedBody', args=[]}</instruction>
+        <slimResult>fail(a=hello kitty;e={"id":1, "key":"value"})</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>decisionTable_1_16</instructionId>
+          <col>4</col>
+          <row>3</row>
+          <type>ReturnedValueExpectation</type>
+          <actual>hello kitty</actual>
+          <expected>{"id":1, "key":"value"}</expected>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut>triggered
+triggered
+</stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>1</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>285</totalRunTimeInMillis>
+</testResults>
+

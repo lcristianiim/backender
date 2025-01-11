@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>SuitPage.ApiTest</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2025-01-10T04:32:57+02:00</date>
+    <runTimeInMillis>267</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+		&lt;td colspan="4"&gt;org.interactor.ApiTest&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td colspan="5"&gt;&lt;span class="pass"&gt;ApiTest&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;Method&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;Endpoint&lt;/td&gt;
+		&lt;td&gt;Request Body&lt;/td&gt;
+		&lt;td&gt;Expected Status&lt;/td&gt;
+		&lt;td&gt;Expected Response&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;POST&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;/api/resource&lt;/td&gt;
+		&lt;td&gt;{"key":"value"}&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;{"success":true}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;GET&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;/api/resource1&lt;/td&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;{"id":1, "key":"value"}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>ApiTest</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='ApiTest'}</instruction>
+        <slimResult>pass(ApiTest)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>ApiTest</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='import_0_1', instruction='import', path='Method'}</instruction>
+        <slimResult>pass(Method)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_1</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>Method</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='import_0_2', instruction='import', path='POST'}</instruction>
+        <slimResult>pass(POST)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_2</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>POST</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='import_0_3', instruction='import', path='GET'}</instruction>
+        <slimResult>pass(GET)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_3</instructionId>
+          <col>0</col>
+          <row>4</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>GET</evaluationMessage>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/interactor/target/classes:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>1</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>478</totalRunTimeInMillis>
+</testResults>
+

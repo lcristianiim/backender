@@ -1,0 +1,11 @@
+---
+Test
+---
+<test page>
+
+!path interactor/target/classes
+
+!|org.interactor.Calculator|divide|
+|dividend|divisor|result|
+|10      |2      |5     |
+|15      |3      |5     |

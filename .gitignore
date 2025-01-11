@@ -6,6 +6,9 @@ deployable
 deployable/**
 pid
 /mongodbmodule/db
+fitnesse/FitNesseRoot/tmp/
+fitnesse/FitNesseRoot/logs/
+fitnesse/FitNesseRoot/attachments/
 
 HELP.md
 target/
