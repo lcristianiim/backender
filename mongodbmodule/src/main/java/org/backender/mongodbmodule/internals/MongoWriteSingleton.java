@@ -1,4 +1,4 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.internals;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -9,34 +9,35 @@ import com.mongodb.connection.ConnectionPoolSettings;
 
 import java.util.concurrent.TimeUnit;
 
-public enum MongoReadSingleton {
+import static org.backender.mongodbmodule.configuration.Configuration.*;
+
+public enum MongoWriteSingleton {
     INSTANCE;
 
-    private final ConnectionString connectionString = new ConnectionString("mongodb://admin:admin@localhost:27017/");
+    private final ConnectionString connectionString = new ConnectionString(DATABASE_CONNECTION.getValue());
     private final ConnectionPoolSettings connectionPoolSettings;
     private final MongoDatabase database;
 
-
-    MongoReadSingleton() {
+    MongoWriteSingleton() {
         this.connectionPoolSettings = connectionPoolSettings();
-        this.database = createDatabase();
+        this.database = createDatabase(DATABASE_NAME.getValue());
     }
 
-    private MongoDatabase createDatabase() {
+    private MongoDatabase createDatabase(String backender) {
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .applyToConnectionPoolSettings(builder -> builder.applySettings(connectionPoolSettings))
                 .build();
 
         MongoClient mongoClient = MongoClients.create(settings);
-        return mongoClient.getDatabase("backender");
+        return mongoClient.getDatabase(backender);
     }
 
     private ConnectionPoolSettings connectionPoolSettings() {
         return ConnectionPoolSettings.builder()
-                .minSize(5) // Minimum number of connections in the pool
-                .maxSize(20) // Maximum number of connections in the pool
-                .maxWaitTime(30000, TimeUnit.MILLISECONDS) // Maximum wait time for a connection
+                .minSize(Integer.parseInt(CONNECTION_POOL_MIN_SIZE.getValue())) // Minimum number of connections in the pool
+                .maxSize(Integer.parseInt(CONNECTION_POOL_MAX_SIZE.getValue())) // Maximum number of connections in the pool
+                .maxWaitTime(Integer.parseInt(CONNECTION_POOL_WAIT_TIME.getValue()), TimeUnit.MILLISECONDS) // Maximum wait time for a connection
                 .build();
     }
 

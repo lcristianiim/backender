@@ -1,6 +1,6 @@
 package org.interactor.routes.chain;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;

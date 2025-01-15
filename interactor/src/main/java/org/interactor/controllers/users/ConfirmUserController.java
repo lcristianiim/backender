@@ -1,6 +1,6 @@
 package org.interactor.controllers.users;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.jwtauth.JWTActionResponse;
 import org.interactor.modules.jwtauth.JWTAuth;
 import org.interactor.modules.jwtauth.JWTAuthService;

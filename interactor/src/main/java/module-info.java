@@ -31,4 +31,5 @@ module interactor {
     uses org.interactor.modules.logging.ApplicationLogging;
     uses org.interactor.modules.jwtauth.JWTAuth;
 
+    opens interactor.environments;
 }

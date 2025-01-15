@@ -1,4 +1,4 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.interactorimplementations;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

@@ -7,7 +7,8 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.http.HandlerType;
 import io.javalin.rendering.template.JavalinMustache;
-import org.interactor.ApplicationConfiguration;
+import org.interactor.configuration.Configuration;
+import org.interactor.internals.InteractorConfigurationLoader;
 import org.interactor.routes.InteractorEntry;
 import org.interactor.modules.logging.LoggerService;
 import org.interactor.modules.metrics.MetricsService;
@@ -27,7 +28,7 @@ import static io.javalin.rendering.template.TemplateUtil.model;
 
 public class Application {
 	private static final MetricsService METRICS_SERVICE = MetricsService.INSTANCE;
-	private static final ApplicationConfiguration APPLICATION_CONFIGURATION = ApplicationConfiguration.INSTANCE;
+	private static final InteractorConfigurationLoader APPLICATION_CONFIGURATION = InteractorConfigurationLoader.INSTANCE;
 	private static final LoggerService LOGGER = LoggerService.INSTANCE;
 	private static final PersonsPersistenceService PERSONS_PERSISTENCE_SERVICE = PersonsPersistenceService.INSTANCE;
 	private static final Class<Application> clazz = Application.class;
@@ -80,8 +81,8 @@ public class Application {
 			METRICS_SERVICE.incrementCounter();
 		});
 
-		app.get(APPLICATION_CONFIGURATION.getApiPath() + "/**", Application::processRequestWithInteractor);
-		app.post(APPLICATION_CONFIGURATION.getApiPath() + "/**", Application::processRequestWithInteractor);
+		app.get(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.post(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
 
 		app.start(7070);
 
@@ -109,7 +110,7 @@ public class Application {
 
 	private static InteractorRequest transformJavalinContextToInteractorContextDTO(Context ctx) {
 		InteractorRequest reqContext = new InteractorRequest();
-		String pathWithoutApi = ctx.path().split(ApplicationConfiguration.INSTANCE.getApiPath() + "/")[1];
+		String pathWithoutApi = ctx.path().split(Configuration.API_PATH.getValue() + "/")[1];
 		if (ctx.queryString() != null) {
 			reqContext.setRequestPath(pathWithoutApi + "?" + ctx.queryString());
 		} else {

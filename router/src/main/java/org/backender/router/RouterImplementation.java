@@ -1,6 +1,6 @@
 package org.backender.router;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.logging.LoggerService;
 
 import org.interactor.modules.router.Router;

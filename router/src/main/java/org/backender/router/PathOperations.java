@@ -1,11 +1,11 @@
 package org.backender.router;
 
-import org.interactor.ApplicationConfiguration;
+import org.interactor.configuration.Configuration;
 
 public class PathOperations {
 
     public static String getPathWithoutTheAPIPart(String pathWithApi) {
-        String apiPath = ApplicationConfiguration.INSTANCE.getApiPath();
+        String apiPath = Configuration.API_PATH.getValue();
         if (null == pathWithApi)
             return "";
 

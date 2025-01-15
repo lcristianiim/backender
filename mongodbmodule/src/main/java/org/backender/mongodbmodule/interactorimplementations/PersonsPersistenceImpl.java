@@ -1,8 +1,9 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.interactorimplementations;
 
 import com.mongodb.client.*;
+import org.backender.mongodbmodule.internals.MongoReadSingleton;
+import org.backender.mongodbmodule.repositories.PersonsRepository;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.interactor.modules.datacenter.dtos.PersonDTO;
 import org.interactor.modules.datacenter.interfaces.PersonsPersistence;
 

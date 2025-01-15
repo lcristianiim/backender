@@ -1,4 +1,4 @@
-package org.interactor.configuration;
+package org.interactor.internals;
 
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.RequestType;

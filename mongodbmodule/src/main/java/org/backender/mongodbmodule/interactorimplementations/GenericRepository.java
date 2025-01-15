@@ -1,4 +1,4 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.interactorimplementations;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;

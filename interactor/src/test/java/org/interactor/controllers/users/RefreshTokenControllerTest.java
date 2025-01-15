@@ -2,7 +2,7 @@ package org.interactor.controllers.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.*;
 import org.interactor.modules.router.dtos.InteractorRequest;

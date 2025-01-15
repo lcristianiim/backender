@@ -1,7 +1,6 @@
 package org.interactor.internals;
 
 import org.interactor.configuration.RegisteredRoute;
-import org.interactor.configuration.Route;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;

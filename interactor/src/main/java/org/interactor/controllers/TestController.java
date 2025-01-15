@@ -1,6 +1,6 @@
 package org.interactor.controllers;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.router.RouterService;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;

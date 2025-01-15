@@ -1,4 +1,4 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.interactorimplementations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

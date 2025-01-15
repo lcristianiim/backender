@@ -1,6 +1,6 @@
 package org.interactor.routes.authorization;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.router.dtos.Controller;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;

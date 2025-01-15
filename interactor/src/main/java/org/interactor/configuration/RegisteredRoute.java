@@ -4,6 +4,7 @@ import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
 import org.interactor.controllers.persons.AddPersonController;
 import org.interactor.controllers.users.*;
+import org.interactor.internals.Route;
 import org.interactor.modules.router.dtos.RequestType;
 import org.interactor.security.Role;
 

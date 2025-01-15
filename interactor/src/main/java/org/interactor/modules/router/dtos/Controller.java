@@ -1,6 +1,6 @@
 package org.interactor.modules.router.dtos;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 
 public interface Controller {
     InteractorResponse getResponse();

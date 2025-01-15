@@ -1,6 +1,6 @@
 package org.backender.router;
 
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.modules.router.RouterService;
 import org.junit.jupiter.api.Test;
 

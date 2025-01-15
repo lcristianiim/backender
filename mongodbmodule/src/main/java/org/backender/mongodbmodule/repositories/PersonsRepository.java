@@ -1,7 +1,11 @@
-package org.backender.interactorimplementations;
+package org.backender.mongodbmodule.repositories;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import org.backender.mongodbmodule.interactorimplementations.GenericRepository;
+import org.backender.mongodbmodule.interactorimplementations.MapperUtil;
+import org.backender.mongodbmodule.internals.MongoReadSingleton;
+import org.backender.mongodbmodule.internals.MongoWriteSingleton;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.interactor.modules.datacenter.dtos.PersonDTO;

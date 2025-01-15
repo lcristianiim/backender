@@ -1,7 +1,7 @@
 package org.interactor.controllers.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.interactor.configuration.Route;
+import org.interactor.internals.Route;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.InputForUserSuspend;
 import org.interactor.modules.jwtauth.JWTActionResponse;

@@ -3,7 +3,6 @@ package org.interactor.routes.chain;
 import org.interactor.modules.router.dtos.InteractorRequest;
 import org.interactor.modules.router.dtos.InteractorResponse;
 import org.interactor.modules.router.dtos.Principal;
-import org.interactor.modules.router.dtos.ResponseType;
 import org.interactor.routes.authorization.AuthorizationChainEntry;
 import org.interactor.routes.authorization.AuthorizationMechanismFilter;
 import org.interactor.routes.authorization.JWTAuthorizationFilterImplementation;
