@@ -1,6 +1,14 @@
+|AuthenticationTests.ShouldIBuyMilk||10:24:36 Wed, Jan 22, 2025|
+|AuthenticationTests.LoginTest||10:23:51 Wed, Jan 22, 2025|
+|AuthenticationTests||10:22:57 Wed, Jan 22, 2025|
+|FrontPage||10:22:40 Wed, Jan 22, 2025|
+|SuitPage.MataPage||10:17:19 Wed, Jan 22, 2025|
+|SuitPage.MataPage.ApiTest||10:16:17 Wed, Jan 22, 2025|
+|SuitPage||10:14:45 Wed, Jan 22, 2025|
+|SuitsPage||10:12:38 Wed, Jan 22, 2025|
+|FrontPage.SuitsPage||10:12:15 Wed, Jan 22, 2025|
+|FrontPage.suits||10:11:25 Wed, Jan 22, 2025|
 |SuitPage.ApiTest||06:57:03 Fri, Jan 10, 2025|
 |SuitPage.shouldIBuyMilk||04:40:54 Fri, Jan 10, 2025|
 |SuitPage.sdafdsa||21:51:56 Wed, Jan 08, 2025|
-|FrontPage||21:28:14 Wed, Jan 08, 2025|
-|SuitPage||21:27:46 Wed, Jan 08, 2025|
 |FrontPage.suitepage||21:27:04 Wed, Jan 08, 2025|

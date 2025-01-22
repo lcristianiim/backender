@@ -1,0 +1,2 @@
+#connect
+mongodump --db backender --out backup-db -u admin -p admin --authenticationDatabase admin

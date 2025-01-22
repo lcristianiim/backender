@@ -1,43 +1,22 @@
 services:
   # for eclipselinkdatacenter module
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: initial
-    ports:
-      - 5432:5432
-    networks:
-      - pgnetwork
-
   mongodb:
     image: mongo:8.0.0  # Use the latest MongoDB image
     container_name: mongodb  # Name of the container
     ports:
-      - "27017:27017"  # Expose MongoDB on port 27017
+      - "${MONGODB_PORT}:27017"  # Expose MongoDB on port 27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin  # Set the root username
-      MONGO_INITDB_ROOT_PASSWORD: admin  # Set the root password
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}  # Set the root username
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD} # Set the root password
     volumes:
       - ./mongodbmodule/db:/data/db  # Persist data in a named volume
-
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
-    networks:
-      - pgnetwork
 
 # for prometheusmetrics module
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - "9090:9090"  # Expose Prometheus on port 9090
+      - "${PROMETHEUS_PORT}:9090"  # Expose Prometheus on port 9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus config file
     command:
@@ -48,12 +27,11 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3001:3000"
+      - "${GRAFANA_PORT}:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin  # Set admin password (optional)
-    network_mode: "host"
 
 networks:
-  pgnetwork:
+  backender_network:
     driver: bridge
   monitoring:  # Define a custom network

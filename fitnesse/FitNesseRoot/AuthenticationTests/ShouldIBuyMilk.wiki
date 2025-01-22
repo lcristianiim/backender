@@ -1,0 +1,14 @@
+---
+Test
+---
+<test page>
+
+!define TEST_SYSTEM {slim}
+!path /home/cristian/projects/backender/interactor/target/classes
+| Import |
+| org.interactor |
+
+| should I buy milk |
+| cash in wallet | credit card | pints of milk remaining | go to store? |
+| 0 | no | 0 | no |
+| 1 | no | 1 | yes |
