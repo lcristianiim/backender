@@ -8,7 +8,7 @@ import java.util.List;
 public class JWTAuthImplementation implements JWTAuth {
     @Override
     public JWTActionResponseWithPrincipal decode(String token) {
-        Requester requester = new Requester();
+        JWTAuthRequester requester = new JWTAuthRequester();
         DecodeResponse jwtDecodeResponse = requester.decode(token);
 
         if (jwtDecodeResponse.principal().isPresent()) {
@@ -35,7 +35,7 @@ public class JWTAuthImplementation implements JWTAuth {
 
     @Override
     public JWTActionResponseWithTokens login(LoginInput loginInput) {
-        Requester requester = new Requester();
+        JWTAuthRequester requester = new JWTAuthRequester();
         JWTTokens tokens = requester.login(loginInput);
 
         JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "success");
@@ -45,7 +45,7 @@ public class JWTAuthImplementation implements JWTAuth {
 
     @Override
     public JWTActionResponseWithTokens refreshToken(RefreshTokenInput refreshTokenInput) {
-        Requester requester = new Requester();
+        JWTAuthRequester requester = new JWTAuthRequester();
         RefreshTokenResponse response = requester.refreshToken(refreshTokenInput);
 
         if (response.isSuccess()) {
@@ -59,7 +59,7 @@ public class JWTAuthImplementation implements JWTAuth {
 
     @Override
     public JWTActionResponse register(InputForUserRegistration inputForUserRegistration) {
-        Requester requester = new Requester();
+        JWTAuthRequester requester = new JWTAuthRequester();
         RegisterUserResponse response = requester.register(inputForUserRegistration);
 
         if (response.isSuccess()) {
@@ -71,7 +71,7 @@ public class JWTAuthImplementation implements JWTAuth {
 
     @Override
     public JWTActionResponse confirm(String confirmCode) {
-        Requester requester = new Requester();
+        JWTAuthRequester requester = new JWTAuthRequester();
         ConfirmUserResponse response = requester.confirm(confirmCode);
 
         if (response.isSuccess()) {

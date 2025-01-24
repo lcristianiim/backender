@@ -4,18 +4,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.backender.jwtauth.configuration.Configuration;
+import org.backender.jwtauth.configuration.JwtAuthModuleConfigurationLoader;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.*;
 
 import java.util.Optional;
 
-public class Requester {
+import static org.backender.jwtauth.configuration.Configuration.*;
 
-    private static final String LOGIN = "http://localhost:4000/auth/login";
-    private static final String DECODE = "http://localhost:4000/auth/decode";
-    private static final String REFRESH_TOKEN = "http://localhost:4000/auth/token";
-    private static final String REGISTER = "http://localhost:4000/auth/register";
-    private static final String CONFIRM = "http://localhost:4000/auth/confirm";
+public class JWTAuthRequester {
+
+    private static final String LOGIN = SERVER_ADDRESS.getValue() + USER_LOGIN.getValue();
+    private static final String REGISTER = SERVER_ADDRESS.getValue() + USER_REGISTER.getValue();
+    private static final String CONFIRM = SERVER_ADDRESS.getValue() + USER_CONFIRM.getValue();
+    private static final String DECODE = SERVER_ADDRESS.getValue() + TOKEN_DECODE.getValue();
+    private static final String REFRESH_TOKEN = SERVER_ADDRESS.getValue() + TOKEN_REFRESH.getValue();
+
     private final ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
     public JWTTokens login(LoginInput loginInput) {

@@ -1,0 +1,63 @@
+!5 !contents -R2 -g -p -f -h
+!3 Api definitions
+Format of the Api definitions:
+
+"auth/<verb>-<subject>"
+
+| Method | Name | Api |
+| POST | login_user | /auth/login-user |
+| POST | register_user | /auth/register-user |
+| POST | confirm_user | /auth/confirm-user |
+| POST | create_user | /auth/create-user |
+| POST | create_user_without_roles | /auth/create-user-without-roles |
+| POST | suspend_user | /auth/suspend-user |
+| POST | unsuspend_user | /auth/unsuspend-user |
+| POST | cancel_user | /auth/cancel-user |
+| POST | uncancel_user | /auth/uncancel-user |
+| POST | purge_user | /auth/purge-user |
+| GET | get_user_activation_link | /auth/get-user-activation-link |
+| GET | decode_token | /auth/decode-token |
+| POST | refresh_token | /auth/refresh-token |
+
+!2 login_user
+| ''' Input ''' |
+| body | {"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"} | valid credentials |
+| ''' Output ''' |
+| code | 200 |
+| body | {"accessToken": "123-abc", "refreshToken": "1234-abcd"} |
+
+| '''Input''' |
+| body | {"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"} | invalid credentials |
+| '''Output''' |
+| code | 401 |
+| body | {"message": "Invalid credentials"} |
+
+| '''Input''' |
+| body | {"identifier": "ioan.szabo@yahoo.com","p": "Test123!"} | invalid format, with missing <pin> key |
+| '''Output''' |
+| code | 400 |
+| body | {"message": "body must have required property 'pin'"} |
+
+| '''Input''' |
+| body | | empty body |
+| '''Output''' |
+| code | 400 |
+| body | {"message": "Body cannot be empty when content-type is set to 'application/json'"} |
+
+!2 register_user
+| ''' Input ''' |
+| body | {"name": "Adrian","identifier": "ioan.szabo1@yahoo.com","pin": "Test123!","pin_confirm": "Test123!","terms_and_conditions": true,"privacy_policy": true} | assuming user is not already existing in db |
+| ''' Output ''' |
+| code | 200 |
+
+| ''' Input ''' |
+| body | {"name": "Adrian","identifier": "ioan.szabo1@yahoo.com","pin": "Test123!","pin_confirm": "Test123!","terms_and_conditions": true,"privacy_policy": true} | assuming user already exists in db |
+| ''' Output ''' |
+| code | 409 |
+| body | {"message": "User already exists"} |
+
+| ''' Input ''' |
+| body | | missing or invalid body |
+| ''' Output ''' |
+| code | 400 |
+| body | {"message": "Invalid request body"} |

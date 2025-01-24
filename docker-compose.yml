@@ -2,6 +2,8 @@ services:
   # for eclipselinkdatacenter module
   mongodb:
     image: mongo:8.0.0  # Use the latest MongoDB image
+    networks:
+      - backender_network
     container_name: mongodb  # Name of the container
     ports:
       - "${MONGODB_PORT}:27017"  # Expose MongoDB on port 27017
@@ -14,6 +16,8 @@ services:
 # for prometheusmetrics module
   prometheus:
     image: prom/prometheus:latest
+    networks:
+      - backender_network
     container_name: prometheus
     ports:
       - "${PROMETHEUS_PORT}:9090"  # Expose Prometheus on port 9090
@@ -21,10 +25,11 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus config file
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'  # Specify the config file
-    network_mode: "host"
 
   grafana:
     image: grafana/grafana:latest
+    networks:
+      - backender_network
     container_name: grafana
     ports:
       - "${GRAFANA_PORT}:3000"

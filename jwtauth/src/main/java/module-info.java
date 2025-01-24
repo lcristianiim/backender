@@ -5,6 +5,7 @@ module jwtauth {
     requires unirest.java;
 
     exports org.backender.jwtauth;
+    opens jwtauth.environments;
 
     provides org.interactor.modules.jwtauth.JWTAuth with org.backender.jwtauth.JWTAuthImplementation;
 }
