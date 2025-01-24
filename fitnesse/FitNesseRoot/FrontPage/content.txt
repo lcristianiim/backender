@@ -1,6 +1,5 @@
-OldPage
-SuitPage
-SuitsPage
+FitnesseDocumentation
 
-JwtAuthModule
+JwtAuthModule (api documentation)
+
 AuthenticationTests
