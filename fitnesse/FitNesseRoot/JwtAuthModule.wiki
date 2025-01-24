@@ -1,4 +1,4 @@
-!5 !contents -R2 -g -p -f -h
+!5 Repository: https://github.com/ioanszabo/auth-service
 !3 Api definitions
 Format of the Api definitions:
 

@@ -1,5 +1,5 @@
 FitnesseDocumentation
 
-JwtAuthModule (api documentation)
+JwtAuthModule (api documentation for the nodejs auth-service application)
 
 AuthenticationTests
