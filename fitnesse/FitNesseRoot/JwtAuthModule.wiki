@@ -5,19 +5,19 @@ Format of the Api definitions:
 "auth/<verb>-<subject>"
 
 | Method | Name | Api |
-| POST | login_user | /auth/login-user |
-| POST | register_user | /auth/register-user |
-| POST | confirm_user | /auth/confirm-user |
-| POST | create_user | /auth/create-user |
-| POST | create_user_without_roles | /auth/create-user-without-roles |
-| POST | suspend_user | /auth/suspend-user |
-| POST | unsuspend_user | /auth/unsuspend-user |
-| POST | cancel_user | /auth/cancel-user |
-| POST | uncancel_user | /auth/uncancel-user |
-| POST | purge_user | /auth/purge-user |
-| GET | get_user_activation_link | /auth/get-user-activation-link |
-| GET | decode_token | /auth/decode-token |
-| POST | refresh_token | /auth/refresh-token |
+| POST | login_user | /auth/login |
+| POST | register_user | /auth/register |
+| POST | confirm_user | /auth/confirm |
+| POST | create_user | /users |
+| POST | create_user_without_roles | /users/regular |
+| POST | suspend_user | /users/suspend |
+| POST | unsuspend_user | /users/unsuspend |
+| POST | cancel_user | /users/cancel |
+| POST | uncancel_user | /users/uncancel |
+| DEL | purge_user | /users |
+| GET | get_user_activation_link | /users/get-link/:identifier |
+| GET | decode_token | /auth/decode |
+| POST | refresh_token | /auth/token |
 
 !2 login_user
 | ''' Input ''' |
