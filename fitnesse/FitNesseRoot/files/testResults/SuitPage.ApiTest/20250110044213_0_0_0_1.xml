@@ -32,7 +32,7 @@
 		&lt;td&gt;call api ?&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor1"&gt;
-		&lt;td&gt;POST &lt;span class="error"&gt;No Method setMethod[1] in class org.interactor.ApiTest.
+		&lt;td&gt;POST &lt;span class="error"&gt;No Method setMethod[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -46,7 +46,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;/api/resource &lt;span class="error"&gt;No Method setEndpoint[1] in class org.interactor.ApiTest.
+		&lt;td&gt;/api/resource &lt;span class="error"&gt;No Method setEndpoint[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -60,7 +60,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;{"key":"value"} &lt;span class="error"&gt;No Method setRequestBody[1] in class org.interactor.ApiTest.
+		&lt;td&gt;{"key":"value"} &lt;span class="error"&gt;No Method setRequestBody[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -74,7 +74,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;200 &lt;span class="error"&gt;No Method setExpectedStatus[1] in class org.interactor.ApiTest.
+		&lt;td&gt;200 &lt;span class="error"&gt;No Method setExpectedStatus[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -88,7 +88,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;{"success":true} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.ApiTest.
+		&lt;td&gt;{"success":true} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -104,7 +104,7 @@ wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor0"&gt;
-		&lt;td&gt;GET &lt;span class="error"&gt;No Method setMethod[1] in class org.interactor.ApiTest.
+		&lt;td&gt;GET &lt;span class="error"&gt;No Method setMethod[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -118,7 +118,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;/api/resource1 &lt;span class="error"&gt;No Method setEndpoint[1] in class org.interactor.ApiTest.
+		&lt;td&gt;/api/resource1 &lt;span class="error"&gt;No Method setEndpoint[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -132,7 +132,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt; &lt;span class="error"&gt;No Method setRequestBody[1] in class org.interactor.ApiTest.
+		&lt;td&gt; &lt;span class="error"&gt;No Method setRequestBody[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -146,7 +146,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;200 &lt;span class="error"&gt;No Method setExpectedStatus[1] in class org.interactor.ApiTest.
+		&lt;td&gt;200 &lt;span class="error"&gt;No Method setExpectedStatus[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -160,7 +160,7 @@ toString() -&amp;gt; class java.lang.String
 wait() -&amp;gt; void
 wait(long) -&amp;gt; void
 wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;{"id":1, "key":"value"} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.ApiTest.
+		&lt;td&gt;{"id":1, "key":"value"} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; void
 equals(java.lang.Object) -&amp;gt; boolean
@@ -210,7 +210,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
           <status>error</status>
           <instructionId>decisionTable_1_4</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setMethod[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setMethod[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -233,7 +233,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_5</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setEndpoint[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setEndpoint[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -256,7 +256,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_6</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setRequestBody[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setRequestBody[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -279,7 +279,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_7</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setExpectedStatus[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setExpectedStatus[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -302,7 +302,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_9</instructionId>
           <type>ReturnedValueExpectation</type>
-          <evaluationMessage>No Method callApi[0] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -325,7 +325,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_11</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setMethod[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setMethod[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -348,7 +348,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_12</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setEndpoint[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setEndpoint[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -371,7 +371,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_13</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setRequestBody[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setRequestBody[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -394,7 +394,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_14</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method setExpectedStatus[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method setExpectedStatus[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean
@@ -417,7 +417,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_16</instructionId>
           <type>ReturnedValueExpectation</type>
-          <evaluationMessage>No Method callApi[0] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 callApi(java.lang.String, java.lang.String, java.lang.String) -&gt; void
 equals(java.lang.Object) -&gt; boolean

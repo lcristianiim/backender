@@ -30,7 +30,7 @@
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor1"&gt;
 		&lt;td&gt;[&lt;span class="diff"&gt;/__VOID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;Method&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;Endpoint &lt;span class="error"&gt;No Method set[1] in class org.interactor.ApiTest.
+		&lt;td&gt;Endpoint &lt;span class="error"&gt;No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 execute() -&amp;gt; void
@@ -54,7 +54,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor0"&gt;
 		&lt;td&gt;[&lt;span class="diff"&gt;/__V&lt;/span&gt;O&lt;span class="diff"&gt;ID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;P&lt;/span&gt;O&lt;span class="diff"&gt;ST&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;/api/resource &lt;span class="error"&gt;No Method set[1] in class org.interactor.ApiTest.
+		&lt;td&gt;/api/resource &lt;span class="error"&gt;No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 execute() -&amp;gt; void
@@ -78,7 +78,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor1"&gt;
 		&lt;td&gt;[&lt;span class="diff"&gt;/__VOID__/&lt;/span&gt;] &lt;span class="fail"&gt;expected [&lt;span class="diff"&gt;GET&lt;/span&gt;]&lt;/span&gt;&lt;/td&gt;
-		&lt;td&gt;/api/resource1 &lt;span class="error"&gt;No Method set[1] in class org.interactor.ApiTest.
+		&lt;td&gt;/api/resource1 &lt;span class="error"&gt;No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 execute() -&amp;gt; void
@@ -134,7 +134,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
           <status>error</status>
           <instructionId>decisionTable_1_4</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method set[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 execute() -&gt; void
@@ -174,7 +174,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_8</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method set[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 execute() -&gt; void
@@ -214,7 +214,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_12</instructionId>
           <type>VoidReturnExpectation</type>
-          <evaluationMessage>No Method set[1] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method set[1] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 execute() -&gt; void

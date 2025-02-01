@@ -15,7 +15,7 @@
 &lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/interactor/target/classes&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
 	&lt;tr class="slimRowTitle"&gt;
 		&lt;td&gt;import&lt;/td&gt;
-		&lt;td colspan="4"&gt;org.interactor.ApiTest&lt;/td&gt;
+		&lt;td colspan="4"&gt;org.interactor.AuthenticationTestsFixture&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor0"&gt;
 		&lt;td colspan="5"&gt;&lt;span class="pass"&gt;ApiTest&lt;/span&gt;&lt;/td&gt;

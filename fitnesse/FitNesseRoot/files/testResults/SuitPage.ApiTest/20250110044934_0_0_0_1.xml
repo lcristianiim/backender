@@ -36,7 +36,7 @@
 		&lt;td&gt;/api/resource&lt;/td&gt;
 		&lt;td&gt;{"key":"value"}&lt;/td&gt;
 		&lt;td&gt;200&lt;/td&gt;
-		&lt;td&gt;{"success":true} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.ApiTest.
+		&lt;td&gt;{"success":true} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 getClass() -&amp;gt; class java.lang.Class
@@ -59,7 +59,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
 		&lt;td&gt;/api/resource1&lt;/td&gt;
 		&lt;td&gt;&lt;/td&gt;
 		&lt;td&gt;200&lt;/td&gt;
-		&lt;td&gt;{"id":1, "key":"value"} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.ApiTest.
+		&lt;td&gt;{"id":1, "key":"value"} &lt;span class="error"&gt;No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 getClass() -&amp;gt; class java.lang.Class
@@ -152,7 +152,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
           <status>error</status>
           <instructionId>decisionTable_1_9</instructionId>
           <type>ReturnedValueExpectation</type>
-          <evaluationMessage>No Method callApi[0] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 getClass() -&gt; class java.lang.Class
@@ -218,7 +218,7 @@ wait(long, int) -&gt; void</evaluationMessage>
           <status>error</status>
           <instructionId>decisionTable_1_16</instructionId>
           <type>ReturnedValueExpectation</type>
-          <evaluationMessage>No Method callApi[0] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method callApi[0] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 getClass() -&gt; class java.lang.Class

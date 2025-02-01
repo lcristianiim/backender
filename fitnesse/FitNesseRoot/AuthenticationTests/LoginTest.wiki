@@ -6,6 +6,6 @@
 !| import |
 | org.interactor |
 
-| script | api test |
+| script | Authentication Tests Fixture |
 | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"} |
 | reject | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "ioan.szabo@yahoo.com","pin": "Test1234!"} |

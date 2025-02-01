@@ -4,10 +4,11 @@ import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 
 
-public class ApiTest {
+public class AuthenticationTestsFixture {
     private String method;
     private String endpoint;
     private String requestBody;
+    private String jwtServer;
 
     private int responseStatus;
     private String responseBody;
@@ -26,5 +27,10 @@ public class ApiTest {
         responseBody = response.getBody();
 
         return responseStatus == 200;
+    }
+
+
+    public void setJwtServer(String jwtServer) {
+        this.jwtServer = jwtServer;
     }
 }

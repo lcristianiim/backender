@@ -30,7 +30,7 @@
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor6"&gt;
 		&lt;td&gt;&lt;table&gt;&lt;tr class="exception closed"&gt;&lt;td&gt; &lt;span class="error"&gt;login;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="exception-detail closed-detail"&gt;&lt;td&gt;__EXCEPTION__:java.lang.NoClassDefFoundError: kong/unirest/Unirest
-	at org.interactor.ApiTest.login(ApiTest.java:25) [file:/home/cristian/projects/backender/interactor/target/classes/]
+	at org.interactor.AuthenticationTestsFixture.login(ApiTest.java:25) [file:/home/cristian/projects/backender/interactor/target/classes/]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) [n/a]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) [rt.jar]
 	at fitnesse.slim.fixtureInteraction.SimpleInteraction.methodInvoke(SimpleInteraction.java:322) [fitnesse-standalone.jar:20241207]
@@ -59,7 +59,7 @@ Caused by: java.lang.ClassNotFoundException: kong.unirest.Unirest
 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) [n/a]
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) [n/a]
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) [rt.jar]
-	at org.interactor.ApiTest.login(ApiTest.java:25) [file:/home/cristian/projects/backender/interactor/target/classes/]
+	at org.interactor.AuthenticationTestsFixture.login(ApiTest.java:25) [file:/home/cristian/projects/backender/interactor/target/classes/]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) [n/a]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) [rt.jar]
 	at fitnesse.slim.fixtureInteraction.SimpleInteraction.methodInvoke(SimpleInteraction.java:322) [fitnesse-standalone.jar:20241207]

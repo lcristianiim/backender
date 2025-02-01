@@ -29,7 +29,7 @@
 		&lt;td&gt;{"user": "a", "pin": "b"}&lt;/td&gt;
 	&lt;/tr&gt;
 	&lt;tr class="slimRowColor7"&gt;
-		&lt;td&gt;login &lt;span class="error"&gt;No Method loginApiRequest[2] in class org.interactor.ApiTest.
+		&lt;td&gt;login &lt;span class="error"&gt;No Method loginApiRequest[2] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&amp;gt; boolean
 getClass() -&amp;gt; class java.lang.Class
@@ -80,7 +80,7 @@ wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
           <status>error</status>
           <instructionId>scriptTable_1_1</instructionId>
           <type>ScriptActionExpectation</type>
-          <evaluationMessage>No Method loginApiRequest[2] in class org.interactor.ApiTest.
+          <evaluationMessage>No Method loginApiRequest[2] in class org.interactor.AuthenticationTestsFixture.
  Available methods:
 equals(java.lang.Object) -&gt; boolean
 getClass() -&gt; class java.lang.Class
