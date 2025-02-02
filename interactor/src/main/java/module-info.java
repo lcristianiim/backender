@@ -5,6 +5,7 @@ module interactor {
     requires org.mockito;
     requires java.net.http;
     requires unirest.java;
+    requires junit;
 
     exports org.interactor.modules.datacenter;
     exports org.interactor.modules.metrics;

@@ -1,11 +1,14 @@
 <test page>
 
 !define TEST_SYSTEM {slim}
+!define Manually_START_TEST_RUNNER_ON_DEBUG
+!define REMOTE_DEBUG_RUNNER
 !path /home/cristian/projects/backender/dependencies/*
 !path /home/cristian/projects/backender/modules/*
 !| import |
 | org.interactor |
 
 | script | Authentication Tests Fixture |
-| login; | POST | http://localhost:7070/api/auth/login | {"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"} |
-| reject | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "ioan.szabo@yahoo.com","pin": "Test1234!"} |
+| ensure | new user creation request; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| reject | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "john.doe@yahoo.com","pin": "Test123!"} |
+| ensure | clean database |

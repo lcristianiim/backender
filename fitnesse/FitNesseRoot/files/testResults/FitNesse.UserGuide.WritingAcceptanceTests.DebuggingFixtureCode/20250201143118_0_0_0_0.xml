@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>FitNesse.UserGuide.WritingAcceptanceTests.DebuggingFixtureCode</rootPath>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>0</totalRunTimeInMillis>
+</testResults>
+

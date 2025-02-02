@@ -1,0 +1,17 @@
+---
+Help: Lists tests failed during last run, so they can be run again (without running all tests that passed).
+Suite
+---
+
+!note This page is automatically generated when running tests. It will be overwritten by the next Suite or Test execution.
+
+Tests failed (first failure was at 2025-02-01T14:52:23.669514646):
+
+!see [[FitNesse.FullReferenceGuide.UserGuide.AdministeringFitNesse.RestfulServices.TestHistoryXml][.FitNesse.FullReferenceGuide.UserGuide.AdministeringFitNesse.RestfulServices.TestHistoryXml]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ColumnFixture][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ColumnFixture]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ParametersInFixtures][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ParametersInFixtures]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ParametricRowFixture][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.ParametricRowFixture]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowEntryFixture][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowEntryFixture]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowFixture][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowFixture]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowFixtureMultipleKeys][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.RowFixtureMultipleKeys]]
+!see [[FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.SummaryFixture][.FitNesse.FullReferenceGuide.UserGuide.WritingAcceptanceTests.FitFramework.SummaryFixture]]

@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>AuthenticationTests.LoginTest</rootPath>
+  <result>
+    <counts>
+      <right>1</right>
+      <wrong>1</wrong>
+      <ignores>0</ignores>
+      <exceptions>1</exceptions>
+    </counts>
+    <date>2025-02-01T14:21:31+02:00</date>
+    <runTimeInMillis>290</runTimeInMillis>
+    <content>&lt;br/&gt;&amp;lt;test page&amp;gt;&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/dependencies/*&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/modules/*&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;org.interactor&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;script&lt;/td&gt;
+		&lt;td colspan="4"&gt;&lt;span class="pass"&gt;Authentication Tests Fixture&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;new user creation request &lt;span class="error"&gt;No Method newUserCreationRequestAHrefHttpLocalhost7070ApiAuthLoginHttpLocalhost7070ApiAuthLoginA123[2] in class org.interactor.AuthenticationTestsFixture.
+ Available methods:
+equals(java.lang.Object) -&amp;gt; boolean
+getClass() -&amp;gt; class java.lang.Class
+hashCode() -&amp;gt; int
+login(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; boolean
+newUserCreationRequest(java.lang.String, java.lang.String, java.lang.String) -&amp;gt; boolean
+notify() -&amp;gt; void
+notifyAll() -&amp;gt; void
+setJwtServer(java.lang.String) -&amp;gt; void
+toString() -&amp;gt; class java.lang.String
+wait() -&amp;gt; void
+wait(long) -&amp;gt; void
+wait(long, int) -&amp;gt; void&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/login"&gt;http://localhost:7070/api/auth/login&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;a href="mailto:john.doe@yahoo.com"&gt;john.doe@yahoo.com&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;123&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor6"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;login;&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/login"&gt;http://localhost:7070/api/auth/login&lt;/a&gt;&lt;/td&gt;
+		&lt;td colspan="2"&gt;{"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor7"&gt;
+		&lt;td&gt;&lt;span class="fail"&gt;reject&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;login;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/login"&gt;http://localhost:7070/api/auth/login&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;{"identifier": "ioan.szabo@yahoo.com","pin": "Test1234!"}&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>LoginTest</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='org.interactor'}</instruction>
+        <slimResult>pass(org.interactor)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>org.interactor</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_0', instruction='make', instanceName='scriptTableActor', className='AuthenticationTestsFixture', args=[]}</instruction>
+        <slimResult>pass(Authentication Tests Fixture)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_0</instructionId>
+          <col>1</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>Authentication Tests Fixture</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_1', instruction='call', instanceName='scriptTableActor', methodName='newUserCreationRequestAHrefHttpLocalhost7070ApiAuthLoginHttpLocalhost7070ApiAuthLoginA123', args=[POST, &lt;a href="mailto:john.doe@yahoo.com"&gt;john.doe@yahoo.com&lt;/a&gt;]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>scriptTable_1_1</instructionId>
+          <type>ScriptActionExpectation</type>
+          <evaluationMessage>No Method newUserCreationRequestAHrefHttpLocalhost7070ApiAuthLoginHttpLocalhost7070ApiAuthLoginA123[2] in class org.interactor.AuthenticationTestsFixture.
+ Available methods:
+equals(java.lang.Object) -&gt; boolean
+getClass() -&gt; class java.lang.Class
+hashCode() -&gt; int
+login(java.lang.String, java.lang.String, java.lang.String) -&gt; boolean
+newUserCreationRequest(java.lang.String, java.lang.String, java.lang.String) -&gt; boolean
+notify() -&gt; void
+notifyAll() -&gt; void
+setJwtServer(java.lang.String) -&gt; void
+toString() -&gt; class java.lang.String
+wait() -&gt; void
+wait(long) -&gt; void
+wait(long, int) -&gt; void</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_2', instruction='call', instanceName='scriptTableActor', methodName='login', args=[POST, &lt;a href="http://localhost:7070/api/auth/login"&gt;http://localhost:7070/api/auth/login&lt;/a&gt;, {"identifier": "ioan.szabo@yahoo.com","pin": "Test123!"}]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_2</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>ScriptActionExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_3', instruction='call', instanceName='scriptTableActor', methodName='login', args=[POST, &lt;a href="http://localhost:7070/api/auth/login"&gt;http://localhost:7070/api/auth/login&lt;/a&gt;, {"identifier": "ioan.szabo@yahoo.com","pin": "Test1234!"}]}</instruction>
+        <slimResult>fail()</slimResult>
+        <expectation>
+          <status>fail</status>
+          <instructionId>scriptTable_1_3</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>RejectActionExpectation</type>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>java -cp /home/cristian/projects/backender/dependencies/logback-classic-1.5.12.jar:/home/cristian/projects/backender/dependencies/jetty-io-11.0.24.jar:/home/cristian/projects/backender/dependencies/bson-record-codec-5.2.1.jar:/home/cristian/projects/backender/dependencies/commons-logging-1.2.jar:/home/cristian/projects/backender/dependencies/byte-buddy-agent-1.15.4.jar:/home/cristian/projects/backender/dependencies/mongodbmodule-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/dependencies/jetty-http-11.0.24.jar:/home/cristian/projects/backender/dependencies/apiguardian-api-1.1.2.jar:/home/cristian/projects/backender/dependencies/mockito-junit-jupiter-5.14.2.jar:/home/cristian/projects/backender/dependencies/bson4jackson-2.15.1.jar:/home/cristian/projects/backender/dependencies/websocket-jetty-server-11.0.24.jar:/home/cristian/projects/backender/dependencies/jetty-servlet-11.0.24.jar:/home/cristian/projects/backender/dependencies/annotations-13.0.jar:/home/cristian/projects/backender/dependencies/unirest-java-3.14.5.jar:/home/cristian/projects/backender/dependencies/httpcore-4.4.13.jar:/home/cristian/projects/backender/dependencies/logstash-logback-encoder-8.0.jar:/home/cristian/projects/backender/dependencies/junit-platform-commons-1.9.3.jar:/home/cristian/projects/backender/dependencies/compiler-0.9.10.jar:/home/cristian/projects/backender/dependencies/websocket-servlet-11.0.24.jar:/home/cristian/projects/backender/dependencies/micrometer-registry-prometheus-1.13.6.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-shaded-protobuf-1.2.1.jar:/home/cristian/projects/backender/dependencies/websocket-jetty-api-11.0.24.jar:/home/cristian/projects/backender/dependencies/javalin-rendering-6.3.0.jar:/home/cristian/projects/backender/dependencies/mapstruct-processor-1.5.3.Final.jar:/home/cristian/projects/backender/dependencies/junit-jupiter-api-5.9.3.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-exposition-formats-1.2.1.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-config-1.2.1.jar:/home/cristian/projects/backender/dependencies/bson-5.2.1.jar:/home/cristian/projects/backender/dependencies/jackson-core-2.18.2.jar:/home/cristian/projects/backender/dependencies/httpcore-nio-4.4.13.jar:/home/cristian/projects/backender/dependencies/opentest4j-1.2.0.jar:/home/cristian/projects/backender/dependencies/websocket-core-server-11.0.24.jar:/home/cristian/projects/backender/dependencies/kotlin-stdlib-jdk7-1.9.25.jar:/home/cristian/projects/backender/dependencies/mongodb-driver-core-5.2.1.jar:/home/cristian/projects/backender/dependencies/jetty-webapp-11.0.24.jar:/home/cristian/projects/backender/dependencies/junit-platform-engine-1.9.3.jar:/home/cristian/projects/backender/dependencies/mockito-core-5.14.2.jar:/home/cristian/projects/backender/dependencies/junit-jupiter-engine-5.9.3.jar:/home/cristian/projects/backender/dependencies/jetty-util-11.0.24.jar:/home/cristian/projects/backender/dependencies/kotlin-stdlib-1.9.25.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-model-1.2.1.jar:/home/cristian/projects/backender/dependencies/jetty-xml-11.0.24.jar:/home/cristian/projects/backender/dependencies/jackson-databind-2.18.2.jar:/home/cristian/projects/backender/dependencies/kotlin-stdlib-jdk8-1.9.25.jar:/home/cristian/projects/backender/dependencies/micrometer-core-1.13.6.jar:/home/cristian/projects/backender/dependencies/websocket-core-common-11.0.24.jar:/home/cristian/projects/backender/dependencies/jetty-jakarta-servlet-api-5.0.2.jar:/home/cristian/projects/backender/dependencies/HdrHistogram-2.2.2.jar:/home/cristian/projects/backender/dependencies/javalin-6.4.0.jar:/home/cristian/projects/backender/dependencies/mapstruct-1.5.3.Final.jar:/home/cristian/projects/backender/dependencies/httpasyncclient-4.1.5.jar:/home/cristian/projects/backender/dependencies/gson-2.10.jar:/home/cristian/projects/backender/dependencies/httpclient-4.5.13.jar:/home/cristian/projects/backender/dependencies/micrometer-observation-1.13.6.jar:/home/cristian/projects/backender/dependencies/micrometer-commons-1.13.6.jar:/home/cristian/projects/backender/dependencies/jetty-server-11.0.24.jar:/home/cristian/projects/backender/dependencies/commons-codec-1.15.jar:/home/cristian/projects/backender/dependencies/byte-buddy-1.15.4.jar:/home/cristian/projects/backender/dependencies/logger-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/dependencies/jetty-security-11.0.24.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-core-1.2.1.jar:/home/cristian/projects/backender/dependencies/slf4j-api-2.0.16.jar:/home/cristian/projects/backender/dependencies/prometheus-metrics-tracer-common-1.2.1.jar:/home/cristian/projects/backender/dependencies/objenesis-3.3.jar:/home/cristian/projects/backender/dependencies/LatencyUtils-2.0.3.jar:/home/cristian/projects/backender/dependencies/mongodb-driver-sync-5.2.1.jar:/home/cristian/projects/backender/dependencies/jackson-annotations-2.18.2.jar:/home/cristian/projects/backender/dependencies/logback-core-1.5.12.jar:/home/cristian/projects/backender/dependencies/websocket-jetty-common-11.0.24.jar:/home/cristian/projects/backender/dependencies/httpmime-4.5.13.jar:/home/cristian/projects/backender/modules/mongodbmodule-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/webserver-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/router-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/jwtauth-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/interactor-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/logger-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/modules/prometheusmetrics-0.0.1-SNAPSHOT.jar:/home/cristian/projects/backender/fitnesse/fitnesse-standalone.jar fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>1</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>500</totalRunTimeInMillis>
+</testResults>
+

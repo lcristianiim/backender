@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
-import org.backender.jwtauth.configuration.Configuration;
-import org.backender.jwtauth.configuration.JwtAuthModuleConfigurationLoader;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.*;
+import org.interactor.modules.logging.LoggerService;
 
 import java.util.Optional;
 
@@ -23,15 +22,29 @@ public class JWTAuthRequester {
 
     private final ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
-    public JWTTokens login(LoginInput loginInput) {
+    public LoginUserResponse login(LoginInput loginInput) {
         String payload = loginInputToBody(loginInput, mapper);
 
         HttpResponse<String> response = Unirest.post(LOGIN)
                 .header("content-type", "application/json")
                 .body(payload)
                 .asString();
+        
+        if (response.getStatus() == 200) {
+            String logMessage = USER_LOGIN_SUCCESS.getValue().formatted(loginInput.identifier());
+            logMessage(logMessage);
 
-        return responseToJWTTokens(mapper, response);
+            return new LoginUserResponse(true, null, responseToJWTTokens(mapper, response));
+        }
+
+        JWTAuthServerErrorResponse error = new JWTAuthServerErrorResponse(response.getStatus(),
+                response.getStatusText(), response.getBody());
+
+        String logMessage = USER_LOGIN_FAILED.getValue().formatted(loginInput.identifier(), error.body());
+
+        logMessage(logMessage);
+
+        return new LoginUserResponse(false, error, null);
     }
 
     public DecodeResponse decode(String token) {
@@ -77,7 +90,7 @@ public class JWTAuthRequester {
                 inputForUserRegistration.identifier(),
                 inputForUserRegistration.pin(),
                 inputForUserRegistration.pinConfirm(),
-                inputForUserRegistration.termsOfConditions(),
+                inputForUserRegistration.termsAndConditions(),
                 inputForUserRegistration.privacyPolicy()
         );
 
@@ -88,12 +101,25 @@ public class JWTAuthRequester {
                 .body(payload)
                 .asString();
 
-        try {
-            JWTAuthServerErrorResponse result = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
-            return new RegisterUserResponse(false, result);
-        } catch (JsonProcessingException e) {
+        if (response.getStatus() == 200) {
+            String logMessage = USER_REGISTER_SUCCESS.getValue().formatted(inputForUserRegistration.identifier());
+            logMessage(logMessage);
+
             return new RegisterUserResponse(true, null);
         }
+
+        JWTAuthServerErrorResponse result =
+                new JWTAuthServerErrorResponse(response.getStatus(), response.getStatusText(), response.getBody());
+
+        String logMessage = USER_REGISTER_FAILED.getValue()
+                .formatted(inputForUserRegistration.identifier(), result.body());
+        logMessage(logMessage);
+
+        return new RegisterUserResponse(false, result);
+    }
+
+    private static void logMessage(String message) {
+        LoggerService.INSTANCE.getLogging().info(message, JWTAuthRequester.class);
     }
 
     public ConfirmUserResponse confirm(String confirmCode) {
@@ -137,12 +163,12 @@ public class JWTAuthRequester {
     private DecodeResponse responseToPrincipal(ObjectMapper mapper, HttpResponse<String> response) {
         try {
             JWTAuthServerErrorResponse errorResponse = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
-            return new DecodeResponse(errorResponse.statusCode(), errorResponse.message(), Optional.empty());
+            return new DecodeResponse(errorResponse.statusCode(), errorResponse.body(), Optional.empty());
         } catch (JsonProcessingException e) {
             try {
                 try {
                     Optional<JWTPrincipal> result = Optional.of(mapper.readValue(response.getBody(), JWTPrincipal.class));
-                    return new DecodeResponse("200", "success", result);
+                    return new DecodeResponse(200, "success", result);
                 } catch (JsonProcessingException ex) {
                     throw new RuntimeException(ex);
                 }

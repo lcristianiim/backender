@@ -36,12 +36,16 @@ public class JWTAuthImplementation implements JWTAuth {
     @Override
     public JWTActionResponseWithTokens login(LoginInput loginInput) {
         JWTAuthRequester requester = new JWTAuthRequester();
-        JWTTokens tokens = requester.login(loginInput);
+        LoginUserResponse response = requester.login(loginInput);
 
-        JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "success");
-        return new JWTActionResponseWithTokens(jwtActionResponse, tokens);
+        if (response.isSuccess()) {
+            JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "success");
+            return new JWTActionResponseWithTokens(jwtActionResponse, response.tokens());
+        } else {
+            JWTActionResponse jwtActionResponse = new JWTActionResponse(false, response.errorResponse().body());
+            return new JWTActionResponseWithTokens(jwtActionResponse, null);
+        }
     }
-
 
     @Override
     public JWTActionResponseWithTokens refreshToken(RefreshTokenInput refreshTokenInput) {
@@ -52,7 +56,7 @@ public class JWTAuthImplementation implements JWTAuth {
             JWTActionResponse jwtActionResponse = new JWTActionResponse(true, "success");
             return new JWTActionResponseWithTokens(jwtActionResponse, response.tokens());
         } else {
-            JWTActionResponse jwtActionResponse = new JWTActionResponse(false, response.errorResponse().message());
+            JWTActionResponse jwtActionResponse = new JWTActionResponse(false, response.errorResponse().body());
             return new JWTActionResponseWithTokens(jwtActionResponse, null);
         }
     }
@@ -65,7 +69,7 @@ public class JWTAuthImplementation implements JWTAuth {
         if (response.isSuccess()) {
             return new JWTActionResponse(true, "User successfully registered");
         } else {
-            return new JWTActionResponse(false, response.errorResponse().message());
+            return new JWTActionResponse(false, response.errorResponse().body());
         }
     }
 
@@ -77,7 +81,7 @@ public class JWTAuthImplementation implements JWTAuth {
         if (response.isSuccess()) {
             return new JWTActionResponse(true, "User successfully confirm");
         } else {
-            return new JWTActionResponse(false, response.errorResponse().message());
+            return new JWTActionResponse(false, response.errorResponse().body());
         }
     }
 

@@ -2,7 +2,6 @@ package org.interactor.configuration;
 
 import org.interactor.controllers.TestController;
 import org.interactor.controllers.UsersServiceController;
-import org.interactor.controllers.persons.AddPersonController;
 import org.interactor.controllers.users.*;
 import org.interactor.internals.Route;
 import org.interactor.modules.router.dtos.RequestType;
@@ -19,8 +18,8 @@ public class RegisteredRoute {
             new Route(GET, "users", new UsersServiceController(), List.of()),
             new Route(GET, "test-users", new UsersServiceController(), List.of(Role.ADMIN)),
             new Route(GET, "product/{id}?name&age", new TestController(), List.of()),
-            new Route(POST, "add-user", new AddPersonController(), List.of()),
-            new Route(POST, "auth/register-user", new RegisterNewUserController(), List.of()),
+//            new Route(POST, "users", new CreateUserController(), List.of()),
+            new Route(POST, "auth/register", new RegisterUserController(), List.of()),
             new Route(GET, "auth/confirm/{%s}".formatted(ACTIVATION_ID), new ConfirmUserController(), List.of()),
             new Route(POST, "auth/decode", new DecodeUserController(), List.of()),
             new Route(POST, "auth/login", new LoginUserController(), List.of()),

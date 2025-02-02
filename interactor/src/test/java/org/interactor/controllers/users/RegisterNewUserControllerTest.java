@@ -29,7 +29,7 @@ class RegisterNewUserControllerTest {
         ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
         JWTAuth jwtAuth = setupMockedJWTRegisterToAlwaysReturnTrue();
-        RegisterNewUserController controller = setupController(jwtAuth);
+        RegisterUserController controller = setupController(jwtAuth);
         Route route = new Route(
                 POST, "register-user", controller, List.of());
 
@@ -47,7 +47,7 @@ class RegisterNewUserControllerTest {
         ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
         JWTAuth jwtAuth = setupMockedJWTRegisterToAlwaysReturnFalse();
-        RegisterNewUserController controller = setupController(jwtAuth);
+        RegisterUserController controller = setupController(jwtAuth);
         Route route = new Route(
                 POST, "register-user", controller, List.of());
 
@@ -66,7 +66,7 @@ class RegisterNewUserControllerTest {
         ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
         JWTAuth jwtAuth = setupMockedJWTRegisterToThrowException();
-        RegisterNewUserController controller = setupController(jwtAuth);
+        RegisterUserController controller = setupController(jwtAuth);
         Route route = new Route(
                 POST, "register-user", controller, List.of());
 
@@ -101,8 +101,8 @@ class RegisterNewUserControllerTest {
         return jwtAuth;
     }
 
-    private RegisterNewUserController setupController(JWTAuth jwtAuth) {
-        RegisterNewUserController controller = new RegisterNewUserController();
+    private RegisterUserController setupController(JWTAuth jwtAuth) {
+        RegisterUserController controller = new RegisterUserController();
         controller.setJwtAuthForTesting(jwtAuth);
         return controller;
     }
