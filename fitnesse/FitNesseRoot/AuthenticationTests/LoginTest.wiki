@@ -8,7 +8,15 @@
 !| import |
 | org.interactor |
 
+Login should fail because the user is not confirmed.
+
 | script | Authentication Tests Fixture |
-| ensure | new user creation request; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| ensure | register user; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
 | reject | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "john.doe@yahoo.com","pin": "Test123!"} |
+| ensure | clean database |
+
+
+| script | Authentication Tests Fixture |
+| ensure | register user; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| ensure | login; | POST | http://localhost:7070/api/auth/login | {"identifier": "john.doe@yahoo.com","pin": "Test123!"} |
 | ensure | clean database |

@@ -14,7 +14,7 @@ public class AuthenticationTestsFixture {
     private String responseBody;
 
 
-    public boolean newUserCreationRequest(String method, String endpoint, String payload) {
+    public boolean registerUser(String method, String endpoint, String payload) {
         endpoint = parseHTMLLinkFromFitnesse(endpoint);
 
         HttpResponse<String> response = Unirest.post(endpoint)
