@@ -27,6 +27,7 @@ public class RegisteredRoute {
             new Route(POST, "auth/suspend-user", new RefreshTokenController(), List.of()),
             new Route(POST, "auth/unsuspend-user", new UnSuspendUserController(), List.of()),
             new Route(POST, "auth/cancel-user", new CancelUserController(), List.of()),
+            new Route(POST, "/users/get-link/{identifier}", new GetUserActivationLinkController(), List.of()),
             new Route(POST, "auth/uncancel-user", new UnCancelUserController(), List.of()));
 
 
