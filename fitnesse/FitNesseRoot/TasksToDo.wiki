@@ -1,0 +1,6 @@
+!contents -R2 -g -p -f -h
+
+[[Task-06.12.2025-0740][TaskPage061220250740]] - this is about the memory leak problem during npm i
+[[Task-06.12.2025-0745][TaskPage061220250745]] - application crash when purging an unconfirmed user
+[[Task-06.12.2025-0746][TaskPage061220250746]] - optimise the confirmation of users by removing all registered users with the same identifier
+[[Task-06.12.2025-0748][TaskPage061220250748]] - do not return error when requesting an activation link for an already registered user

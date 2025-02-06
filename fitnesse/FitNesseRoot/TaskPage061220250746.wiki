@@ -1,0 +1,10 @@
+!contents -R2 -g -p -f -h
+Problem
+
+ * dau register la un nou user
+
+ * dau register la acelasi user
+
+ * dau confirm
+
+Wanted behaviour: cand se da confirm, sa se stearga din db toate registered users

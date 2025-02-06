@@ -1,0 +1,8 @@
+!contents -R2 -g -p -f -h
+Problem
+
+ * dau register la un nou user
+
+ * dau purge la user registered
+
+Wrong behaviour: crapa aplicatia. (zice db connection closed)

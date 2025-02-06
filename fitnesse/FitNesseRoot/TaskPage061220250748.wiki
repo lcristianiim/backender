@@ -1,0 +1,12 @@
+!contents -R2 -g -p -f -h
+Problem
+
+ * register user
+
+ * confirm user
+
+ * get activation link
+
+Wrong behavior: returns An unexpected error occurred.
+
+Wanted behavior: returns not an error but it says: user already confirmed
