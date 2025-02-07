@@ -11,18 +11,19 @@ import org.interactor.modules.router.dtos.InteractorResponse;
 
 import java.util.Map;
 
-import static org.interactor.configuration.RegisteredRoute.ACTIVATION_ID;
+import static org.interactor.configuration.RegisteredRoute.IDENTIFIER;
 
-public class GetActivationLinkController implements Controller {
+
+public class PurgeUserController implements Controller {
     JWTAuth jwtAuth = JWTAuthService.INSTANCE.getJwtAuth();
-    String activationToConfirm;
+    String identifierToPurge;
 
     @Override
     public InteractorResponse getResponse() {
         JWTActionResponse registrationResponse;
 
         try {
-            registrationResponse = jwtAuth.confirm(activationToConfirm);
+            registrationResponse = jwtAuth.purgeUser(identifierToPurge);
         } catch (Exception e) {
             throw new SomethingWentWrongCallingTheAuthServiceException(e.getMessage());
         }
@@ -36,7 +37,6 @@ public class GetActivationLinkController implements Controller {
         if (confirmationResponse.isSuccess()) {
             InteractorResponse response = new InteractorResponse();
             response.setCode(200);
-            response.setBody("User has been confirmed.");
             return response;
         }
 
@@ -52,7 +52,7 @@ public class GetActivationLinkController implements Controller {
         Map<String, String> pathParams = RouterService.INSTANCE.getRouter()
                 .getPathParams(registeredPath.path(), controllerData.getRequestPath());
 
-            activationToConfirm = pathParams.get(ACTIVATION_ID);
+            identifierToPurge = pathParams.get(IDENTIFIER);
     }
 
     public static class SomethingWentWrongCallingTheAuthServiceException extends RuntimeException {
