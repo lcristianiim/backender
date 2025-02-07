@@ -1,0 +1,8 @@
+!contents -R2 -g -p -f -h
+Problem
+User registration not working 
+
+The response is 
+{
+  "description": "User DB, Could not find active user"
+}
