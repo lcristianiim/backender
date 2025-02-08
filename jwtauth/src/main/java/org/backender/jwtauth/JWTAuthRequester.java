@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.interactor.configuration.Configuration;
 import org.interactor.internals.ObjectMapperSingleton;
 import org.interactor.modules.jwtauth.*;
 import org.interactor.modules.logging.LoggerService;
@@ -19,6 +20,9 @@ public class JWTAuthRequester {
     private static final String CONFIRM = SERVER_ADDRESS.getValue() + USER_CONFIRM.getValue();
     private static final String DECODE = SERVER_ADDRESS.getValue() + TOKEN_DECODE.getValue();
     private static final String REFRESH_TOKEN = SERVER_ADDRESS.getValue() + TOKEN_REFRESH.getValue();
+    private static final String ACTIVATION_LINK = SERVER_ADDRESS.getValue() + GET_USER_ACTIVATION_LINK.getValue();
+    private static final String USER_PURGE_LINK = SERVER_ADDRESS.getValue() + USER_PURGE.getValue();
+
 
     private final ObjectMapper mapper = ObjectMapperSingleton.INSTANCE.getObjectMapper();
 
@@ -27,6 +31,7 @@ public class JWTAuthRequester {
 
         HttpResponse<String> response = Unirest.post(LOGIN)
                 .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
                 .body(payload)
                 .asString();
         
@@ -53,6 +58,7 @@ public class JWTAuthRequester {
 
         HttpResponse<String> response = Unirest.post(DECODE)
                 .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
                 .body(payload)
                 .asString();
 
@@ -68,6 +74,7 @@ public class JWTAuthRequester {
 
         HttpResponse<String> response = Unirest.post(REFRESH_TOKEN)
                 .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
                 .body(payload)
                 .asString();
 
@@ -98,6 +105,7 @@ public class JWTAuthRequester {
 
         HttpResponse<String> response = Unirest.post(REGISTER)
                 .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
                 .body(payload)
                 .asString();
 
@@ -125,6 +133,7 @@ public class JWTAuthRequester {
     public ConfirmUserResponse confirm(String confirmCode) {
         HttpResponse<String> response = Unirest.get(CONFIRM + "/" + confirmCode)
                 .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
                 .asString();
 
         try {
@@ -134,6 +143,42 @@ public class JWTAuthRequester {
             return new ConfirmUserResponse(true, null);
         }
     }
+
+    public GetUserActivationResponse getUserActivationLink(String identifier) {
+        String url = ACTIVATION_LINK + "/" + identifier;
+
+        HttpResponse<String> response = Unirest.get(url)
+                .header("content-type", "application/json")
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
+                .asString();
+
+        try {
+            SuccessActivationLinkResponse returnedResponse = mapper.readValue(response.getBody(), SuccessActivationLinkResponse.class);
+            String confirmationLink = Configuration.BACKEND_DOMAIN.getValue()
+                    + Configuration.API_PATH.getValue()
+                    + USER_CONFIRM.getValue()
+                    + "/" + returnedResponse.uuid();
+
+            String successLogMessage = GET_ACTIVATION_LINK_SUCCESS.getValue().formatted(returnedResponse.userIdentifier());
+            logMessage(successLogMessage);
+
+            return new GetUserActivationResponse(true, confirmationLink, returnedResponse.uuid(),
+                    returnedResponse.userIdentifier(), null);
+
+        } catch (JsonProcessingException e) {
+            try {
+                JWTAuthServerErrorResponse result = mapper.readValue(response.getBody(), JWTAuthServerErrorResponse.class);
+
+                String failLogMessage = GET_ACTIVATION_LINK_FAIL.getValue().formatted(identifier);
+                logMessage(failLogMessage);
+
+                return new GetUserActivationResponse(false, null, null, null, result);
+            } catch (JsonProcessingException f) {
+                throw new RuntimeException(f.getMessage());
+            }
+        }
+    }
+
 
     private String inputForUserRegistrationToPayload(InputForUserRegistrationDTO inputForUserRegistration, ObjectMapper mapper) {
         try {
@@ -194,4 +239,21 @@ public class JWTAuthRequester {
         }
     }
 
+    public PurgeUserResponse purgeUser(String identifierToPurge) {
+        HttpResponse<String> response = Unirest.delete(USER_PURGE_LINK + "/" + identifierToPurge)
+                .header(COM_KEY.getValue(), COM_VALUE.getValue())
+                .asString();
+
+        if (response.getStatus() == 200) {
+            return new PurgeUserResponse(true, null);
+        } else {
+            JWTAuthServerErrorResponse result = new JWTAuthServerErrorResponse(
+                    response.getStatus(),
+                    response.getStatusText(),
+                    response.getBody()
+            );
+
+            return new PurgeUserResponse(false, result);
+        }
+    }
 }

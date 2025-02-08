@@ -13,6 +13,7 @@ import static org.interactor.modules.router.dtos.RequestType.*;
 
 public class RegisteredRoute {
     public static final String ACTIVATION_ID = "activation-id";
+    public static final String IDENTIFIER = "identifier";
 
     private static List<Route> registeredRoutes = List.of(
             new Route(GET, "users", new UsersServiceController(), List.of()),
@@ -27,7 +28,8 @@ public class RegisteredRoute {
             new Route(POST, "auth/suspend-user", new RefreshTokenController(), List.of()),
             new Route(POST, "auth/unsuspend-user", new UnSuspendUserController(), List.of()),
             new Route(POST, "auth/cancel-user", new CancelUserController(), List.of()),
-            new Route(POST, "/users/get-link/{identifier}", new GetUserActivationLinkController(), List.of()),
+            new Route(GET, "users/get-link/{%s}".formatted(IDENTIFIER), new GetUserActivationLinkController(), List.of()),
+            new Route(DELETE, "users/{%s}".formatted(IDENTIFIER), new PurgeUserController(), List.of()),
             new Route(POST, "auth/uncancel-user", new UnCancelUserController(), List.of()));
 
 

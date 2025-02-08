@@ -3,7 +3,8 @@ package org.interactor.configuration;
 import org.interactor.internals.InteractorConfigurationLoader;
 
 public enum Configuration {
-    API_PATH(fetchByKey("api.path"));
+    API_PATH(fetchByKey("api.path")),
+    BACKEND_DOMAIN(fetchByKey("backend.domain"));
 
     private static String fetchByKey(String key) {
         return InteractorConfigurationLoader.INSTANCE.loadConfiguration(key);

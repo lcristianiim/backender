@@ -83,6 +83,11 @@ public class Application {
 
 		app.get(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
 		app.post(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.put(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.patch(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.head(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.options(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
+		app.delete(Configuration.API_PATH.getValue() + "/**", Application::processRequestWithInteractor);
 
 		app.start(7070);
 

@@ -43,18 +43,52 @@ public class AuthenticationTestsFixture {
         return responseStatus == 200;
     }
 
-    public boolean cleanDatabase() {
-        return true;
+    public String getActivationLink(String method, String endpoint) {
+
+        endpoint = parseHTMLLinkFromFitnesse(endpoint);
+
+        HttpResponse<String> response = Unirest.get(endpoint)
+                .header("content-type", "application/json")
+                .asString();
+
+        responseStatus = response.getStatus();
+        responseBody = response.getBody();
+
+        return responseBody;
+    }
+
+    public boolean confirmUser(String method, String endpoint) {
+        endpoint = parseHTMLLinkFromFitnesse(endpoint);
+
+        HttpResponse<String> response = Unirest.get(endpoint)
+                .header("content-type", "application/json")
+                .asString();
+
+        responseStatus = response.getStatus();
+        responseBody = response.getBody();
+
+        return response.getStatus() == 200;
+    }
+
+    public boolean purgeUser(String method, String endpoint) {
+        endpoint = parseHTMLLinkFromFitnesse(endpoint);
+
+        HttpResponse<String> response = Unirest.delete(endpoint)
+                .header("content-type", "application/json")
+                .asString();
+
+        responseStatus = response.getStatus();
+        responseBody = response.getBody();
+
+        return response.getStatus() == 200;
     }
 
     private static String parseHTMLLinkFromFitnesse(String endpoint) {
         return endpoint.replaceAll("<a href=\"(.*?)\">(.*?)</a>", "$1");
     }
 
-
     public void setJwtServer(String jwtServer) {
         this.jwtServer = jwtServer;
     }
-
 
 }

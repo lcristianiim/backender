@@ -11,13 +11,26 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import static org.interactor.configuration.RegisteredRoute.getRoutesByHttpMethod;
-import static org.interactor.modules.router.dtos.RequestType.GET;
-import static org.interactor.modules.router.dtos.RequestType.POST;
+import static org.interactor.modules.router.dtos.RequestType.*;
 
 public class RouterImplementation implements Router {
 
     List<Route> getRoutes = getRoutesByHttpMethod(GET);
     List<Route> postRoutes = getRoutesByHttpMethod(POST);
+    List<Route> putRoutes = getRoutesByHttpMethod(PUT);
+    List<Route> patchRoutes = getRoutesByHttpMethod(PATCH);
+    List<Route> headRoutes = getRoutesByHttpMethod(HEAD);
+    List<Route> traceRoutes = getRoutesByHttpMethod(TRACE);
+    List<Route> ConnectRoutes = getRoutesByHttpMethod(CONNECT);
+    List<Route> optionsRoutes = getRoutesByHttpMethod(OPTIONS);
+    List<Route> beforeRoutes = getRoutesByHttpMethod(BEFORE);
+    List<Route> beforeMatchedRoutes = getRoutesByHttpMethod(BEFORE_MATCHED);
+    List<Route> afterMatchedRoutes = getRoutesByHttpMethod(AFTER_MATCHED);
+    List<Route> websocketBeforeUpgrade = getRoutesByHttpMethod(WEBSOCKET_BEFORE_UPGRADE);
+    List<Route> websocketAfterUpgrade = getRoutesByHttpMethod(WEBSOCKET_AFTER_UPGRADE);
+    List<Route> afterRoutes = getRoutesByHttpMethod(AFTER);
+    List<Route> invalidRoutes = getRoutesByHttpMethod(INVALID);
+    List<Route> deleteRoutes = getRoutesByHttpMethod(DELETE);
 
     LoggerService logger =  LoggerService.INSTANCE;
     Class<RouterImplementation> clazz = RouterImplementation.class;
@@ -41,20 +54,20 @@ public class RouterImplementation implements Router {
         return switch (requestType) {
             case GET -> getRoutes;
             case POST -> postRoutes;
-            case PUT -> null;
-            case PATCH -> null;
-            case HEAD -> null;
-            case TRACE -> null;
-            case CONNECT -> null;
-            case OPTIONS -> null;
-            case BEFORE -> null;
-            case BEFORE_MATCHED -> null;
-            case AFTER_MATCHED -> null;
-            case WEBSOCKET_BEFORE_UPGRADE -> null;
-            case WEBSOCKET_AFTER_UPGRADE -> null;
-            case AFTER -> null;
-            case INVALID -> null;
-            case DELETE -> null;
+            case PUT -> putRoutes;
+            case PATCH -> patchRoutes;
+            case HEAD -> headRoutes;
+            case TRACE -> traceRoutes;
+            case CONNECT -> ConnectRoutes;
+            case OPTIONS -> optionsRoutes;
+            case BEFORE -> beforeRoutes;
+            case BEFORE_MATCHED -> beforeMatchedRoutes;
+            case AFTER_MATCHED -> afterMatchedRoutes;
+            case WEBSOCKET_BEFORE_UPGRADE -> websocketBeforeUpgrade;
+            case WEBSOCKET_AFTER_UPGRADE -> websocketAfterUpgrade;
+            case AFTER -> afterRoutes;
+            case INVALID -> invalidRoutes;
+            case DELETE -> deleteRoutes;
         };
     }
 

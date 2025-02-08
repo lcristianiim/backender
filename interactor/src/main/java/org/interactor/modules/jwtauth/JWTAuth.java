@@ -11,4 +11,7 @@ public interface JWTAuth {
     JWTActionResponse unSuspend(String userUUID);
     JWTActionResponse cancel(String userUUID);
     JWTActionResponse unCancel(String userUUID);
+    JWTActionResponse getActivationLink(String identifier);
+
+    JWTActionResponse purgeUser(String identifierToPurge);
 }

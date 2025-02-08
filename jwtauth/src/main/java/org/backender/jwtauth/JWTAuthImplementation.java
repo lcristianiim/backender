@@ -86,6 +86,30 @@ public class JWTAuthImplementation implements JWTAuth {
     }
 
     @Override
+    public JWTActionResponse getActivationLink(String identifier) {
+        JWTAuthRequester requester = new JWTAuthRequester();
+        GetUserActivationResponse response = requester.getUserActivationLink(identifier);
+
+        if (response.isSuccess()) {
+            return new JWTActionResponse(true, response.confirmationLink());
+        } else {
+            return new JWTActionResponse(false, response.errorResponse().body());
+        }
+    }
+
+    @Override
+    public JWTActionResponse purgeUser(String identifierToPurge) {
+        JWTAuthRequester requester = new JWTAuthRequester();
+        PurgeUserResponse response = requester.purgeUser(identifierToPurge);
+
+        if (response.isSuccess()) {
+            return new JWTActionResponse(true, null);
+        } else {
+            return new JWTActionResponse(false, response.errorResponse().body());
+        }
+    }
+
+    @Override
     public JWTActionResponse suspend(InputForUserSuspend suspendInput) {
         return null;
     }
@@ -104,4 +128,5 @@ public class JWTAuthImplementation implements JWTAuth {
     public JWTActionResponse unCancel(String userUUID) {
         return null;
     }
+
 }
