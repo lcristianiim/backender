@@ -1,0 +1,2 @@
+!contents -R2 -g -p -f -h
+Put database name in .env file
