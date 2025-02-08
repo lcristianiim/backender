@@ -1,4 +1,4 @@
-!5 TasksToDo
+!3 TasksToDo
 !5 
 !5 Repository: https://github.com/ioanszabo/auth-service
 !3 Api definitions

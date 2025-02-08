@@ -1,10 +1,4 @@
 !contents -R2 -g -p -f -h
-Problem
+The acceptance test for this problem can be found here
 
- * dau register la un nou user
-
- * dau register la acelasi user
-
- * dau confirm
-
-Wanted behaviour: cand se da confirm, sa se stearga din db toate registered users
+AuthenticationTests.FailedLoginForUnconfirmedUser
