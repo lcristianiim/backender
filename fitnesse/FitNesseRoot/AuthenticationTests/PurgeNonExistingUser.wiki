@@ -1,0 +1,11 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!path /home/cristian/projects/backender/dependencies/*
+!path /home/cristian/projects/backender/modules/*
+!| import |
+| org.interactor |
+
+| script | Authentication Tests Fixture |
+| reject | purge user; |DELETE | http://localhost:7070/api/users/john.doe@yahoo.com |
