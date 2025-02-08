@@ -1,3 +1,4 @@
+|FrontPage||09:30:06 Sat, Feb 08, 2025|
 |TasksToDo||09:28:50 Sat, Feb 08, 2025|
 |AuthenticationTests.DoNotReturnErrorWhenRequestingActivationLinkForAlreadyRegisteredUser||08:55:06 Sat, Feb 08, 2025|
 |JwtAuthModule||08:46:14 Sat, Feb 08, 2025|
@@ -10,7 +11,6 @@
 |TaskPage061220250748||07:49:59 Thu, Feb 06, 2025|
 |TaskPage061220250745||07:45:58 Thu, Feb 06, 2025|
 |TaskPage061220250740||07:43:57 Thu, Feb 06, 2025|
-|FrontPage||13:38:27 Fri, Jan 24, 2025|
 |FitnesseDocumentation||13:36:38 Fri, Jan 24, 2025|
 |OldPage||11:06:57 Fri, Jan 24, 2025|
 |AuthenticationTests.ShouldIBuyMilk||10:24:36 Wed, Jan 22, 2025|
