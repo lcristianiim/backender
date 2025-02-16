@@ -83,6 +83,10 @@ public class AuthenticationTestsFixture {
         return response.getStatus() == 200;
     }
 
+    public boolean activationLinksAreDifferent(String linkOne, String linkTwo, String linkTree) {
+        return !linkOne.equals(linkTwo) && !linkOne.equals(linkTree) && !linkTwo.equals(linkTree);
+    }
+
     private static String parseHTMLLinkFromFitnesse(String endpoint) {
         return endpoint.replaceAll("<a href=\"(.*?)\">(.*?)</a>", "$1");
     }

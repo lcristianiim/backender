@@ -1,0 +1,26 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!define Manually_START_TEST_RUNNER_ON_DEBUG
+!define REMOTE_DEBUG_RUNNER
+!path /home/cristian/projects/backender/dependencies/*
+!path /home/cristian/projects/backender/modules/*
+!| import |
+| org.interactor |
+
+Login process:
+- register
+- get activation link
+- confirm user
+- login
+
+| script | Authentication Tests Fixture |
+| ensure | register user; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| $A= | get activation link; | GET | http://localhost:7070/api/users/get-link/john.doe@yahoo.com |
+| ensure | register user; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| $B= | get activation link; | GET | http://localhost:7070/api/users/get-link/john.doe@yahoo.com |
+| ensure | register user; | POST | http://localhost:7070/api/auth/register | {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true} |
+| $C= | get activation link; | GET | http://localhost:7070/api/users/get-link/john.doe@yahoo.com |
+| ensure | activation links are different; |$A|$B|$C|
+| ensure | purge user; |DELETE | http://localhost:7070/api/users/john.doe@yahoo.com |

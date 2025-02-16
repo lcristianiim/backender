@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20241207</FitNesseVersion>
+  <rootPath>AuthenticationTests.RegisteringSameUserMultipleTimesGetsTheActivationKeyForLast</rootPath>
+  <result>
+    <counts>
+      <right>5</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>0</exceptions>
+    </counts>
+    <date>2025-02-16T19:54:28+02:00</date>
+    <runTimeInMillis>73</runTimeInMillis>
+    <content>&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;!define Manually_START_TEST_RUNNER_ON_DEBUG&lt;br/&gt;!define REMOTE_DEBUG_RUNNER&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/dependencies/*&lt;/span&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: /home/cristian/projects/backender/modules/*&lt;/span&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;org.interactor&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;Login process:&lt;br/&gt;- register&lt;br/&gt;- get activation link&lt;br/&gt;- confirm user&lt;br/&gt;- login&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;script&lt;/td&gt;
+		&lt;td colspan="4"&gt;&lt;span class="pass"&gt;Authentication Tests Fixture&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor8"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;ensure&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;register user;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;{"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor2"&gt;
+		&lt;td&gt;$A&amp;lt;-[http://localhost:7070/api/auth/confirm/752771f9-5632-4c7c-99ca-a27bba04a619]&lt;/td&gt;
+		&lt;td&gt;get activation link;&lt;/td&gt;
+		&lt;td&gt;GET&lt;/td&gt;
+		&lt;td colspan="2"&gt;&lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor8"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;ensure&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;register user;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;{"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor3"&gt;
+		&lt;td&gt;$B&amp;lt;-[http://localhost:7070/api/auth/confirm/79557fb9-b533-47d0-8c2c-77f2153f4379]&lt;/td&gt;
+		&lt;td&gt;get activation link;&lt;/td&gt;
+		&lt;td&gt;GET&lt;/td&gt;
+		&lt;td colspan="2"&gt;&lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor8"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;ensure&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;register user;&lt;/td&gt;
+		&lt;td&gt;POST&lt;/td&gt;
+		&lt;td&gt;&lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;&lt;/td&gt;
+		&lt;td&gt;{"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor4"&gt;
+		&lt;td&gt;$C&amp;lt;-[http://localhost:7070/api/auth/confirm/15c055db-51b3-4c97-9113-622f3b0b8c2e]&lt;/td&gt;
+		&lt;td&gt;get activation link;&lt;/td&gt;
+		&lt;td&gt;GET&lt;/td&gt;
+		&lt;td colspan="2"&gt;&lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor8"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;ensure&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;activation links are different;&lt;/td&gt;
+		&lt;td&gt;$A-&gt;[http://localhost:7070/api/auth/confirm/752771f9-5632-4c7c-99ca-a27bba04a619]&lt;/td&gt;
+		&lt;td&gt;$B-&gt;[http://localhost:7070/api/auth/confirm/79557fb9-b533-47d0-8c2c-77f2153f4379]&lt;/td&gt;
+		&lt;td&gt;$C-&gt;[http://localhost:7070/api/auth/confirm/15c055db-51b3-4c97-9113-622f3b0b8c2e]&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor8"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;ensure&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;purge user;&lt;/td&gt;
+		&lt;td&gt;DELETE&lt;/td&gt;
+		&lt;td colspan="2"&gt;&lt;a href="http://localhost:7070/api/users/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/john.doe@yahoo.com&lt;/a&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>RegisteringSameUserMultipleTimesGetsTheActivationKeyForLast</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='org.interactor'}</instruction>
+        <slimResult>pass(org.interactor)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>org.interactor</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_0', instruction='make', instanceName='scriptTableActor', className='AuthenticationTestsFixture', args=[]}</instruction>
+        <slimResult>pass(Authentication Tests Fixture)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_0</instructionId>
+          <col>1</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>Authentication Tests Fixture</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_1', instruction='call', instanceName='scriptTableActor', methodName='registerUser', args=[POST, &lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;, {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_1</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>EnsureActionExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_2', instruction='callAndAssign', symbolName='A', instanceName='scriptTableActor', methodName='getActivationLink', args=[GET, &lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;]}</instruction>
+        <slimResult>$A&lt;-[http://localhost:7070/api/auth/confirm/752771f9-5632-4c7c-99ca-a27bba04a619]</slimResult>
+        <expectation>
+          <instructionId>scriptTable_1_2</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>SymbolAssignmentExpectation</type>
+          <evaluationMessage>$A&lt;-[http://localhost:7070/api/auth/confirm/752771f9-5632-4c7c-99ca-a27bba04a619]</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_3', instruction='call', instanceName='scriptTableActor', methodName='registerUser', args=[POST, &lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;, {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_3</instructionId>
+          <col>0</col>
+          <row>3</row>
+          <type>EnsureActionExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_4', instruction='callAndAssign', symbolName='B', instanceName='scriptTableActor', methodName='getActivationLink', args=[GET, &lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;]}</instruction>
+        <slimResult>$B&lt;-[http://localhost:7070/api/auth/confirm/79557fb9-b533-47d0-8c2c-77f2153f4379]</slimResult>
+        <expectation>
+          <instructionId>scriptTable_1_4</instructionId>
+          <col>0</col>
+          <row>4</row>
+          <type>SymbolAssignmentExpectation</type>
+          <evaluationMessage>$B&lt;-[http://localhost:7070/api/auth/confirm/79557fb9-b533-47d0-8c2c-77f2153f4379]</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_5', instruction='call', instanceName='scriptTableActor', methodName='registerUser', args=[POST, &lt;a href="http://localhost:7070/api/auth/register"&gt;http://localhost:7070/api/auth/register&lt;/a&gt;, {"name": "John Doe","identifier": "john.doe@yahoo.com","pin": "Test123!","pin_confirm":"Test123!","terms_and_conditions":true,"privacy_policy":true}]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_5</instructionId>
+          <col>0</col>
+          <row>5</row>
+          <type>EnsureActionExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_6', instruction='callAndAssign', symbolName='C', instanceName='scriptTableActor', methodName='getActivationLink', args=[GET, &lt;a href="http://localhost:7070/api/users/get-link/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/get-link/john.doe@yahoo.com&lt;/a&gt;]}</instruction>
+        <slimResult>$C&lt;-[http://localhost:7070/api/auth/confirm/15c055db-51b3-4c97-9113-622f3b0b8c2e]</slimResult>
+        <expectation>
+          <instructionId>scriptTable_1_6</instructionId>
+          <col>0</col>
+          <row>6</row>
+          <type>SymbolAssignmentExpectation</type>
+          <evaluationMessage>$C&lt;-[http://localhost:7070/api/auth/confirm/15c055db-51b3-4c97-9113-622f3b0b8c2e]</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_7', instruction='call', instanceName='scriptTableActor', methodName='activationLinksAreDifferent', args=[$A, $B, $C]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_7</instructionId>
+          <col>0</col>
+          <row>7</row>
+          <type>EnsureActionExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='scriptTable_1_8', instruction='call', instanceName='scriptTableActor', methodName='purgeUser', args=[DELETE, &lt;a href="http://localhost:7070/api/users/john.doe@yahoo.com"&gt;http://localhost:7070/api/users/john.doe@yahoo.com&lt;/a&gt;]}</instruction>
+        <slimResult>pass()</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>scriptTable_1_8</instructionId>
+          <col>0</col>
+          <row>8</row>
+          <type>EnsureActionExpectation</type>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <finalCounts>
+    <right>1</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>0</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>73</totalRunTimeInMillis>
+</testResults>
+
