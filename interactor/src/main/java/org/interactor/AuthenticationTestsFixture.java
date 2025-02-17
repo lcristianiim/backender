@@ -5,11 +5,6 @@ import kong.unirest.Unirest;
 
 
 public class AuthenticationTestsFixture {
-    private String method;
-    private String endpoint;
-    private String requestBody;
-    private String jwtServer;
-
     private int responseStatus;
     private String responseBody;
 
@@ -89,10 +84,6 @@ public class AuthenticationTestsFixture {
 
     private static String parseHTMLLinkFromFitnesse(String endpoint) {
         return endpoint.replaceAll("<a href=\"(.*?)\">(.*?)</a>", "$1");
-    }
-
-    public void setJwtServer(String jwtServer) {
-        this.jwtServer = jwtServer;
     }
 
 }
